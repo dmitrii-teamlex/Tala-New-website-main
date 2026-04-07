@@ -10,11 +10,10 @@ const TalaLogoWhite = () => (
 );
 
 const navItems: NavItem[] = [
-  { label: "Product", hasDropdown: true, href: "/viral-content-engine" },
-  { label: "Case Studies", href: "/case-studies" },
-  { label: "About", href: "/about" },
+  { label: "Connect", hasDropdown: true },
+  { label: "Products", hasDropdown: true },
   { label: "Webinars", href: "/webinars" },
-  { label: "Contact", href: "/contact" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const footerColumns = [

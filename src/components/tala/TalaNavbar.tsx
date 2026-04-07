@@ -1,14 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 /**
- * TalaNavbar — Figma-exact mega menu
- * Figma: w-1320, pl-40 pr-16 py-16, rounded-99, shadow-M
- * Logo: h-32 w-109
- * Nav items: px-16 py-8 rounded-60, text 18px tracking -0.18
- * CTA: h-56 px-32 rounded-pill, bg-tala-100
+ * TalaNavbar — Figma mega menu with Connect & Products dropdowns
  */
 
 interface NavItem {
@@ -26,71 +22,146 @@ interface TalaNavbarProps {
   className?: string;
 }
 
+const connectMenu = [
+  { label: "About", icon: "/images/menu-icon-about.svg", href: "/about" },
+  { label: "Cases", icon: "/images/menu-icon-cases.svg", href: "/case-studies" },
+  { label: "Contact us", icon: "/images/menu-icon-contact.svg", href: "/contact" },
+];
+
+const productsMenu = [
+  { label: "Viral content engine", icon: "/images/menu-icon-viral.svg", href: "/viral-content-engine" },
+  { label: "Paid growth engine", icon: "/images/menu-icon-paid.svg", href: "/paid-growth-engine" },
+  { label: "Traffic growth engine", icon: "/images/menu-icon-traffic.svg", href: "/traffic-growth-engine" },
+];
+
 function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, className }: TalaNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
   const handleNav = (item: NavItem) => {
+    if (item.label === "Connect" || item.label === "Products") {
+      setOpenDropdown(openDropdown === item.label ? null : item.label);
+      return;
+    }
+    setOpenDropdown(null);
     if (item.onClick) item.onClick();
     else if (item.href) navigate(item.href);
   };
 
   const handleMobileNav = (item: NavItem) => {
-    handleNav(item);
+    if (item.onClick) item.onClick();
+    else if (item.href) navigate(item.href);
     setIsMenuOpen(false);
   };
 
   const handleCta = () => {
+    setOpenDropdown(null);
     onCtaClick?.();
     setIsMenuOpen(false);
   };
 
+  const dropdownItems = openDropdown === "Connect" ? connectMenu : openDropdown === "Products" ? productsMenu : null;
+
   return (
     <>
-      <nav
-        className={cn(
-          // Figma: bg-white, pl-40 pr-16 py-16, rounded-99, shadow, w-1320 max
-          "bg-tala-0 flex items-center justify-between",
-          "pl-6 pr-3 py-3 lg:pl-10 lg:pr-4 lg:py-4",
-          "rounded-[99px] w-full max-w-[1320px]",
-          "shadow-[0px_8px_60px_0px_rgba(218,218,218,0.2),0px_6px_32px_0px_rgba(24,39,75,0.03)]",
-          className
+      <div ref={dropdownRef} className="relative w-full max-w-[1320px]" onMouseLeave={() => setOpenDropdown(null)}>
+        <nav
+          className={cn(
+            "bg-tala-0 flex items-center justify-between",
+            "pl-6 pr-3 py-3 lg:pl-10 lg:pr-4 lg:py-4",
+            "rounded-[99px] w-full",
+            "shadow-[0px_8px_60px_0px_rgba(218,218,218,0.2),0px_6px_32px_0px_rgba(24,39,75,0.03)]",
+            className
+          )}
+        >
+          {/* Logo */}
+          <div className="shrink-0 h-8">{logo}</div>
+
+          {/* Desktop nav */}
+          <div className="hidden lg:flex items-center gap-1">
+            {items.map((item) => (
+              <button
+                key={item.label}
+                onClick={() => handleNav(item)}
+                onMouseEnter={() => item.hasDropdown && setOpenDropdown(item.label)}
+                className={cn(
+                  "flex items-center gap-1 px-4 py-2 rounded-[60px] font-body text-[18px] leading-[20px] tracking-[-0.18px] whitespace-nowrap transition-colors cursor-pointer",
+                  openDropdown === item.label
+                    ? "bg-tala-10 text-tala-100"
+                    : "text-tala-90 hover:bg-tala-10"
+                )}
+              >
+                {item.label}
+                {item.hasDropdown && (
+                  <ChevronDown
+                    size={20}
+                    className={cn(
+                      "transition-transform duration-200",
+                      openDropdown === item.label ? "rotate-180" : ""
+                    )}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <button
+            onClick={handleCta}
+            className="hidden lg:flex items-center justify-center h-[56px] px-8 rounded-pill bg-tala-100 font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-0 whitespace-nowrap hover:bg-tala-90 transition-colors cursor-pointer"
+          >
+            {ctaLabel}
+          </button>
+
+          {/* Mobile hamburger */}
+          <button
+            className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full text-tala-90"
+            onClick={() => setIsMenuOpen(true)}
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
+        </nav>
+
+        {/* Desktop dropdown */}
+        {dropdownItems && (
+          <div
+            className="hidden lg:block absolute top-[88px] z-50 animate-[text-fly-up_0.25s_cubic-bezier(0.22,1,0.36,1)]"
+            style={{ left: openDropdown === "Connect" ? "33%" : "42%" }}
+          >
+            <div className="bg-tala-0 rounded-3xl p-5 flex flex-col gap-5">
+              {dropdownItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  onClick={() => setOpenDropdown(null)}
+                  className="flex items-center gap-4 px-4 py-3 rounded-2xl hover:bg-tala-10 transition-colors"
+                >
+                  <div className="w-8 h-8 rounded-[60px] bg-tala-80 flex items-center justify-center shrink-0">
+                    <img src={item.icon} alt="" className="w-4 h-4" />
+                  </div>
+                  <span className="font-headline font-medium text-[24px] leading-[26px] text-tala-80 w-[170px]">
+                    {item.label}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
         )}
-      >
-        {/* Logo — Figma: h-32 w-109 */}
-        <div className="shrink-0 h-8">{logo}</div>
-
-        {/* Desktop nav — centered between logo and CTA */}
-        <div className="hidden lg:flex items-center gap-1">
-          {items.map((item) => (
-            <button
-              key={item.label}
-              onClick={() => handleNav(item)}
-              className="flex items-center gap-1 px-4 py-2 rounded-[60px] font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-90 hover:bg-tala-10 transition-colors whitespace-nowrap"
-            >
-              {item.label}
-              {item.hasDropdown && <ChevronDown size={20} className="text-tala-50" />}
-            </button>
-          ))}
-        </div>
-
-        {/* Desktop CTA — Figma: h-56 px-32 rounded-pill bg-tala-100 */}
-        <button
-          onClick={handleCta}
-          className="hidden lg:flex items-center justify-center h-[56px] px-8 rounded-pill bg-tala-100 font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-0 whitespace-nowrap hover:opacity-90 transition-opacity"
-        >
-          {ctaLabel}
-        </button>
-
-        {/* Mobile hamburger */}
-        <button
-          className="lg:hidden flex items-center justify-center w-10 h-10 rounded-full text-tala-90"
-          onClick={() => setIsMenuOpen(true)}
-          aria-label="Open menu"
-        >
-          <Menu size={24} />
-        </button>
-      </nav>
+      </div>
 
       {/* Mobile overlay */}
       {isMenuOpen && (
