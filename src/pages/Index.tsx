@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, lazy, Suspense } from "react";
+
+const Lottie = lazy(() => import("lottie-react"));
 import {
   TalaPageLayout,
   TalaButton,
@@ -11,7 +13,7 @@ import {
 } from "@/components/tala";
 
 /* ═══════ Animated stat card ═══════ */
-function AnimatedStat({ stat, label }: { stat: string; label: string }) {
+function AnimatedStat({ stat, label, logo, href }: { stat: string; label: string; logo?: string; href?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [count, setCount] = useState(0);
   const [visible, setVisible] = useState(false);
@@ -39,15 +41,23 @@ function AnimatedStat({ stat, label }: { stat: string; label: string }) {
 
   const display = `${prefix}${target >= 100 ? Math.round(count) : count.toFixed(target % 1 !== 0 ? 1 : 0)}${suffix}`;
 
-  return (
-    <div ref={ref} className="bg-tala-0 rounded-3xl p-8 lg:p-10 flex flex-col justify-between h-[240px] sm:h-[280px] lg:h-[337px] overflow-hidden">
-      <div />
+  const inner = (
+    <div ref={ref} className="bg-tala-0 rounded-3xl p-8 lg:p-10 flex flex-col justify-between h-[240px] sm:h-[280px] lg:h-[337px] overflow-hidden group cursor-pointer">
+      <div className="h-8 flex items-center justify-between">
+        <div className="h-8 flex items-center">
+          {logo && <img src={logo} alt="" className="h-6" />}
+        </div>
+        <div className="w-8 h-8 rounded-full border border-tala-90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <ArrowRight size={16} />
+        </div>
+      </div>
       <div className="flex flex-col gap-1">
         <p className="font-headline font-bold text-[32px] leading-[32px] sm:text-[42px] sm:leading-[40px] lg:text-[56px] lg:leading-[54px] text-tala-100">{visible ? display : stat}</p>
         <p className="font-body text-[16px] leading-[20px] sm:text-[20px] sm:leading-[24px] lg:text-[24px] lg:leading-[28px] text-tala-50">{label}</p>
       </div>
     </div>
   );
+  return href ? <Link to={href}>{inner}</Link> : inner;
 }
 
 /* ═══════ Platform icons ═══════ */
@@ -68,24 +78,152 @@ const platformIcons = [
 
 /* ═══════ Product engines ═══════ */
 const engines = [
-  { title: "Viral content engine", description: "Monitor trends, analyze competitors, and generate content that captures attention.", href: "/viral-content-engine", dark: false, reversed: false },
-  { title: "Traffic growth engine", description: "You scale visibility with AI-powered SEO, content, and answer engine optimization, built for how people search today.", href: "/traffic-growth-engine", dark: true, reversed: true },
-  { title: "Paid growth engine", description: "Analyze, create, and scale ads based on what's already working.", href: "/paid-growth-engine", dark: false, reversed: false },
+  { title: "Viral content engine", description: "Monitor trends, analyze competitors, and generate content that captures attention.", href: "/viral-content-engine", dark: false, reversed: true, media: { type: "lottie" as const, src: "/images/viral-content-engine.json" } },
+  { title: "Traffic growth engine", description: "You scale visibility with AI-powered SEO, content, and answer engine optimization, built for how people search today.", href: "/traffic-growth-engine", dark: true, reversed: false, media: { type: "video" as const, src: "/images/seopages_home.webm" } },
+  { title: "Paid growth engine", description: "Analyze, create, and scale ads based on what's already working.", href: "/paid-growth-engine", dark: false, reversed: true, media: { type: "lottie" as const, src: "/images/paid-growth-engine.json" } },
+];
+
+/* ═══════ Lottie block (lazy-loaded JSON) ═══════ */
+function LottieBlock({ src }: { src: string }) {
+  const [data, setData] = useState<unknown>(null);
+  useEffect(() => {
+    fetch(src).then((r) => r.json()).then(setData);
+  }, [src]);
+  if (!data) return null;
+  return (
+    <Suspense fallback={null}>
+      <Lottie animationData={data} loop autoplay className="w-full h-full" />
+    </Suspense>
+  );
+}
+
+/* ═══════ Testimonials ═══════ */
+const testimonials = [
+  {
+    name: "Raitis Bullits",
+    role: "Co-founder and CEO / Alps2Alps",
+    image: "/images/photo-raitis.jpg",
+    logo: "/images/logo-alps-white.svg",
+    caseHref: "/case-studies",
+    quote: [
+      { text: '"Tala completely transformed how we think about SEO. Instead of writing endless content, ', highlight: false },
+      { text: "we now have a self-scaling system that attracts customers 24/7", highlight: true },
+      { text: '. Within a few months, we started seeing results we couldn\'t achieve with any agency."', highlight: false },
+    ],
+  },
+  {
+    name: "Olga Andrienko",
+    role: "VP of Marketing / Semrush",
+    image: "/images/photo-olga.jpg",
+    logo: "/images/logo-semrush-white.svg",
+    caseHref: "/case-studies",
+    quote: [
+      { text: '"Tala provided structured, ', highlight: false },
+      { text: "ready-made solutions and models", highlight: true },
+      { text: " that were incredibly educational. It gave me a huge push and showed me that everything is possible, ", highlight: false },
+      { text: "you can build anything with AI", highlight: true },
+      { text: '. Now, with every problem, I ask myself, \'Can I solve this with AI?\' And the answer is clear."', highlight: false },
+    ],
+  },
+  {
+    name: "Simon Semochkin",
+    role: "Head of Marketing / Maestra",
+    image: "/images/photo-simon.jpg",
+    logo: "/images/logo-maestra-white.svg",
+    caseHref: "/case-studies",
+    quote: [
+      { text: '"Tala helped us spot where our time was wasted. Instead of hiring more people, we set up automated workflows. ', highlight: false },
+      { text: "This cut about 30% of routine tasks", highlight: true },
+      { text: ' and made our marketing and sales team work several times faster. Now we focus on growth and scaling in the US market — not on operations."', highlight: false },
+    ],
+  },
+  {
+    name: "Lada Klishchenko",
+    role: "CEO / Respontika",
+    image: "/images/photo-lada.jpg",
+    logo: "/images/logo-respontika-white.svg",
+    caseHref: "/case-studies",
+    quote: [
+      { text: '"With Tala, we went from 3 days per creative batch to 50+ variants in a single morning. Competitor analysis is built in, hypothesis testing is automatic — our team didn\'t grow, but output did."', highlight: false },
+    ],
+  },
 ];
 
 /* ═══════ Stats ═══════ */
 const statsRow1 = [
-  { stat: "~75%", label: "viral video rate" },
-  { stat: "85K+", label: "monthly organic visitors" },
-  { stat: "+180%", label: "organic traffic growth" },
-  { stat: "+300%", label: "engagement growth" },
+  { stat: "~75%", label: "viral video rate", logo: "/images/stat-logo-semrush.svg", href: "/case-studies" },
+  { stat: "85K+", label: "monthly organic visitors", logo: "/images/stat-logo-elirox.svg", href: "/case-studies" },
+  { stat: "+180%", label: "organic traffic growth", logo: "/images/stat-logo-alps.svg", href: "/case-studies" },
+  { stat: "+300%", label: "engagement growth", logo: "/images/stat-logo-levhaolam.svg", href: "/case-studies" },
 ];
 const statsRow2 = [
-  { stat: "30K+", label: "keyword rankings achieved" },
-  { stat: "$220K+", label: "additional revenue generated" },
-  { stat: "+312%", label: "organic traffic growth" },
-  { stat: "+85%", label: "organic traffic increase" },
+  { stat: "30K+", label: "keyword rankings achieved", logo: "/images/stat-logo-bina.svg", href: "/case-studies" },
+  { stat: "$220K+", label: "additional revenue generated", logo: "/images/stat-logo-ayurveda.svg", href: "/case-studies" },
+  { stat: "+312%", label: "organic traffic growth", logo: "/images/stat-logo-respontika.svg", href: "/case-studies" },
+  { stat: "+85%", label: "organic traffic increase", logo: "/images/stat-logo-inxy.svg", href: "/case-studies" },
 ];
+
+/* ═══════ Testimonial Carousel ═══════ */
+function TestimonialCarousel() {
+  const [idx, setIdx] = useState(0);
+  const [dir, setDir] = useState<1 | -1>(1);
+  const [animKey, setAnimKey] = useState(0);
+  const t = testimonials[idx];
+  const go = (d: 1 | -1) => {
+    setDir(d);
+    setIdx((i) => (i + d + testimonials.length) % testimonials.length);
+    setAnimKey((k) => k + 1);
+  };
+
+  return (
+    <section className="bg-tala-10">
+      <div className="max-w-[1240px] mx-auto px-5 lg:px-10 py-10">
+        <div className="flex items-center gap-4 lg:gap-10 min-h-[400px] lg:h-[640px] py-10 lg:py-20">
+          <button onClick={() => go(-1)} className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+            <ChevronLeft size={24} />
+          </button>
+          <div
+            key={animKey}
+            className="flex-1 flex flex-col lg:flex-row items-stretch lg:h-[400px]"
+            style={{
+              animation: `testimonial-slide-${dir > 0 ? "left" : "right"} 0.45s cubic-bezier(0.22, 1, 0.36, 1)`,
+            }}
+          >
+            {/* Left: Person card */}
+            <div className="bg-tala-100 rounded-[60px] p-10 flex flex-col items-center justify-between w-full lg:w-[318px] shrink-0">
+              <div className="w-[238px] h-[238px] rounded-[40px] border border-tala-20 overflow-hidden shrink-0">
+                <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+              </div>
+              <div className="flex flex-col gap-1 items-center mt-4 lg:mt-0">
+                <p className="font-headline font-medium text-[28px] leading-[26px] text-tala-0 whitespace-nowrap">{t.name}</p>
+                <p className="font-body text-[14px] leading-[20px] text-tala-30 text-center">{t.role}</p>
+              </div>
+            </div>
+            {/* Right: Quote card */}
+            <div className="bg-tala-100 rounded-[60px] p-10 flex-1 flex flex-col justify-between min-h-[280px]">
+              <div className="flex items-start justify-between">
+                <div className="h-8 flex items-center">
+                  <img src={t.logo} alt="" className="h-6" />
+                </div>
+                <Link to={t.caseHref}>
+                  <TalaButton color="white" size="S">Read case</TalaButton>
+                </Link>
+              </div>
+              <p className="font-body text-[24px] leading-[28px]">
+                {t.quote.map((q, i) => (
+                  <span key={i} className={q.highlight ? "text-tala-0" : "text-tala-30"}>{q.text}</span>
+                ))}
+              </p>
+            </div>
+          </div>
+          <button onClick={() => go(1)} className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+            <ChevronRight size={24} />
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Index() {
   const navigate = useNavigate();
@@ -101,7 +239,7 @@ export default function Index() {
   }, []);
 
   const navbarEl = (
-    <TalaNavbar logo={<TalaLogo />} items={navItems} ctaLabel="Get started" onCtaClick={() => navigate("/get-started")} />
+    <TalaNavbar logo={<Link to="/"><TalaLogo /></Link>} items={navItems} ctaLabel="Get started" onCtaClick={() => navigate("/get-started")} />
   );
 
   return (
@@ -198,15 +336,26 @@ export default function Index() {
       </section>
 
       {/* ═══ 3. PRODUCT ENGINES — Unified blocks ═══ */}
-      <section className="bg-tala-0">
+      <section className="bg-tala-0 pb-[120px]">
         <div className="max-w-[1440px] mx-auto px-5 lg:px-10">
+          <div className="flex flex-col gap-20">
           {engines.map((engine) => (
-            <div key={engine.title} className="py-1">
+            <div key={engine.title}>
               <div className={`${engine.dark ? "bg-tala-100" : "bg-tala-0"} rounded-4xl overflow-hidden flex flex-col ${engine.reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch`}>
-                <div className="flex-1 min-h-[260px] lg:min-h-[596px] overflow-hidden">
-                  <div className={`w-full h-full ${engine.dark ? "bg-tala-80/20" : "bg-tala-10"} rounded-xl flex items-center justify-center`}>
-                    <span className={`font-body text-[14px] ${engine.dark ? "text-tala-50" : "text-tala-30"}`}>{engine.title}</span>
-                  </div>
+                <div className={`flex-1 min-h-[260px] lg:min-h-[596px] overflow-hidden ${engine.dark ? "rounded-none" : "rounded-3xl bg-tala-10"} flex items-center justify-center`}>
+                  {engine.media.type === "lottie" && (
+                    <LottieBlock src={engine.media.src} />
+                  )}
+                  {engine.media.type === "video" && (
+                    <video
+                      src={engine.media.src}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover"
+                    />
+                  )}
                 </div>
                 <div className="w-full lg:w-[440px] shrink-0 p-8 md:p-10 lg:p-[60px] flex flex-col justify-between min-h-[360px] lg:h-[596px]">
                   <div className="flex flex-col gap-6 lg:gap-10">
@@ -220,46 +369,12 @@ export default function Index() {
               </div>
             </div>
           ))}
+          </div>
         </div>
       </section>
 
       {/* ═══ 4. TESTIMONIAL — bg-tala-10, carousel style ═══ */}
-      <section className="bg-tala-10">
-        <div className="max-w-[1240px] mx-auto px-5 lg:px-10 py-10">
-          <div className="flex items-center gap-4 lg:gap-10 min-h-[400px] lg:min-h-[560px]">
-            <button className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors">
-              <ChevronLeft size={24} />
-            </button>
-            <div className="flex-1 flex flex-col lg:flex-row items-stretch h-full min-h-[400px] lg:min-h-[480px]">
-              <div className="bg-tala-100 rounded-4xl p-6 lg:p-10 flex flex-col items-center justify-between w-full lg:w-[238px] shrink-0 min-h-[200px]">
-                <div className="w-full aspect-square rounded-3xl border-2 border-tala-70 overflow-hidden max-w-[200px] lg:max-w-none">
-                  <img src="/images/olga-andrienko.png" alt="Olga Andrienko" className="w-full h-full object-cover" />
-                </div>
-                <div className="flex flex-col gap-1 items-center mt-4 lg:mt-0">
-                  <p className="font-headline font-medium text-[20px] leading-[22px] lg:text-[28px] lg:leading-[26px] text-tala-0 whitespace-nowrap">Olga Andrienko</p>
-                  <p className="font-body text-[12px] lg:text-[14px] leading-[20px] text-tala-30 text-center">VP of Marketing / Semrush</p>
-                </div>
-              </div>
-              <div className="bg-tala-100 rounded-4xl p-6 lg:p-10 flex-1 flex flex-col justify-between min-h-[280px]">
-                <div className="flex items-start justify-between">
-                  <div className="h-7 w-auto"><img src="/images/logo-semrush.svg" alt="Semrush" className="h-full w-auto brightness-0 invert opacity-80" /></div>
-                  <Link to="/case-studies" className="bg-tala-0 rounded-pill px-5 py-3 font-body text-[16px] leading-[18px] text-tala-100 hover:bg-tala-10 transition-colors">Read case</Link>
-                </div>
-                <p className="font-body text-[16px] leading-[22px] md:text-[20px] md:leading-[26px] lg:text-[24px] lg:leading-[28px] mt-6 lg:mt-0">
-                  <span className="text-tala-30">"Tala provided structured, </span>
-                  <span className="text-tala-0">ready-made solutions and models</span>
-                  <span className="text-tala-30"> that were incredibly educational. It gave me a huge push and showed me that everything is possible, </span>
-                  <span className="text-tala-0">you can build anything with AI</span>
-                  <span className="text-tala-30">. Now, with every problem, I ask myself, 'Can I solve this with AI?' And the answer is clear."</span>
-                </p>
-              </div>
-            </div>
-            <button className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors">
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </div>
-      </section>
+      <TestimonialCarousel />
 
       {/* ═══ 5. STATS — "See how others are growing with us" on bg-tala-10 ═══ */}
       <section className="bg-tala-10 py-10 lg:py-20">

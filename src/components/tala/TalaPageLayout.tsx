@@ -1,5 +1,5 @@
 import { TalaNavbar, TalaFooter, type NavItem } from "@/components/tala";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 
 const TalaLogo = () => (
   <img src="/images/tala-logo.svg" alt="Tala" className="h-8 w-[109px]" />
@@ -60,7 +60,7 @@ export function TalaPageLayout({ children, className = "", hideNavbar = false }:
       {!hideNavbar && (
         <div className="sticky top-0 z-50 flex justify-center px-5 pt-5 pb-2 backdrop-blur-md bg-inherit">
           <TalaNavbar
-            logo={<TalaLogo />}
+            logo={<Link to="/"><TalaLogo /></Link>}
             items={navItems}
             ctaLabel="Get started"
             onCtaClick={() => navigate("/get-started")}
