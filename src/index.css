@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * TALA DESIGN SYSTEM — Design Tokens
+ * Source of truth: Figma file M6Ijc6bB1kl14byeqsjFaX
+ *
+ * Color scale: main/0 (white) → main/100 (near-black)
+ * Brand color: #6851FF (purple)
+ * Error color: #D6232E (red)
+ *
+ * Fonts:
+ *   Headlines: "Nohemi" (Bold 700, Medium 500)
+ *   Body: "Helvetica" (Regular 400)
+ *
+ * Rounding system: pill (100px), 60px, 40px, 20px, 8px, 4px
+ */
+
+@font-face {
+  font-family: 'Nohemi';
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Nohemi-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nohemi';
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Nohemi-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nohemi';
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Nohemi-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nohemi';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('/fonts/Nohemi-Bold.ttf') format('truetype');
+}
+
+@layer base {
+  :root {
+    /* ── Tala color scale (HSL) ── */
+    --tala-0: 0 0% 100%;           /* #FFFFFF — white */
+    --tala-10: 240 20% 93.3%;      /* #ECEBF1 — lightest gray */
+    --tala-20: 237 12% 79.4%;      /* #C3C4CE — light border */
+    --tala-30: 237 8% 68.6%;       /* #A9AAB6 — muted border */
+    --tala-40: 233 6% 59.6%;       /* #91929F — placeholder */
+    --tala-50: 233 5% 50.8%;       /* #7B7C88 — secondary text */
+    --tala-60: 233 6% 42.5%;       /* #666772 — muted text */
+    --tala-70: 233 6% 34.1%;       /* #52535D — body text alt */
+    --tala-80: 233 7% 26.7%;       /* #40414A — body text */
+    --tala-90: 230 10% 20.4%;      /* #2F3037 — dark text */
+    --tala-100: 230 14% 13.3%;     /* #1F2026 — near-black */
+
+    /* ── Semantic aliases ── */
+    --tala-brand: 250 100% 65.5%;  /* #6851FF — brand purple */
+    --tala-red: 356 72% 49%;       /* #D6232E — error/destructive */
+
+    /* ── Map to shadcn token system ── */
+    --background: 0 0% 100%;       /* page bg — white (matching Figma) */
+    --foreground: var(--tala-100);
+
+    --card: var(--tala-0);
+    --card-foreground: var(--tala-100);
+
+    --popover: var(--tala-0);
+    --popover-foreground: var(--tala-100);
+
+    --primary: var(--tala-100);
+    --primary-foreground: var(--tala-0);
+
+    --secondary: var(--tala-10);
+    --secondary-foreground: var(--tala-100);
+
+    --muted: var(--tala-10);
+    --muted-foreground: var(--tala-50);
+
+    --accent: var(--tala-brand);
+    --accent-foreground: var(--tala-0);
+
+    --destructive: var(--tala-red);
+    --destructive-foreground: var(--tala-0);
+
+    --border: var(--tala-20);
+    --input: var(--tala-20);
+    --ring: var(--tala-50);
+
+    --radius: 0.5rem;
+
+    /* ── Tala spacing tokens ── */
+    --space-2: 2px;
+    --space-4: 4px;
+    --space-8: 8px;
+    --space-12: 12px;
+    --space-16: 16px;
+    --space-20: 20px;
+    --space-24: 24px;
+    --space-32: 32px;
+    --space-40: 40px;
+    --space-60: 60px;
+    --space-64: 64px;
+    --space-80: 80px;
+
+    /* ── Shadow ── */
+    --shadow-m: 0px 6px 32px 0px rgba(24, 39, 75, 0.03), 0px 8px 60px -6px rgba(218, 218, 218, 0.2);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+/* ── Utility classes ── */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Animations ── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Floating platform icons — Mobbin-style */
+@keyframes icon-float-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes icon-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(var(--bob-distance, -12px)); }
+}
+
+.platform-icon {
+  opacity: 0;
+  animation:
+    icon-float-in 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards,
+    icon-bob var(--bob-duration, 4s) ease-in-out var(--bob-delay, 0s) infinite;
+  animation-delay: var(--appear-delay, 0s), calc(var(--appear-delay, 0s) + 0.6s);
+}
+
+/* Mobbin-style text fly-up */
+@keyframes text-fly-up {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.text-fly-up {
+  opacity: 0;
+  transform: translateY(60px);
+  animation: text-fly-up 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}
+
+.text-subtitle-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: text-fly-up 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--reveal-delay, 0s);
+}

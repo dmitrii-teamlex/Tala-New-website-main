@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Clip path group">
+<mask id="mask0_0_120" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+<g id="clip0_1637_2934">
+<path id="Vector" d="M64 0H0V64H64V0Z" fill="var(--fill-0, white)"/>
+</g>
+</mask>
+<g mask="url(#mask0_0_120)">
+<path id="Vector_2" fill-rule="evenodd" clip-rule="evenodd" d="M18.8981 11L30.8075 22.019V22.0165V11.0254H33.1258V22.0683L45.0885 11V23.5633H50V41.6847H45.1036V52.8717L33.1258 42.304V52.9931H30.8075V42.4782L18.9116 53V41.6847H14V23.5633H18.8981V11ZM29.0598 25.863H16.3183V39.3851H18.9087V35.1197L29.0598 25.863ZM21.2298 36.1401V47.8686L30.8075 39.3972V27.4041L21.2298 36.1401ZM33.1925 39.2851V27.3928L42.773 36.1293V41.6847H42.7853V47.7488L33.1925 39.2851ZM45.1036 39.3851H47.6817V25.863H35.0351L45.1036 35.0239V39.3851ZM42.7702 23.5633V16.2896L34.9087 23.5633H42.7702ZM29.0778 23.5633H21.2164V16.2896L29.0778 23.5633Z" fill="var(--fill-0, #E5E5E5)"/>
+</g>
+</g>
+</svg>

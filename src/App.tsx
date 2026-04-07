@@ -1,0 +1,49 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import Index from "./pages/Index.tsx";
+import StyleGuide from "./pages/StyleGuide.tsx";
+import NotFound from "./pages/NotFound.tsx";
+import ViralContentEngine from "./pages/ViralContentEngine.tsx";
+import TrafficGrowthEngine from "./pages/TrafficGrowthEngine.tsx";
+import PaidGrowthEngine from "./pages/PaidGrowthEngine.tsx";
+import CaseStudies from "./pages/CaseStudies.tsx";
+import About from "./pages/About.tsx";
+import Contact from "./pages/Contact.tsx";
+import Webinars from "./pages/Webinars.tsx";
+import GetStarted from "./pages/GetStarted.tsx";
+import CaseStudyDetail from "./pages/CaseStudyDetail.tsx";
+import WebinarLanding from "./pages/WebinarLanding.tsx";
+
+const queryClient = new QueryClient();
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/style-guide" element={<StyleGuide />} />
+          <Route path="/viral-content-engine" element={<ViralContentEngine />} />
+          <Route path="/traffic-growth-engine" element={<TrafficGrowthEngine />} />
+          <Route path="/paid-growth-engine" element={<PaidGrowthEngine />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/case-studies/:slug" element={<CaseStudyDetail />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/webinars" element={<Webinars />} />
+          <Route path="/webinar/:slug" element={<WebinarLanding />} />
+          <Route path="/get-started" element={<GetStarted />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
+
+export default App;
