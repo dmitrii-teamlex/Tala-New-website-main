@@ -342,7 +342,7 @@ export default function Index() {
           {engines.map((engine) => (
             <div key={engine.title}>
               <div className={`${engine.dark ? "bg-tala-100" : "bg-tala-0"} rounded-4xl overflow-hidden flex flex-col ${engine.reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch`}>
-                <div className={`flex-1 min-h-[260px] lg:min-h-[596px] overflow-hidden ${engine.dark ? "rounded-none" : "rounded-3xl bg-tala-10"} flex items-center justify-center`}>
+                <div className={`flex-1 min-h-[260px] lg:min-h-[596px] ${engine.dark ? "rounded-none" : "rounded-3xl bg-tala-10"} flex items-center justify-center`}>
                   {engine.media.type === "lottie" && (
                     <LottieBlock src={engine.media.src} />
                   )}
@@ -353,7 +353,7 @@ export default function Index() {
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover"
+                      className="w-full h-auto object-contain"
                     />
                   )}
                 </div>

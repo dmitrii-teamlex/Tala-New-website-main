@@ -7,7 +7,7 @@
   },
   "overview": {
     "total_content_ideas": 847,
-    "estimated_monthly_spend_range": "EUR 120K-280K",
+    "estimated_monthly_spend_range": "€120K-280K",
     "projected_creative_volume_12m": "200+",
     "projected_cpa_reduction": "18-25%",
     "num_competitors": 12,
@@ -201,7 +201,7 @@
       "templates": 5,
       "triggers": 4,
       "cpa_improvement": "8-12%",
-      "price": "EUR 4,900/mo",
+      "price": "€4,900/mo",
       "best_for": "Lowest risk. Validate the model before committing."
     },
     "b": {
@@ -212,7 +212,7 @@
       "templates": 10,
       "triggers": 7,
       "cpa_improvement": "15-22%",
-      "price": "EUR 9,800/mo",
+      "price": "€9,800/mo",
       "best_for": "Best balance of volume and efficiency. Recommended starting point."
     },
     "c": {
@@ -222,7 +222,7 @@
       "templates": 15,
       "triggers": 10,
       "cpa_improvement": "22-30%",
-      "price": "EUR 18,500/mo",
+      "price": "€18,500/mo",
       "best_for": "Maximum competitive moat. Hard for competitors to replicate."
     }
   },
@@ -255,35 +255,35 @@
     {
       "phase": "01 — Validate",
       "months": "1-3",
-      "investment": "EUR 4,900/mo",
+      "investment": "€4,900/mo",
       "volume": "50-100",
       "milestones": "First creative batches live, initial format tests, top 3 headline templates in rotation, first CPA data points"
     },
     {
       "phase": "02 — Scale",
       "months": "4-6",
-      "investment": "EUR 9,800/mo",
+      "investment": "€9,800/mo",
       "volume": "150",
       "milestones": "Format coverage expands to 12, emotional trigger testing begins, winning formats identified and doubled down"
     },
     {
       "phase": "03 — Accelerate",
       "months": "7-9",
-      "investment": "EUR 14,200/mo",
+      "investment": "€14,200/mo",
       "volume": "200-250",
       "milestones": "Full format coverage, all headline templates active, CPA improvement measurable, competitive volume parity"
     },
     {
       "phase": "04 — Optimize",
       "months": "10-12",
-      "investment": "EUR 18,500/mo",
+      "investment": "€18,500/mo",
       "volume": "300",
       "milestones": "Refresh winning creatives, test Tier 3 formats, maximize coverage of emotional triggers, full creative system running"
     }
   ],
   "bottom_line": {
     "recommendation_volume": 150,
-    "recommendation_price": "EUR 9,800/mo",
+    "recommendation_price": "€9,800/mo",
     "recommendation_formats": 12,
     "recommendation_templates": 10,
     "scale_volume": 300,

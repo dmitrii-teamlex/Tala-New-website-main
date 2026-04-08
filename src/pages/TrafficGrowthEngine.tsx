@@ -5,10 +5,13 @@ import {
   TalaTag,
   TalaFaqGroup,
   TalaStatCard,
+  TalaNavbar,
+  TalaLogo,
+  TalaBrandline,
+  navItems,
 } from "@/components/tala";
 
-/* ── Brand logos (matching Figma: NBIZ, NEFISH, Rylana, Maestro, Live TrueCure, PRAXINIERT, Gaze) ── */
-const brandLogos = ["NBIZ", "NEFISH", "Rylana", "Maestro", "Live TrueCure", "PRAXINIERT", "Gaze"];
+/* ── Brand logos ── */
 
 /* ── Steps data (matching Figma) ── */
 const steps = [
@@ -78,43 +81,51 @@ export default function TrafficGrowthEngine() {
   const navigate = useNavigate();
 
   return (
-    <TalaPageLayout>
-      {/* ═══ 1. HERO — Dark bg, text left + image right ═══ */}
-      <section className="py-5">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="bg-tala-100 rounded-4xl p-8 md:p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
-            {/* Left: text content */}
-            <div className="flex flex-col gap-5 md:gap-6 flex-1">
-              <h1 className="font-headline font-bold text-[32px] leading-[32px] md:text-[48px] md:leading-[46px] lg:text-h2 text-tala-0 max-w-[600px]">
-                Sustainable organic growth that compounds over time
-              </h1>
-              <p className="font-body text-body-l text-tala-40 max-w-[480px]">
-                Tala builds your organic presence across search, content, and AI answer engines — so traffic keeps growing without increasing spend.
-              </p>
-              <div>
-                <TalaButton color="white" size="L" onClick={() => navigate("/get-started")}>
-                  Let's talk
-                </TalaButton>
+    <TalaPageLayout className="bg-tala-0" hideNavbar>
+      {/* ═══ 1. HERO — Navbar inside dark block, video flush to edge ═══ */}
+      <section className="bg-tala-0 p-5 lg:p-10">
+        <div className="max-w-[1360px] mx-auto">
+          <div className="bg-[#22242D] rounded-4xl overflow-hidden flex flex-col items-center relative">
+            {/* Navbar inside dark block — on top of video */}
+            <div className="w-full flex justify-center pt-5 px-5 relative z-20">
+              <TalaNavbar logo={<Link to="/"><TalaLogo /></Link>} items={navItems} ctaLabel="Get started" onCtaClick={() => navigate("/get-started")} />
+            </div>
+            {/* Hero content */}
+            <div className="w-full flex flex-col lg:flex-row items-stretch">
+              {/* Left: text block */}
+              <div className="relative z-10 flex flex-col gap-10 p-8 lg:p-10 lg:pl-10 justify-center w-full lg:w-[53%] py-10 lg:py-16">
+                <div className="flex flex-col gap-4">
+                  <h1 className="font-headline font-bold text-[32px] leading-[32px] md:text-[48px] md:leading-[46px] lg:text-[80px] lg:leading-[76px] text-tala-0">
+                    Sustainable organic growth that compounds over time
+                  </h1>
+                  <p className="font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] text-tala-20 max-w-[520px]">
+                    With Tala, your visibility doesn't depend on ad budgets or manual output. Our Organic Growth Engine creates a lasting foundation for traffic, leads, and brand authority,  powered by automation and intelligent SEO.
+                  </p>
+                </div>
+                <div>
+                  <TalaButton color="white" size="L" onClick={() => navigate("/get-started")}>
+                    Get started
+                  </TalaButton>
+                </div>
+              </div>
+              {/* Right: video — no crop, can overlap text area slightly */}
+              <div className="w-full lg:w-[55%] lg:absolute lg:right-0 lg:bottom-0 flex items-end">
+                <video
+                  src="/images/traffic-grow-hero.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-auto object-contain"
+                />
               </div>
             </div>
-            {/* Right: image placeholder */}
-            <div className="w-full lg:w-[480px] h-[280px] md:h-[340px] lg:h-[400px] bg-tala-90 rounded-3xl shrink-0" />
           </div>
         </div>
       </section>
 
-      {/* ═══ 2. TRUST LOGOS — horizontal bar ═══ */}
-      <section className="py-6 md:py-10 overflow-hidden">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="flex items-center justify-center gap-6 md:gap-10 lg:gap-12 flex-wrap">
-            {brandLogos.map((name) => (
-              <span key={name} className="font-headline font-bold text-[16px] md:text-[20px] lg:text-[22px] text-tala-80 opacity-40 shrink-0">
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ 2. TRUST LOGOS — marquee brandline ═══ */}
+      <TalaBrandline />
 
       {/* ═══ 3. TESTIMONIAL — Person photo + quote left, stat cards right ═══ */}
       <section className="py-12 md:py-16 lg:py-20">

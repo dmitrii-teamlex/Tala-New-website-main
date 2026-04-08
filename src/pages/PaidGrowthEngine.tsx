@@ -4,10 +4,8 @@ import {
   TalaButton,
   TalaTag,
   TalaFaqGroup,
+  TalaBrandline,
 } from "@/components/tala";
-
-/* ── Brand logos (same as other product pages) ── */
-const brandLogos = ["DEIZ", "Axevil", "flylane", "Mysellf", "Lev Haolam", "FACULTET", "nmbr", "Qase"];
 
 /* ── Steps data ── */
 const steps = [
@@ -69,18 +67,8 @@ export default function PaidGrowthEngine() {
         </div>
       </section>
 
-      {/* ═══ 2. TRUST LOGOS — horizontal bar ═══ */}
-      <section className="bg-tala-0 py-6 md:py-10 overflow-hidden">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="flex items-center justify-center gap-6 md:gap-10 lg:gap-12 flex-wrap">
-            {brandLogos.map((name) => (
-              <span key={name} className="font-headline font-bold text-[16px] md:text-[20px] lg:text-[22px] text-tala-80 opacity-40 shrink-0">
-                {name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ═══ 2. TRUST LOGOS — marquee brandline ═══ */}
+      <TalaBrandline />
 
       {/* ═══ 3. INTRO LINE — Dark card with text + small image ═══ */}
       <section className="bg-tala-0 py-12 md:py-16 lg:py-20">

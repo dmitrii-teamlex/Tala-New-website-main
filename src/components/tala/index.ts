@@ -20,3 +20,5 @@ export { TalaPersonBadge } from "./TalaPersonBadge";
 export { TalaArticleCard } from "./TalaArticleCard";
 export { TalaAnimatedStat } from "./TalaAnimatedStat";
 export { TalaPageLayout, TalaLogo, TalaLogoWhite, navItems } from "./TalaPageLayout";
+export { TalaBrandline } from "./TalaBrandline";
+export { TalaTabs } from "./TalaTabs";
