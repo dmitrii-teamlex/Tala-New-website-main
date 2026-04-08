@@ -1,0 +1,325 @@
+{
+  "meta": {
+    "category_name": "Health & Fitness",
+    "report_date": "April 2026",
+    "client_name": "Sample Client",
+    "source_list": "Meta Ad Library, TikTok Creative Center, AppMagic, Sensor Tower, SimilarWeb"
+  },
+  "overview": {
+    "total_content_ideas": 847,
+    "estimated_monthly_spend_range": "EUR 120K-280K",
+    "projected_creative_volume_12m": "200+",
+    "projected_cpa_reduction": "18-25%",
+    "num_competitors": 12,
+    "creatives_per_competitor": 50,
+    "total_creatives_analyzed": 600,
+    "num_format_categories": 18,
+    "num_headline_templates": 15,
+    "num_emotional_triggers": 10,
+    "scenario_a_volume": 50,
+    "scenario_b_volume": 150,
+    "scenario_c_volume": 300
+  },
+  "creative_intelligence": {
+    "key_takeaways": {
+      "volume_insight": {
+        "top_competitor_creative_range": "180-250",
+        "median_creative_range": "30-60"
+      },
+      "format_insight": {
+        "headline": "UGC and transformation content dominate — but most apps ignore 12+ formats.",
+        "body": "78% of observed creatives fall into just 6 format categories. That leaves 12 format types with minimal competition — a clear differentiation opportunity for brands willing to diversify."
+      },
+      "emotional_insight": {
+        "headline": "Frustration and aspiration drive 65% of all hooks.",
+        "body": "The most common emotional triggers cluster around two themes: frustration with current results and aspiration toward a transformed self. Brands that layer in trust-building and urgency triggers see higher completion rates."
+      },
+      "generation_insight": {
+        "headline": "Format + headline + trigger = a complete brief for AI generation.",
+        "body": "Each combination of format type, headline template, and emotional trigger produces a unique creative brief. With 18 formats x 15 templates x 10 triggers, the addressable creative space is 2,700 unique combinations — most of which are untested by any competitor."
+      }
+    },
+    "formats": [
+      { "rank": 1, "name": "UGC Testimonials", "count": 127, "share": 21.2, "signal": "Dominant", "tier": 1 },
+      { "rank": 2, "name": "Before-After Transformations", "count": 98, "share": 16.3, "signal": "Dominant", "tier": 1 },
+      { "rank": 3, "name": "Talking Head / Expert", "count": 72, "share": 12.0, "signal": "Dominant", "tier": 1 },
+      { "rank": 4, "name": "App Demo / Screen Recording", "count": 54, "share": 9.0, "signal": "Growing", "tier": 1 },
+      { "rank": 5, "name": "Tutorial / How-To", "count": 41, "share": 6.8, "signal": "Growing", "tier": 2 },
+      { "rank": 6, "name": "Influencer Integration", "count": 38, "share": 6.3, "signal": "Growing", "tier": 2 },
+      { "rank": 7, "name": "Storytelling / Narrative", "count": 31, "share": 5.2, "signal": "Growing", "tier": 2 },
+      { "rank": 8, "name": "Meme-Style / Trending Audio", "count": 27, "share": 4.5, "signal": "Growing", "tier": 2 },
+      { "rank": 9, "name": "Comparison / Versus", "count": 22, "share": 3.7, "signal": "Growing", "tier": 2 },
+      { "rank": 10, "name": "Podcast-Style / Conversation", "count": 18, "share": 3.0, "signal": "Underexplored", "tier": 2 },
+      { "rank": 11, "name": "News-Style / Editorial", "count": 15, "share": 2.5, "signal": "Underexplored", "tier": 3 },
+      { "rank": 12, "name": "Case Study / Data-Driven", "count": 14, "share": 2.3, "signal": "Underexplored", "tier": 3 },
+      { "rank": 13, "name": "AI-Generated / Animated", "count": 12, "share": 2.0, "signal": "Underexplored", "tier": 3 },
+      { "rank": 14, "name": "Product Demo w/ Overlay", "count": 10, "share": 1.7, "signal": "Underexplored", "tier": 3 },
+      { "rank": 15, "name": "Behind-the-Scenes", "count": 9, "share": 1.5, "signal": "Underexplored", "tier": 3 },
+      { "rank": 16, "name": "Conference / Event Footage", "count": 6, "share": 1.0, "signal": "Underexplored", "tier": 3 },
+      { "rank": 17, "name": "Explainer / Educational", "count": 4, "share": 0.7, "signal": "Underexplored", "tier": 3 },
+      { "rank": 18, "name": "Carousel / Multi-Frame Static", "count": 2, "share": 0.3, "signal": "Underexplored", "tier": 3 }
+    ],
+    "tiers": [
+      { "tier": 1, "label": "Dominant", "formats": "UGC, Before-After, Talking Head, App Demo", "share": 58.5, "signal": "Proven at scale, high saturation" },
+      { "tier": 2, "label": "Growing", "formats": "Tutorial, Influencer, Storytelling, Meme, Comparison, Podcast", "share": 29.5, "signal": "Increasing adoption, competitive edge" },
+      { "tier": 3, "label": "Underexplored", "formats": "News, Case Study, AI-Generated, Overlay, BTS, Conference, Explainer, Carousel", "share": 12.0, "signal": "Low adoption, high differentiation potential" }
+    ],
+    "headlines": [
+      { "rank": 1, "template": "How I used [method] to [achieve result]", "frequency": "High", "intent": "Personal proof / credibility" },
+      { "rank": 2, "template": "Here's why [problem / situation]", "frequency": "High", "intent": "Problem awareness" },
+      { "rank": 3, "template": "If you're trying to [goal], do NOT [mistake]", "frequency": "High", "intent": "Fear of mistake / urgency" },
+      { "rank": 4, "template": "How to [action]?", "frequency": "High", "intent": "Direct solution seeking" },
+      { "rank": 5, "template": "This is how I [achieved result]", "frequency": "Medium", "intent": "Social proof / aspiration" },
+      { "rank": 6, "template": "The biggest mistake when [situation]", "frequency": "Medium", "intent": "Loss aversion" },
+      { "rank": 7, "template": "Why [common belief] is wrong", "frequency": "Medium", "intent": "Pattern interrupt / curiosity" },
+      { "rank": 8, "template": "Stop doing this if you want [result]", "frequency": "Medium", "intent": "Urgency / negative CTA" },
+      { "rank": 9, "template": "Do this instead of [common mistake]", "frequency": "Medium", "intent": "Better alternative" },
+      { "rank": 10, "template": "The truth about [topic]", "frequency": "Low", "intent": "Expose / trust building" },
+      { "rank": 11, "template": "What no one tells you about [topic]", "frequency": "Low", "intent": "Insider knowledge" },
+      { "rank": 12, "template": "How to fix [specific problem] fast", "frequency": "Low", "intent": "Quick win / immediate value" },
+      { "rank": 13, "template": "From [bad situation] to [desired outcome]", "frequency": "Low", "intent": "Transformation / before-after" },
+      { "rank": 14, "template": "I tried [method], here's what happened", "frequency": "Low", "intent": "Experiment / authenticity" },
+      { "rank": 15, "template": "You're doing [action] wrong, here's why", "frequency": "Low", "intent": "Challenge / pattern interrupt" }
+    ],
+    "emotional_triggers": [
+      { "rank": 1, "trigger": "Frustrated with lack of visible results despite effort", "frequency": "Very High", "category": "Frustration" },
+      { "rank": 2, "trigger": "Desire to look and feel confident in their body", "frequency": "Very High", "category": "Aspiration" },
+      { "rank": 3, "trigger": "Overwhelmed by conflicting fitness/nutrition advice", "frequency": "High", "category": "Confusion" },
+      { "rank": 4, "trigger": "Fear of wasting time on the wrong workout plan", "frequency": "High", "category": "Fear / Loss Aversion" },
+      { "rank": 5, "trigger": "Social comparison — seeing others' transformations", "frequency": "High", "category": "Social Proof" },
+      { "rank": 6, "trigger": "Guilt about inconsistency or falling off track", "frequency": "Medium", "category": "Guilt / Shame" },
+      { "rank": 7, "trigger": "Time scarcity — need fast, efficient solutions", "frequency": "Medium", "category": "Urgency" },
+      { "rank": 8, "trigger": "Skepticism about app-based fitness vs. personal trainers", "frequency": "Medium", "category": "Trust Deficit" },
+      { "rank": 9, "trigger": "Health scare or doctor's recommendation as catalyst", "frequency": "Low", "category": "Urgency" },
+      { "rank": 10, "trigger": "Milestone event motivation (wedding, vacation, reunion)", "frequency": "Low", "category": "Aspiration" }
+    ],
+    "emotional_categories": [
+      { "category": "Frustration", "description": "Anger at lack of progress, wasted effort", "share": 28 },
+      { "category": "Aspiration", "description": "Vision of ideal self, transformation desire", "share": 24 },
+      { "category": "Fear / Loss Aversion", "description": "Fear of wrong choices, wasted time", "share": 18 },
+      { "category": "Social Proof", "description": "Comparison, validation, belonging", "share": 14 },
+      { "category": "Urgency", "description": "Time pressure, deadline-driven action", "share": 10 },
+      { "category": "Trust Deficit", "description": "Skepticism, need for credibility", "share": 6 }
+    ],
+    "example_triggers": [
+      "I've been working out for 3 months and I look exactly the same",
+      "Every influencer says something different — I don't know who to trust",
+      "I don't have 2 hours a day to spend at the gym",
+      "My friend lost 20 lbs in 8 weeks and I can't even lose 5",
+      "I keep starting and stopping — I need something that actually sticks"
+    ]
+  },
+  "competitors": {
+    "direct": [
+      {
+        "name": "FitPulse",
+        "domain": "fitpulse.app",
+        "creative_volume_range": "180-220",
+        "platforms": "Meta, TikTok, YouTube",
+        "top_formats": "UGC Testimonials, Before-After, App Demo",
+        "top_triggers": "Frustration, Aspiration, Social Proof",
+        "gap_assessment": "High volume but low format diversity — concentrated in 4 formats"
+      },
+      {
+        "name": "SweatZone",
+        "domain": "sweatzone.io",
+        "creative_volume_range": "120-160",
+        "platforms": "Meta, TikTok, Snapchat",
+        "top_formats": "Talking Head, UGC, Influencer",
+        "top_triggers": "Aspiration, Urgency, Social Proof",
+        "gap_assessment": "Strong influencer pipeline but no data-driven or comparison content"
+      },
+      {
+        "name": "GymBuddy",
+        "domain": "gymbuddy.com",
+        "creative_volume_range": "80-110",
+        "platforms": "Meta, Google UAC",
+        "top_formats": "App Demo, Before-After, Tutorial",
+        "top_triggers": "Confusion, Trust Deficit",
+        "gap_assessment": "Product-focused creatives — missing emotional hooks entirely"
+      },
+      {
+        "name": "BodyForge",
+        "domain": "bodyforge.fit",
+        "creative_volume_range": "60-90",
+        "platforms": "Meta, TikTok",
+        "top_formats": "Before-After, Meme-Style, UGC",
+        "top_triggers": "Frustration, Guilt / Shame",
+        "gap_assessment": "Meme-heavy strategy — high engagement but unclear conversion path"
+      }
+    ],
+    "indirect": [
+      {
+        "name": "NutriFuel",
+        "domain": "nutrifuel.co",
+        "creative_volume_range": "200-250",
+        "platforms": "Meta, TikTok, Pinterest",
+        "top_formats": "UGC, Tutorial, Storytelling",
+        "relevance": "Nutrition app — overlapping audience, different entry point. Their UGC production quality sets the benchmark."
+      },
+      {
+        "name": "MindCalm",
+        "domain": "mindcalm.app",
+        "creative_volume_range": "150-180",
+        "platforms": "Meta, YouTube, TikTok",
+        "top_formats": "Talking Head, Podcast-Style, Testimonial",
+        "relevance": "Wellness/meditation — competing for the same 'self-improvement' budget. Podcast-style ads performing well."
+      },
+      {
+        "name": "RunTrack Pro",
+        "domain": "runtrackpro.com",
+        "creative_volume_range": "90-120",
+        "platforms": "Meta, Strava, Google",
+        "top_formats": "App Demo, Data-Driven, Event Footage",
+        "relevance": "Running-specific — adjacent category. Their data-driven creative approach is underused in broader fitness."
+      }
+    ],
+    "emerging": [
+      {
+        "name": "FlexAI",
+        "domain": "flexai.fit",
+        "creative_volume_range": "40-70",
+        "growth_signal": "3x creative volume increase in last 60 days",
+        "platforms": "TikTok, Meta",
+        "top_angles": "AI-personalization, fast results, anti-gym messaging"
+      },
+      {
+        "name": "PulseUp",
+        "domain": "pulseup.health",
+        "creative_volume_range": "30-50",
+        "growth_signal": "New market entrant — 5x spend increase month-over-month",
+        "platforms": "Meta, YouTube Shorts",
+        "top_angles": "Doctor-endorsed, science-backed, clinical transformation stories"
+      }
+    ]
+  },
+  "scenarios": {
+    "a": {
+      "label": "Test",
+      "volume": 50,
+      "formats": 6,
+      "templates": 5,
+      "triggers": 4,
+      "cpa_improvement": "8-12%",
+      "price": "EUR 4,900/mo",
+      "best_for": "Lowest risk. Validate the model before committing."
+    },
+    "b": {
+      "label": "Scale",
+      "recommended": true,
+      "volume": 150,
+      "formats": 12,
+      "templates": 10,
+      "triggers": 7,
+      "cpa_improvement": "15-22%",
+      "price": "EUR 9,800/mo",
+      "best_for": "Best balance of volume and efficiency. Recommended starting point."
+    },
+    "c": {
+      "label": "Dominate",
+      "volume": 300,
+      "formats": 18,
+      "templates": 15,
+      "triggers": 10,
+      "cpa_improvement": "22-30%",
+      "price": "EUR 18,500/mo",
+      "best_for": "Maximum competitive moat. Hard for competitors to replicate."
+    }
+  },
+  "decision_framework": [
+    { "priority": "Fastest CPA reduction", "choose": "300/mo", "why": "Highest testing velocity, winners found fastest" },
+    { "priority": "Best cost efficiency", "choose": "50/mo", "why": "Highest ROI per creative dollar" },
+    { "priority": "Best balance of speed + ROI", "choose": "150/mo", "why": "Recommended — meaningful volume, sustainable investment" },
+    { "priority": "Lowest risk", "choose": "50/mo", "why": "Prove the model, then scale" },
+    { "priority": "Maximum competitive moat", "choose": "300/mo", "why": "Covers all formats, templates, and triggers" }
+  ],
+  "growth_projection": {
+    "months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "creative_volume": {
+      "a": [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
+      "b": [100, 120, 140, 150, 150, 150, 150, 150, 150, 150, 150, 150],
+      "c": [200, 240, 270, 300, 300, 300, 300, 300, 300, 300, 300, 300]
+    },
+    "cpa_change_pct": {
+      "a": [0, 0, -2, -4, -5, -6, -7, -8, -9, -10, -11, -12],
+      "b": [0, -1, -4, -7, -10, -13, -15, -17, -18, -19, -20, -22],
+      "c": [0, -2, -6, -10, -14, -18, -20, -23, -25, -27, -28, -30]
+    },
+    "roas_multiplier": {
+      "a": [1.0, 1.0, 1.02, 1.04, 1.06, 1.07, 1.08, 1.09, 1.10, 1.11, 1.12, 1.14],
+      "b": [1.0, 1.01, 1.05, 1.08, 1.12, 1.15, 1.18, 1.21, 1.23, 1.24, 1.25, 1.28],
+      "c": [1.0, 1.02, 1.07, 1.12, 1.17, 1.22, 1.25, 1.30, 1.33, 1.37, 1.39, 1.43]
+    }
+  },
+  "roadmap": [
+    {
+      "phase": "01 — Validate",
+      "months": "1-3",
+      "investment": "EUR 4,900/mo",
+      "volume": "50-100",
+      "milestones": "First creative batches live, initial format tests, top 3 headline templates in rotation, first CPA data points"
+    },
+    {
+      "phase": "02 — Scale",
+      "months": "4-6",
+      "investment": "EUR 9,800/mo",
+      "volume": "150",
+      "milestones": "Format coverage expands to 12, emotional trigger testing begins, winning formats identified and doubled down"
+    },
+    {
+      "phase": "03 — Accelerate",
+      "months": "7-9",
+      "investment": "EUR 14,200/mo",
+      "volume": "200-250",
+      "milestones": "Full format coverage, all headline templates active, CPA improvement measurable, competitive volume parity"
+    },
+    {
+      "phase": "04 — Optimize",
+      "months": "10-12",
+      "investment": "EUR 18,500/mo",
+      "volume": "300",
+      "milestones": "Refresh winning creatives, test Tier 3 formats, maximize coverage of emotional triggers, full creative system running"
+    }
+  ],
+  "bottom_line": {
+    "recommendation_volume": 150,
+    "recommendation_price": "EUR 9,800/mo",
+    "recommendation_formats": 12,
+    "recommendation_templates": 10,
+    "scale_volume": 300,
+    "levers": [
+      {
+        "number": "01",
+        "title": "Format Diversification",
+        "text": "Expand from the 4 dominant formats into 12+ categories. Most competitors cluster in UGC and Before-After — diversifying into Podcast-Style, Data-Driven, and Comparison content reaches untapped audience segments."
+      },
+      {
+        "number": "02",
+        "title": "Headline Template Rotation",
+        "text": "Systematically rotate through all 15 proven headline structures. Most ads use 3-4 templates on repeat. Broader rotation prevents fatigue and discovers unexpected winners."
+      },
+      {
+        "number": "03",
+        "title": "Emotional Trigger Coverage",
+        "text": "Map each creative to a specific emotional trigger. Current market over-indexes on Frustration and Aspiration. Under-leveraged triggers like Trust Deficit and Urgency have lower competition."
+      },
+      {
+        "number": "04",
+        "title": "Template Content at Scale",
+        "text": "Use the format x headline x trigger matrix to generate unique briefs. 18 formats x 15 templates x 10 triggers = 2,700 possible combinations. Test 5-10% monthly for systematic coverage."
+      },
+      {
+        "number": "05",
+        "title": "Creative Refresh Cadence",
+        "text": "Replace bottom 20% of creatives every 2 weeks. Top performers run until fatigue signals appear in CPA data. This keeps the portfolio fresh without losing proven winners."
+      }
+    ],
+    "sensitivity": [
+      { "case": "Bear", "assumptions": "All inputs at -20%", "a": "6-8%", "b": "10-15%", "c": "15-20%" },
+      { "case": "Base", "assumptions": "Model defaults", "a": "8-12%", "b": "15-22%", "c": "22-30%" },
+      { "case": "Bull", "assumptions": "Format diversity +50%, trigger coverage +20%", "a": "12-16%", "b": "20-28%", "c": "28-38%" }
+    ],
+    "bear_winners": 8,
+    "start_timeline": "5 business days"
+  }
+}

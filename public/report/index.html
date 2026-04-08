@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tala — Creative Performance Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+  @font-face { font-family:'Nohemi'; font-weight:500; src:url('/fonts/Nohemi-Medium.ttf') format('truetype'); font-display:swap; }
+  @font-face { font-family:'Nohemi'; font-weight:700; src:url('/fonts/Nohemi-Bold.ttf') format('truetype'); font-display:swap; }
+
+  *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+  :root {
+    --t0:#FFFFFF; --t10:#ECEBF1; --t20:#C3C4CE; --t30:#A9AAB6; --t40:#91929F;
+    --t50:#7B7C88; --t60:#666772; --t70:#52535D; --t80:#40414A; --t90:#2F3037; --t100:#1F2026;
+    --brand:#6851FF; --red:#D6232E;
+    --shadow:0px 6px 32px 0px rgba(24,39,75,0.03),0px 8px 60px -6px rgba(218,218,218,0.2);
+  }
+
+  body { font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; background:var(--t10); color:var(--t70); font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  .hl { font-family:'Nohemi','Helvetica Neue',sans-serif; }
+
+  /* ── Page Layout ── */
+  .page { max-width:1360px; margin:0 auto; padding:20px 20px 40px; }
+
+  /* ── Header (floating pill) ── */
+  .header { position:sticky; top:0; z-index:50; display:flex; justify-content:center; padding:20px 20px 8px; }
+  .header-bar { width:100%; max-width:1360px; background:var(--t0); border-radius:100px; box-shadow:var(--shadow); padding:0 32px; height:56px; display:flex; align-items:center; justify-content:space-between; }
+  .header-left { display:flex; align-items:center; gap:10px; }
+  .header-logo { font-family:'Nohemi',sans-serif; font-weight:700; font-size:18px; color:var(--t100); letter-spacing:-0.3px; display:flex; align-items:center; gap:8px; }
+  .header-logo img { height:24px; }
+  .header-sep { color:var(--t30); font-size:18px; font-weight:300; }
+  .header-client { font-family:'Nohemi',sans-serif; font-weight:700; font-size:16px; color:var(--brand); }
+  .header-right { display:flex; gap:8px; }
+
+  .btn { display:inline-flex; align-items:center; gap:6px; padding:0 20px; height:36px; border-radius:100px; font-size:14px; font-weight:500; cursor:pointer; transition:all 0.15s; border:none; font-family:inherit; }
+  .btn-stroke { background:var(--t0); color:var(--t100); border:1px solid var(--t20); }
+  .btn-stroke:hover { border-color:var(--t40); }
+  .btn-dark { background:var(--t100); color:var(--t0); }
+  .btn-dark:hover { background:var(--t90); }
+  .btn svg { width:14px; height:14px; }
+
+  /* ── Right Nav ── */
+  .side-nav { position:fixed; right:32px; top:50%; transform:translateY(-50%); z-index:40; background:var(--t0); border-radius:40px; box-shadow:var(--shadow); padding:8px; display:flex; flex-direction:column; gap:2px; }
+  .nav-btn { display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:20px; border:none; background:none; cursor:pointer; font-family:inherit; text-align:left; transition:all 0.15s; white-space:nowrap; }
+  .nav-btn .nav-num { font-size:14px; opacity:0.5; }
+  .nav-btn .nav-label { font-size:14px; color:var(--t40); }
+  .nav-btn:hover { background:var(--t10); }
+  .nav-btn:hover .nav-label { color:var(--t80); }
+  .nav-btn.active { background:rgba(104,81,255,0.1); }
+  .nav-btn.active .nav-num { color:var(--brand); opacity:1; }
+  .nav-btn.active .nav-label { color:var(--brand); font-weight:500; }
+
+  /* ── Content Card ── */
+  .content-card { background:var(--t0); border-radius:40px; overflow:hidden; }
+  .content-inner { padding:64px 80px; }
+
+  /* ── Section ── */
+  .section { margin-bottom:112px; scroll-margin-top:80px; }
+  .section:last-child { margin-bottom:0; }
+
+  .section-badge { display:inline-flex; align-items:center; font-size:14px; font-weight:500; color:var(--brand); background:rgba(104,81,255,0.1); border-radius:100px; padding:4px 14px; letter-spacing:0.5px; margin-bottom:16px; }
+
+  .section h2 { font-family:'Nohemi',sans-serif; font-weight:700; font-size:56px; line-height:54px; color:var(--t100); margin-bottom:20px; letter-spacing:-1px; }
+  .section h3.sub { font-family:'Nohemi',sans-serif; font-weight:500; font-size:28px; line-height:26px; color:var(--t60); margin-bottom:24px; margin-top:48px; }
+
+  .section-intro { font-size:20px; line-height:24px; color:var(--t50); max-width:720px; margin-bottom:40px; }
+  .section-intro strong { color:var(--t80); font-weight:500; }
+
+  /* ── Stat Cards ── */
+  .stat-grid { display:grid; gap:4px; margin-bottom:4px; }
+  .stat-grid-4 { grid-template-columns:repeat(4,1fr); }
+  .stat-grid-2 { grid-template-columns:repeat(2,1fr); }
+
+  .stat-card { border:1px solid var(--t20); border-radius:20px; padding:24px; transition:border-color 0.15s; }
+  .stat-card:hover { border-color:var(--t30); }
+  .stat-card.accent { background:rgba(104,81,255,0.03); border:2px solid rgba(104,81,255,0.2); }
+  .stat-card .sv { font-family:'Nohemi',sans-serif; font-weight:700; font-size:42px; line-height:40px; color:var(--t100); }
+  .stat-card .sl { font-size:16px; font-weight:500; color:var(--t80); margin-top:8px; line-height:18px; }
+  .stat-card .ss { font-size:14px; color:var(--t40); margin-top:2px; letter-spacing:-0.5px; }
+
+  /* ── Info Cards ── */
+  .info-card { border:1px solid var(--t20); border-radius:20px; padding:24px; transition:border-color 0.15s; }
+  .info-card:hover { border-color:var(--t30); }
+  .info-card .ic-title { font-size:16px; font-weight:500; color:var(--t80); line-height:18px; }
+  .info-card .ic-desc { font-size:14px; color:var(--t50); margin-top:4px; line-height:20px; letter-spacing:-0.5px; }
+
+  /* ── Pill Tabs ── */
+  .pill-tabs { display:flex; gap:8px; margin-bottom:32px; flex-wrap:wrap; }
+  .pill-tab { display:inline-flex; align-items:center; padding:8px 18px; border-radius:100px; font-size:14px; cursor:pointer; transition:all 0.15s; border:1px solid var(--t20); background:none; color:var(--t50); font-family:inherit; white-space:nowrap; }
+  .pill-tab:hover { border-color:var(--t40); }
+  .pill-tab.active { background:var(--t100); color:var(--t0); border-color:var(--t100); }
+
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; }
+
+  /* ── Data Tables ── */
+  .dtable { width:100%; text-align:left; font-size:16px; border-collapse:collapse; }
+  .dtable thead tr { border-bottom:1px solid var(--t20); }
+  .dtable thead th { padding:12px 16px 12px 0; font-size:14px; font-weight:500; color:var(--t40); text-transform:uppercase; letter-spacing:0.5px; }
+  .dtable thead th.r { text-align:right; }
+  .dtable tbody td { padding:16px 16px 16px 0; border-bottom:1px solid var(--t10); }
+  .dtable tbody td.r { text-align:right; font-variant-numeric:tabular-nums; }
+  .dtable tbody tr:last-child td { border-bottom:none; }
+  .dtable tbody tr:hover { background:rgba(236,235,241,0.3); }
+  .dtable .cn { font-weight:500; color:var(--t90); }
+  .dtable .num-col { font-size:14px; color:var(--t40); }
+
+  /* ── Tier / Tag Badges ── */
+  .tier { display:inline-flex; align-items:center; padding:4px 12px; border-radius:100px; font-size:14px; font-weight:500; }
+  .tier-t1 { background:rgba(104,81,255,0.1); color:var(--brand); }
+  .tier-t2 { background:rgba(31,32,38,0.05); color:var(--t60); }
+  .tier-t3 { background:var(--t10); color:var(--t40); }
+
+  .tag { display:inline-flex; align-items:center; padding:6px 14px; border-radius:100px; font-size:14px; background:var(--t10); color:var(--t60); }
+  .tag-black { background:var(--t100); color:var(--t0); }
+
+  /* ── Summary Stats (inline) ── */
+  .summary-stats { display:flex; flex-wrap:wrap; gap:40px; margin:32px 0; }
+  .summary-stat .ss-val { font-family:'Nohemi',sans-serif; font-weight:700; font-size:28px; line-height:26px; color:var(--t100); }
+  .summary-stat .ss-lbl { font-size:14px; color:var(--t40); margin-top:2px; letter-spacing:-0.5px; }
+
+  /* ── Competitor Cards ── */
+  .comp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+  .comp-card { border:1px solid var(--t20); border-radius:40px; padding:32px; transition:border-color 0.15s; }
+  .comp-card:hover { border-color:var(--t30); }
+  .comp-card .cc-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:24px; }
+  .comp-card h4 { font-family:'Nohemi',sans-serif; font-weight:500; font-size:24px; color:var(--t100); line-height:26px; transition:color 0.15s; }
+  .comp-card:hover h4 { color:var(--brand); }
+  .comp-card .cc-domain { font-size:14px; color:var(--t40); margin-top:2px; letter-spacing:-0.5px; }
+  .comp-card .cc-stats { display:flex; gap:32px; }
+  .comp-card .cc-sv { font-family:'Nohemi',sans-serif; font-weight:700; font-size:28px; color:var(--t100); line-height:26px; }
+  .comp-card .cc-sl { font-size:14px; color:var(--t40); margin-top:2px; letter-spacing:-0.5px; }
+  .comp-card .cc-insight { font-size:14px; color:var(--t50); line-height:20px; margin-top:24px; padding-top:20px; border-top:1px solid var(--t20); letter-spacing:-0.5px; }
+
+  /* ── Scenario Cards ── */
+  .scenario-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+  .scenario-card { border:1px solid var(--t20); border-radius:40px; padding:32px; transition:border-color 0.15s; }
+  .scenario-card:hover { border-color:var(--t30); }
+  .scenario-card.rec { border:2px solid var(--brand); background:rgba(104,81,255,0.02); position:relative; }
+  .scenario-card .sc-price { font-family:'Nohemi',sans-serif; font-weight:700; font-size:42px; color:var(--t100); line-height:40px; }
+  .scenario-card .sc-price small { font-family:'Nohemi',sans-serif; font-size:24px; font-weight:500; color:var(--t40); }
+  .rec-badge { position:absolute; top:-14px; left:32px; background:var(--brand); color:#fff; font-size:14px; font-weight:500; text-transform:uppercase; letter-spacing:1px; padding:4px 16px; border-radius:100px; }
+  .sc-rows { margin-top:32px; display:flex; flex-direction:column; gap:20px; }
+  .sc-row { display:flex; justify-content:space-between; font-size:16px; }
+  .sc-row .sc-l { color:var(--t50); }
+  .sc-row .sc-v { font-weight:500; color:var(--t90); }
+  .sc-row .sc-v.brand { color:var(--brand); }
+
+  /* ── Chart ── */
+  .chart-wrap { margin-bottom:24px; }
+  .chart-container { position:relative; height:320px; }
+
+  .insight-callout { background:rgba(104,81,255,0.04); border:1px solid rgba(104,81,255,0.2); border-radius:20px; padding:24px; margin-top:40px; }
+  .insight-callout p { font-size:16px; color:var(--t80); line-height:20px; }
+  .insight-callout span { font-weight:500; color:var(--brand); }
+
+  /* ── Roadmap ── */
+  .timeline-bar { display:flex; gap:0; margin-bottom:32px; }
+  .timeline-seg { flex:1; height:8px; }
+
+  .phase-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:4px; }
+  .phase-card { border:1px solid var(--t20); border-radius:40px; padding:32px; transition:border-color 0.15s; }
+  .phase-card:hover { border-color:var(--t30); }
+  .phase-card .pc-badge { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:100px; background:rgba(104,81,255,0.1); color:var(--brand); font-size:14px; font-weight:500; }
+  .phase-card .pc-name { font-family:'Nohemi',sans-serif; font-weight:700; font-size:24px; color:var(--t100); line-height:26px; }
+  .phase-card .pc-time { font-size:14px; color:var(--t40); letter-spacing:-0.5px; }
+  .phase-card .pc-tags { display:flex; gap:8px; margin-top:20px; flex-wrap:wrap; }
+  .phase-card .pc-desc { font-size:16px; color:var(--t50); line-height:20px; margin-top:20px; letter-spacing:-0.18px; }
+
+  /* ── Bottom Line ── */
+  .lever-card { display:flex; gap:20px; align-items:flex-start; border:1px solid var(--t20); border-radius:40px; padding:24px 32px; transition:border-color 0.15s; }
+  .lever-card:hover { border-color:var(--t30); }
+  .lever-card .lc-badge { flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:100px; background:rgba(104,81,255,0.1); color:var(--brand); font-size:14px; font-weight:500; margin-top:2px; }
+  .lever-card .lc-title { font-family:'Nohemi',sans-serif; font-weight:700; font-size:18px; color:var(--t100); line-height:20px; }
+  .lever-card .lc-desc { font-size:16px; color:var(--t50); margin-top:4px; line-height:20px; letter-spacing:-0.18px; }
+
+  .case-badge { display:inline-flex; align-items:center; padding:4px 14px; border-radius:100px; font-size:14px; font-weight:500; }
+  .case-bear { background:rgba(214,35,46,0.1); color:var(--red); }
+  .case-base { background:var(--t10); color:var(--t60); }
+  .case-bull { background:rgba(104,81,255,0.1); color:var(--brand); }
+
+  /* ── Footer ── */
+  .report-footer { border-top:1px solid var(--t20); padding:32px 80px; display:flex; justify-content:space-between; align-items:center; font-size:14px; color:var(--t40); flex-wrap:wrap; gap:16px; }
+  .report-footer .ft-label { color:var(--t60); font-weight:500; }
+
+  /* ── Responsive ── */
+  @media (max-width:1500px) { .side-nav { display:none; } .page { padding-right:20px; } }
+  @media (max-width:1100px) {
+    .content-inner { padding:40px; }
+    .stat-grid-4 { grid-template-columns:repeat(2,1fr); }
+    .comp-grid { grid-template-columns:1fr 1fr; }
+    .scenario-grid { grid-template-columns:1fr; }
+    .section h2 { font-size:42px; line-height:40px; }
+  }
+  @media (max-width:768px) {
+    .content-inner { padding:24px; }
+    .stat-grid-4,.stat-grid-2 { grid-template-columns:1fr 1fr; }
+    .comp-grid,.phase-grid { grid-template-columns:1fr; }
+    .header-bar { padding:0 20px; border-radius:20px; }
+    .report-footer { padding:24px; flex-direction:column; }
+    .section h2 { font-size:32px; line-height:34px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="header-bar">
+    <div class="header-left">
+      <div class="header-logo"><img src="/images/tala-logo.svg" alt="Tala" onerror="this.replaceWith(document.createTextNode('⟡ tala'))"><span class="header-sep">/</span></div>
+      <span class="header-client hl" id="clientName">Health & Fitness</span>
+    </div>
+    <div class="header-right">
+      <button class="btn btn-stroke"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6l4 4 4-4"/></svg>Download</button>
+      <button class="btn btn-dark"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3H3v10h10v-3M10 3h3v3M7 9l6-6"/></svg>Share</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Right Nav ── -->
+<nav class="side-nav" id="sideNav">
+  <button class="nav-btn active" data-target="s01"><span class="nav-num">01</span><span class="nav-label">Overview</span></button>
+  <button class="nav-btn" data-target="s02"><span class="nav-num">02</span><span class="nav-label">Creative Intelligence</span></button>
+  <button class="nav-btn" data-target="s03"><span class="nav-num">03</span><span class="nav-label">Competitor Landscape</span></button>
+  <button class="nav-btn" data-target="s04"><span class="nav-num">04</span><span class="nav-label">Scenario ROI</span></button>
+  <button class="nav-btn" data-target="s05"><span class="nav-num">05</span><span class="nav-label">Growth Projection</span></button>
+  <button class="nav-btn" data-target="s06"><span class="nav-num">06</span><span class="nav-label">Phased Roadmap</span></button>
+  <button class="nav-btn" data-target="s07"><span class="nav-num">07</span><span class="nav-label">Bottom Line</span></button>
+</nav>
+
+<!-- ── Main Content ── -->
+<main class="page" style="padding-right:200px">
+  <div class="content-card">
+    <div class="content-inner">
+
+      <!-- 01 OVERVIEW -->
+      <section class="section" id="s01">
+        <span class="section-badge">01</span>
+        <h2 class="hl">847 Creative Opportunities</h2>
+        <p class="section-intro">A full-funnel creative audit built from <strong>12</strong> competitor apps and <strong>600</strong> active creatives. These opportunities represent the gap between typical creative output in the Health & Fitness space and the full range of proven formats, angles, and emotional triggers.</p>
+        <div class="stat-grid stat-grid-4" id="statGrid"></div>
+        <div class="stat-grid stat-grid-2" id="infoGrid" style="margin-top:4px"></div>
+      </section>
+
+      <!-- 02 CREATIVE INTELLIGENCE -->
+      <section class="section" id="s02">
+        <span class="section-badge">02</span>
+        <h2 class="hl">18 Formats, 15 Templates, 10 Triggers</h2>
+        <p class="section-intro">Every angle is a unique sales narrative. The best brands don't sell products — they sell transformations, fears, and identity shifts.</p>
+
+        <!-- Key Takeaways -->
+        <div id="takeawayCards" style="margin-bottom:40px"></div>
+
+        <!-- Tabs -->
+        <div class="pill-tabs" data-tab-group="intel">
+          <button class="pill-tab active" data-tab="formats">All Formats</button>
+          <button class="pill-tab" data-tab="t1">Tier 1 — Dominant</button>
+          <button class="pill-tab" data-tab="t2">Tier 2 — Growing</button>
+          <button class="pill-tab" data-tab="t3">Tier 3 — Underexplored</button>
+        </div>
+
+        <div class="summary-stats" id="formatSummary"></div>
+
+        <div class="tab-panel active" id="tab-formats"><div id="formatsAll"></div></div>
+        <div class="tab-panel" id="tab-t1"><div id="formatsT1"></div></div>
+        <div class="tab-panel" id="tab-t2"><div id="formatsT2"></div></div>
+        <div class="tab-panel" id="tab-t3"><div id="formatsT3"></div></div>
+
+        <h3 class="sub hl">Headline Templates</h3>
+        <div id="headlinesTable"></div>
+
+        <h3 class="sub hl">Emotional Triggers</h3>
+        <div id="triggersTable"></div>
+        <div id="emotCatsTable" style="margin-top:16px"></div>
+        <div id="triggerQuotes" style="margin-top:24px"></div>
+
+        <div class="insight-callout" style="margin-top:32px">
+          <p><span>Insight:</span> Format + headline + trigger = complete creative brief for generation at scale. 18 × 15 × 10 = 2,700 unique combinations — most untested by any competitor.</p>
+        </div>
+      </section>
+
+      <!-- 03 COMPETITOR LANDSCAPE -->
+      <section class="section" id="s03">
+        <span class="section-badge">03</span>
+        <h2 class="hl">12 Brands Analysed</h2>
+        <p class="section-intro"><strong>12</strong> apps analysed across Meta, TikTok, and YouTube ad libraries. Direct competitors, adjacent brands, and emerging players.</p>
+
+        <div class="pill-tabs" data-tab-group="comp">
+          <button class="pill-tab active" data-tab="direct">Direct Competitors</button>
+          <button class="pill-tab" data-tab="indirect">Indirect</button>
+          <button class="pill-tab" data-tab="emerging">Emerging Players</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-direct"><div class="comp-grid" id="directGrid"></div></div>
+        <div class="tab-panel" id="tab-indirect"><div class="comp-grid" id="indirectGrid"></div></div>
+        <div class="tab-panel" id="tab-emerging"><div class="comp-grid" id="emergingGrid"></div></div>
+      </section>
+
+      <!-- 04 SCENARIO ROI -->
+      <section class="section" id="s04">
+        <span class="section-badge">04</span>
+        <h2 class="hl">3 Scaling Scenarios</h2>
+        <p class="section-intro">Three investment levels, each modelled to month 12. All scenarios use the same testing framework: CPA improvement modeled at ~20% at 5x volume.</p>
+        <div class="scenario-grid" id="scenarioGrid"></div>
+
+        <h3 class="sub hl">Decision Matrix</h3>
+        <div id="decisionTable"></div>
+      </section>
+
+      <!-- 05 GROWTH PROJECTION -->
+      <section class="section" id="s05">
+        <span class="section-badge">05</span>
+        <h2 class="hl">Growth Projection</h2>
+        <p class="section-intro">Month-by-month creative volume, CPA reduction, and ROAS across 3 scenarios.</p>
+
+        <div class="pill-tabs" data-tab-group="charts">
+          <button class="pill-tab active" data-tab="chart-vol">Creative Volume</button>
+          <button class="pill-tab" data-tab="chart-cpa">CPA Trend</button>
+          <button class="pill-tab" data-tab="chart-roas">ROAS</button>
+        </div>
+
+        <div class="tab-panel active" id="tab-chart-vol"><div class="chart-wrap"><div class="chart-container"><canvas id="chartVol"></canvas></div></div></div>
+        <div class="tab-panel" id="tab-chart-cpa"><div class="chart-wrap"><div class="chart-container"><canvas id="chartCPA"></canvas></div></div></div>
+        <div class="tab-panel" id="tab-chart-roas"><div class="chart-wrap"><div class="chart-container"><canvas id="chartROAS"></canvas></div></div></div>
+
+        <div class="insight-callout">
+          <p><span>Insight:</span> Companies that increase creative testing volume by 5x typically see 20-30% CPA improvement within 3-6 months. More shots on goal — winners found faster — spend concentrates on efficient assets.</p>
+        </div>
+      </section>
+
+      <!-- 06 PHASED ROADMAP -->
+      <section class="section" id="s06">
+        <span class="section-badge">06</span>
+        <h2 class="hl">Phased Execution</h2>
+        <p class="section-intro">Start with proven formats to validate, then expand. Only scale spend after each phase proves the model.</p>
+
+        <div class="timeline-bar" id="timelineBar"></div>
+        <div class="phase-grid" id="phaseGrid"></div>
+      </section>
+
+      <!-- 07 BOTTOM LINE -->
+      <section class="section" id="s07">
+        <span class="section-badge">07</span>
+        <h2 class="hl">Start at 150 creatives/month</h2>
+        <p class="section-intro">The 150/month scenario covers 12 format categories and 10 headline templates — enough to generate meaningful test data and find winners within 2-3 months. If early results validate, scale to 300/month in Phase 3.</p>
+
+        <div class="stat-grid stat-grid-4" id="recoStats"></div>
+
+        <h3 class="sub hl">5 Growth Levers</h3>
+        <div id="leverCards" style="display:flex;flex-direction:column;gap:4px"></div>
+
+        <h3 class="sub hl">Scenario Sensitivity</h3>
+        <p style="font-size:16px;color:var(--t40);margin-top:-16px;margin-bottom:24px;letter-spacing:-0.18px">Bear, base, and bull cases for M12 CPA improvement.</p>
+        <div id="sensitivityTable"></div>
+      </section>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="report-footer">
+      <div style="display:flex;gap:24px;flex-wrap:wrap">
+        <span><span class="ft-label">Prepared by:</span> Tala — April 2026</span>
+        <span><span class="ft-label">Prepared for:</span> Health & Fitness Market</span>
+      </div>
+      <span style="color:var(--t30)">Confidential</span>
+    </div>
+  </div>
+</main>
+
+<script>
+(async function(){
+  const d = (await fetch('./data.json').then(r=>r.json()));
+
+  // ── Stats ──
+  const statsHTML = [
+    { v:'847', l:'Creative Opportunities', s:'across 18 formats', accent:true },
+    { v:'EUR 120-280K', l:'Est. Monthly Ad Spend', s:'tracked across EU markets' },
+    { v:'18-25%', l:'Projected CPA Reduction', s:'at 5x creative volume' },
+    { v:'200+', l:'Monthly Creatives at Scale', s:'across all formats' }
+  ].map(s=>`<div class="stat-card${s.accent?' accent':''}"><p class="sv hl">${s.v}</p><p class="sl">${s.l}</p><p class="ss">${s.s}</p></div>`).join('');
+  document.getElementById('statGrid').innerHTML = statsHTML;
+
+  document.getElementById('infoGrid').innerHTML = [
+    { t:'12 competitor apps × top 50 creatives', d:'Meta Ad Library, TikTok Creative Center, AppMagic' },
+    { t:'18 format categories identified', d:'15 headline templates + 10 emotional triggers mapped' },
+    { t:'3 growth scenarios modeled', d:'50, 150, or 300 creatives/month' },
+    { t:'Last 90 days of active creatives', d:'EU markets, all major ad networks' }
+  ].map(c=>`<div class="info-card"><p class="ic-title">${c.t}</p><p class="ic-desc">${c.d}</p></div>`).join('');
+
+  // ── Key Takeaways ──
+  const kt = d.creative_intelligence.key_takeaways;
+  document.getElementById('takeawayCards').innerHTML = [
+    { n:'01', t:'Creative volume defines the game.', b:`The most aggressive competitors run <strong>${kt.volume_insight.top_competitor_creative_range}</strong> active creatives. The median runs ${kt.volume_insight.median_creative_range}. The gap is volume.` },
+    { n:'02', t:kt.format_insight.headline, b:kt.format_insight.body },
+    { n:'03', t:kt.emotional_insight.headline, b:kt.emotional_insight.body },
+    { n:'04', t:kt.generation_insight.headline, b:kt.generation_insight.body }
+  ].map(t=>`<div class="info-card" style="margin-bottom:4px"><div style="display:flex;gap:12px;align-items:flex-start"><span class="section-badge" style="margin:0;flex-shrink:0">${t.n}</span><div><p class="ic-title" style="font-size:18px;color:var(--t100)">${t.t}</p><p class="ic-desc" style="margin-top:8px;line-height:22px">${t.b}</p></div></div></div>`).join('');
+
+  // ── Format Summary ──
+  document.getElementById('formatSummary').innerHTML = [
+    { v:'600', l:'Total Creatives' }, { v:'18', l:'Format Categories' }, { v:'12', l:'Active Competitors' }
+  ].map(s=>`<div class="summary-stat"><p class="ss-val hl">${s.v}</p><p class="ss-lbl">${s.l}</p></div>`).join('');
+
+  // ── Formats Table ──
+  function fmtTable(data) {
+    return `<table class="dtable"><thead><tr><th>#</th><th>Format</th><th class="r">Observed</th><th class="r">Share</th><th>Network</th><th style="text-align:center">Tier</th></tr></thead><tbody>${data.map(f=>{
+      const tc = f.tier===1?'tier-t1':f.tier===2?'tier-t2':'tier-t3';
+      const tl = f.tier===1?'T1':f.tier===2?'T2':'T3';
+      return `<tr><td class="num-col">${String(f.rank).padStart(2,'0')}</td><td class="cn">${f.name}</td><td class="r">${f.count}</td><td class="r">${f.share}%</td><td style="font-size:14px;color:var(--t50)">${f.signal}</td><td style="text-align:center"><span class="tier ${tc}">${tl}</span></td></tr>`;
+    }).join('')}</tbody></table>`;
+  }
+
+  const fmts = d.creative_intelligence.formats;
+  document.getElementById('formatsAll').innerHTML = fmtTable(fmts);
+  document.getElementById('formatsT1').innerHTML = fmtTable(fmts.filter(f=>f.tier===1));
+  document.getElementById('formatsT2').innerHTML = fmtTable(fmts.filter(f=>f.tier===2));
+  document.getElementById('formatsT3').innerHTML = fmtTable(fmts.filter(f=>f.tier===3));
+
+  // ── Headlines ──
+  document.getElementById('headlinesTable').innerHTML = `<table class="dtable"><thead><tr><th>#</th><th>Template</th><th>Frequency</th><th>Intent</th></tr></thead><tbody>${d.creative_intelligence.headlines.map(h=>{
+    const fc = h.frequency==='High'?'tier-t1':h.frequency==='Medium'?'tier-t2':'tier-t3';
+    return `<tr><td class="num-col">${String(h.rank).padStart(2,'0')}</td><td class="cn">${h.template}</td><td><span class="tier ${fc}">${h.frequency}</span></td><td style="font-size:14px;color:var(--t50)">${h.intent}</td></tr>`;
+  }).join('')}</tbody></table>`;
+
+  // ── Triggers ──
+  document.getElementById('triggersTable').innerHTML = `<table class="dtable"><thead><tr><th>#</th><th>Trigger / Pain Point</th><th>Frequency</th><th>Category</th></tr></thead><tbody>${d.creative_intelligence.emotional_triggers.map(t=>{
+    const fc = t.frequency==='Very High'?'tier-t1':t.frequency==='High'?'tier-t2':'tier-t3';
+    return `<tr><td class="num-col">${String(t.rank).padStart(2,'0')}</td><td class="cn">${t.trigger}</td><td><span class="tier ${fc}">${t.frequency}</span></td><td style="font-size:14px;color:var(--t50)">${t.category}</td></tr>`;
+  }).join('')}</tbody></table>`;
+
+  document.getElementById('emotCatsTable').innerHTML = `<table class="dtable"><thead><tr><th>Category</th><th>Description</th><th class="r">Share</th></tr></thead><tbody>${d.creative_intelligence.emotional_categories.map(c=>
+    `<tr><td class="cn">${c.category}</td><td style="font-size:14px;color:var(--t50)">${c.description}</td><td class="r">${c.share}%</td></tr>`
+  ).join('')}</tbody></table>`;
+
+  document.getElementById('triggerQuotes').innerHTML = d.creative_intelligence.example_triggers.map(q=>
+    `<div class="info-card" style="margin-bottom:4px;padding:16px 24px"><p style="font-size:14px;color:var(--t50);font-style:italic;letter-spacing:-0.5px">"${q}"</p></div>`
+  ).join('');
+
+  // ── Competitors ──
+  function compHTML(c, type) {
+    const badge = type==='emerging'&&c.growth_signal ? `<span class="tag-black tag">${c.growth_signal}</span>` : c.level ? `<span class="tag">${c.level}</span>` : '';
+    const insight = type==='direct'?c.gap_assessment:type==='indirect'?c.relevance:'Rapid creative scaling typically precedes significant market share shifts.';
+    return `<div class="comp-card"><div class="cc-top"><div><h4 class="hl">${c.name}</h4><p class="cc-domain">${c.domain}</p></div>${badge}</div><div class="cc-stats"><div><p class="cc-sv hl">${c.creative_volume_range}</p><p class="cc-sl">active creatives</p></div><div><p class="cc-sv hl">${c.platforms.split(',').length}</p><p class="cc-sl">platforms</p></div></div><p class="cc-insight">${insight}</p></div>`;
+  }
+  document.getElementById('directGrid').innerHTML = d.competitors.direct.map(c=>compHTML(c,'direct')).join('');
+  document.getElementById('indirectGrid').innerHTML = d.competitors.indirect.map(c=>compHTML(c,'indirect')).join('');
+  document.getElementById('emergingGrid').innerHTML = d.competitors.emerging.map(c=>compHTML(c,'emerging')).join('');
+
+  // ── Scenarios ──
+  document.getElementById('scenarioGrid').innerHTML = ['a','b','c'].map(k=>{
+    const s=d.scenarios[k]; const rec=s.recommended;
+    return `<div class="scenario-card${rec?' rec':''}">
+      ${rec?'<span class="rec-badge">Recommended</span>':''}
+      <p class="sc-price hl">${s.volume}<small>/mo</small></p>
+      <div class="sc-rows">
+        <div class="sc-row"><span class="sc-l">Format coverage</span><span class="sc-v">${s.formats} formats</span></div>
+        <div class="sc-row"><span class="sc-l">Headlines</span><span class="sc-v">${s.templates} templates</span></div>
+        <div class="sc-row"><span class="sc-l">Trigger coverage</span><span class="sc-v">${s.triggers===10?'Full':s.triggers}</span></div>
+        <div class="sc-row"><span class="sc-l">CPA improvement</span><span class="sc-v${rec?' brand':''}">${s.cpa_improvement}</span></div>
+        <div class="sc-row"><span class="sc-l">Investment</span><span class="sc-v">${s.price}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // ── Decision Matrix ──
+  document.getElementById('decisionTable').innerHTML = `<table class="dtable"><thead><tr><th>If priority is...</th><th>Choose</th><th>Why</th></tr></thead><tbody>${d.decision_framework.map(r=>
+    `<tr><td class="cn">${r.priority}</td><td><span class="tier ${r.choose==='150/mo'?'tier-t1':'tier-t2'}">${r.choose}</span></td><td style="color:var(--t50)">${r.why}</td></tr>`
+  ).join('')}</tbody></table>`;
+
+  // ── Charts ──
+  const cc = { a:'#C3C4CE', b:'#6851FF', c:'#1F2026' };
+  const ml = d.growth_projection.months.map(m=>'M'+m);
+  function ds(l,k,o){ return { label:l, data:o[k], borderColor:cc[k], backgroundColor:'transparent', tension:.3, pointRadius:3, pointHoverRadius:6, borderWidth:k==='b'?3:1.5, fill:false }; }
+  function mc(id,sets,yCb){
+    new Chart(document.getElementById(id).getContext('2d'),{ type:'line', data:{ labels:ml, datasets:sets }, options:{
+      responsive:true, maintainAspectRatio:false, interaction:{mode:'index',intersect:false},
+      plugins:{ legend:{ position:'top', labels:{ usePointStyle:true, pointStyle:'circle', padding:20, font:{size:13} } } },
+      scales:{ x:{ grid:{display:false}, ticks:{font:{size:12},color:'#91929F'} }, y:{ grid:{color:'rgba(0,0,0,0.04)'}, ticks:{font:{size:12},color:'#91929F',callback:yCb||(v=>v)} } }
+    }});
+  }
+  mc('chartVol',[ds('50/mo','a',d.growth_projection.creative_volume),ds('150/mo','b',d.growth_projection.creative_volume),ds('300/mo','c',d.growth_projection.creative_volume)]);
+  mc('chartCPA',[ds('50/mo','a',d.growth_projection.cpa_change_pct),ds('150/mo','b',d.growth_projection.cpa_change_pct),ds('300/mo','c',d.growth_projection.cpa_change_pct)],v=>v+'%');
+  mc('chartROAS',[ds('50/mo','a',d.growth_projection.roas_multiplier),ds('150/mo','b',d.growth_projection.roas_multiplier),ds('300/mo','c',d.growth_projection.roas_multiplier)],v=>v.toFixed(2)+'x');
+
+  // ── Roadmap ──
+  const ops = [1,0.6,0.3,0.15];
+  document.getElementById('timelineBar').innerHTML = ops.map((o,i)=>
+    `<div class="timeline-seg" style="background:rgba(104,81,255,${o});${i===0?'border-radius:100px 0 0 100px':''}${i===3?'border-radius:0 100px 100px 0':''}"></div>`
+  ).join('');
+
+  document.getElementById('phaseGrid').innerHTML = d.roadmap.map((r,i)=>{
+    const parts = r.phase.split(' — ');
+    return `<div class="phase-card"><div style="display:flex;align-items:center;gap:12px"><span class="pc-badge">${parts[0]}</span><div><p class="pc-name hl">${parts[1]||parts[0]}</p><p class="pc-time">Months ${r.months}</p></div></div><div class="pc-tags"><span class="tag">${r.investment}</span><span class="tag">${r.volume}/mo</span></div><p class="pc-desc">${r.milestones}</p></div>`;
+  }).join('');
+
+  // ── Bottom Line Stats ──
+  document.getElementById('recoStats').innerHTML = [
+    { v:'150', l:'Creatives / mo', s:'recommended volume', accent:true },
+    { v:'12', l:'Format Categories', s:'full Tier 1 + Tier 2' },
+    { v:'15-22%', l:'CPA Improvement', s:'projected at M12' },
+    { v:'EUR 9,800', l:'Monthly Investment', s:'Scenario B pricing' }
+  ].map(s=>`<div class="stat-card${s.accent?' accent':''}"><p class="sv hl">${s.v}</p><p class="sl">${s.l}</p><p class="ss">${s.s}</p></div>`).join('');
+
+  // ── Levers ──
+  document.getElementById('leverCards').innerHTML = d.bottom_line.levers.map(l=>
+    `<div class="lever-card"><span class="lc-badge">${l.number}</span><div><p class="lc-title hl">${l.title}</p><p class="lc-desc">${l.text}</p></div></div>`
+  ).join('');
+
+  // ── Sensitivity ──
+  document.getElementById('sensitivityTable').innerHTML = `<table class="dtable"><thead><tr><th>Case</th><th>Assumption</th><th class="r">50/mo M12</th><th class="r">150/mo M12</th><th class="r">300/mo M12</th></tr></thead><tbody>${d.bottom_line.sensitivity.map(s=>{
+    const cls = s.case==='Bear'?'case-bear':s.case==='Bull'?'case-bull':'case-base';
+    const bold = s.case==='Base'?'font-weight:500;':'';
+    return `<tr style="${bold}"><td><span class="case-badge ${cls}">${s.case}</span></td><td style="color:var(--t50)">${s.assumptions}</td><td class="r">${s.a}</td><td class="r" style="color:var(--brand);font-weight:500">${s.b}</td><td class="r">${s.c}</td></tr>`;
+  }).join('')}</tbody></table>`;
+
+  // ── Tab switching ──
+  document.querySelectorAll('.pill-tabs').forEach(bar=>{
+    bar.querySelectorAll('.pill-tab').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        bar.querySelectorAll('.pill-tab').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        let el=bar.nextElementSibling;
+        while(el&&!el.classList.contains('pill-tabs')){
+          if(el.classList.contains('tab-panel')) el.classList.toggle('active',el.id==='tab-'+btn.dataset.tab);
+          el=el.nextElementSibling;
+        }
+      });
+    });
+  });
+
+  // ── Scroll spy + nav ──
+  const sections = document.querySelectorAll('.section');
+  const navBtns = document.querySelectorAll('.nav-btn');
+
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) navBtns.forEach(b=>b.classList.toggle('active',b.dataset.target===e.target.id)); });
+  },{ rootMargin:'-20% 0px -70% 0px' });
+  sections.forEach(s=>obs.observe(s));
+
+  navBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.getElementById(btn.dataset.target)?.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
