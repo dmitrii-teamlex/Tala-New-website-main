@@ -16,6 +16,7 @@ import Webinars from "./pages/Webinars.tsx";
 import GetStarted from "./pages/GetStarted.tsx";
 import CaseStudyDetail from "./pages/CaseStudyDetail.tsx";
 import WebinarLanding from "./pages/WebinarLanding.tsx";
+import PreSaleReportWireframe from "./pages/PreSaleReportWireframe.tsx";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/webinars" element={<Webinars />} />
           <Route path="/webinar/:slug" element={<WebinarLanding />} />
           <Route path="/get-started" element={<GetStarted />} />
+          <Route path="/pre-sale-report-wireframe" element={<PreSaleReportWireframe />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
