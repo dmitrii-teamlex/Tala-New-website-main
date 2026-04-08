@@ -36,7 +36,7 @@ const tagVariants = cva(
 );
 
 interface TalaTagProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
+  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color">,
     VariantProps<typeof tagVariants> {}
 
 function TalaTag({ className, color, size, children, ...props }: TalaTagProps) {
