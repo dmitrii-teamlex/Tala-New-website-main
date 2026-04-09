@@ -62,18 +62,18 @@ function AnimatedStat({ stat, label, logo, href }: { stat: string; label: string
 
 /* ═══════ Platform icons ═══════ */
 const platformIcons = [
-  { name: "TikTok", pos: "left-[calc(8.33%+66px)] top-[45px]", bg: "bg-black", icon: "/images/icon-tiktok.svg", iconClass: "w-[36px] h-[42px]", delay: 0.1, bob: 3.8, dist: -10 },
-  { name: "Meta", pos: "left-[calc(25%+59px)] top-[85px]", bg: "bg-[#007BF9]", icon: "/images/icon-meta.svg", iconClass: "w-[42px] h-[28px]", delay: 0.25, bob: 4.6, dist: -14 },
-  { name: "Gemini", pos: "left-[50%] top-[21px]", bg: "bg-white border border-[#e5e5e5] border-b-[0.5px] border-r-[0.5px]", icon: "/images/icon-gemini.svg", iconClass: "w-[42px] h-[42px]", delay: 0.05, bob: 5.0, dist: -8 },
-  { name: "OpenAI", pos: "right-[calc(16.67%-52px)] top-[67px]", bg: "bg-black", icon: "/images/icon-openai.svg", iconClass: "w-[43px] h-[43px]", delay: 0.3, bob: 4.2, dist: -12 },
-  { name: "Instagram", pos: "left-[calc(16.67%+30px)] top-[307px]", bg: "", icon: "/images/icon-instagram-full.svg", iconClass: "w-full h-full", delay: 0.4, bob: 5.2, dist: -15 },
-  { name: "Claude", pos: "right-[calc(16.67%+10px)] top-[339px]", bg: "bg-[#E66F4C]", icon: "/images/icon-claude.svg", iconClass: "w-[41px] h-[42px]", delay: 0.55, bob: 3.6, dist: -11 },
-  { name: "LinkedIn", pos: "left-[71px] top-[447px]", bg: "", icon: "/images/icon-linkedin-full.svg", iconClass: "w-full h-full", delay: 0.5, bob: 4.8, dist: -13 },
-  { name: "Perplexity", pos: "left-[50%] top-[545px]", bg: "bg-[#010101]", icon: "/images/icon-perplexity.svg", iconClass: "w-full h-full", delay: 0.7, bob: 4.0, dist: -9 },
-  { name: "Pinterest", pos: "left-[calc(16.67%+61px)] top-[577px]", bg: "", icon: "/images/icon-pinterest.svg", iconClass: "w-full h-full", delay: 0.65, bob: 5.4, dist: -16 },
-  { name: "Snapchat", pos: "left-[calc(75%-25px)] top-[588px]", bg: "", icon: "/images/icon-snapchat.svg", iconClass: "w-full h-full", delay: 0.75, bob: 4.4, dist: -10 },
-  { name: "Pinterest2", pos: "left-[calc(66.67%+60px)] top-[203px]", bg: "", icon: "/images/icon-pinterest2.svg", iconClass: "w-full h-full", delay: 0.35, bob: 5.0, dist: -14 },
-  { name: "X", pos: "right-[calc(8.33%-6px)] top-[524px]", bg: "bg-black", icon: "/images/icon-x-vector.svg", iconClass: "w-[42px] h-[42px]", delay: 0.8, bob: 3.4, dist: -12 },
+  { name: "TikTok", pos: "left-[8%] lg:left-[calc(8.33%+66px)] top-[5%] lg:top-[45px]", bg: "bg-black", icon: "/images/icon-tiktok.svg", iconSize: "w-[55%] h-[65%]", delay: 0.1, bob: 3.8, dist: -10 },
+  { name: "Meta", pos: "left-[28%] lg:left-[calc(25%+59px)] top-[12%] lg:top-[85px]", bg: "bg-[#007BF9]", icon: "/images/icon-meta.svg", iconSize: "w-[65%] h-[44%]", delay: 0.25, bob: 4.6, dist: -14 },
+  { name: "Gemini", pos: "left-[48%] lg:left-[50%] top-[2%] lg:top-[21px]", bg: "bg-white border border-[#e5e5e5]", icon: "/images/icon-gemini.svg", iconSize: "w-[65%] h-[65%]", delay: 0.05, bob: 5.0, dist: -8 },
+  { name: "OpenAI", pos: "right-[8%] lg:right-[calc(16.67%-52px)] top-[8%] lg:top-[67px]", bg: "bg-black", icon: "/images/icon-openai.svg", iconSize: "w-[67%] h-[67%]", delay: 0.3, bob: 4.2, dist: -12 },
+  { name: "Instagram", pos: "left-[3%] lg:left-[calc(16.67%+30px)] top-[35%] lg:top-[307px]", bg: "", icon: "/images/icon-instagram-full.svg", iconSize: "w-full h-full", delay: 0.4, bob: 5.2, dist: -15 },
+  { name: "Claude", pos: "right-[3%] lg:right-[calc(16.67%+10px)] top-[38%] lg:top-[339px]", bg: "bg-[#E66F4C]", icon: "/images/icon-claude.svg", iconSize: "w-[64%] h-[65%]", delay: 0.55, bob: 3.6, dist: -11 },
+  { name: "LinkedIn", pos: "left-[5%] lg:left-[71px] top-[60%] lg:top-[447px]", bg: "", icon: "/images/icon-linkedin-full.svg", iconSize: "w-full h-full", delay: 0.5, bob: 4.8, dist: -13 },
+  { name: "Perplexity", pos: "left-[42%] lg:left-[50%] top-[78%] lg:top-[545px]", bg: "bg-[#010101]", icon: "/images/icon-perplexity.svg", iconSize: "w-full h-full", delay: 0.7, bob: 4.0, dist: -9 },
+  { name: "Pinterest", pos: "left-[18%] lg:left-[calc(16.67%+61px)] top-[82%] lg:top-[577px]", bg: "", icon: "/images/icon-pinterest.svg", iconSize: "w-full h-full", delay: 0.65, bob: 5.4, dist: -16 },
+  { name: "Snapchat", pos: "left-[62%] lg:left-[calc(75%-25px)] top-[80%] lg:top-[588px]", bg: "", icon: "/images/icon-snapchat.svg", iconSize: "w-full h-full", delay: 0.75, bob: 4.4, dist: -10 },
+  { name: "Pinterest2", pos: "right-[12%] lg:left-[calc(66.67%+60px)] top-[22%] lg:top-[203px]", bg: "", icon: "/images/icon-pinterest2.svg", iconSize: "w-full h-full", delay: 0.35, bob: 5.0, dist: -14 },
+  { name: "X", pos: "right-[5%] lg:right-[calc(8.33%-6px)] top-[70%] lg:top-[524px]", bg: "bg-black", icon: "/images/icon-x-vector.svg", iconSize: "w-[65%] h-[65%]", delay: 0.8, bob: 3.4, dist: -12 },
 ];
 
 /* ═══════ Product engines ═══════ */
@@ -178,29 +178,30 @@ function TestimonialCarousel() {
   return (
     <section className="bg-tala-10">
       <div className="max-w-[1240px] mx-auto px-5 lg:px-10 py-10">
-        <div className="flex items-center gap-4 lg:gap-10 min-h-[400px] lg:h-[640px] py-10 lg:py-20">
-          <button onClick={() => go(-1)} className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+        <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-10 min-h-[400px] lg:h-[640px] py-10 lg:py-20">
+          {/* Desktop arrows */}
+          <button onClick={() => go(-1)} className="hidden lg:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
             <ChevronLeft size={24} />
           </button>
           <div
             key={animKey}
-            className="flex-1 flex flex-col lg:flex-row items-stretch lg:h-[400px]"
+            className="flex-1 flex flex-col lg:flex-row items-stretch lg:h-[400px] w-full"
             style={{
               animation: `testimonial-slide-${dir > 0 ? "left" : "right"} 0.45s cubic-bezier(0.22, 1, 0.36, 1)`,
             }}
           >
             {/* Left: Person card */}
-            <div className="bg-tala-100 rounded-[60px] p-10 flex flex-col items-center justify-between w-full lg:w-[318px] shrink-0">
-              <div className="w-[238px] h-[238px] rounded-[40px] border border-tala-20 overflow-hidden shrink-0">
+            <div className="bg-tala-100 rounded-[40px] lg:rounded-[60px] p-6 lg:p-10 flex flex-col items-center justify-between w-full lg:w-[318px] shrink-0">
+              <div className="w-[160px] h-[160px] lg:w-[238px] lg:h-[238px] rounded-[30px] lg:rounded-[40px] border border-tala-20 overflow-hidden shrink-0">
                 <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col gap-1 items-center mt-4 lg:mt-0">
-                <p className="font-headline font-medium text-[28px] leading-[26px] text-tala-0 whitespace-nowrap">{t.name}</p>
-                <p className="font-body text-[14px] leading-[20px] text-tala-30 text-center">{t.role}</p>
+                <p className="font-headline font-medium text-[22px] leading-[22px] lg:text-[28px] lg:leading-[26px] text-tala-0 whitespace-nowrap">{t.name}</p>
+                <p className="font-body text-[12px] lg:text-[14px] leading-[20px] text-tala-30 text-center">{t.role}</p>
               </div>
             </div>
             {/* Right: Quote card */}
-            <div className="bg-tala-100 rounded-[60px] p-10 flex-1 flex flex-col justify-between min-h-[280px]">
+            <div className="bg-tala-100 rounded-[40px] lg:rounded-[60px] p-6 lg:p-10 flex-1 flex flex-col gap-6 justify-between min-h-[240px]">
               <div className="flex items-start justify-between">
                 <div className="h-8 flex items-center">
                   <img src={t.logo} alt="" className="h-6" />
@@ -209,15 +210,30 @@ function TestimonialCarousel() {
                   <TalaButton color="white" size="S">Read case</TalaButton>
                 </Link>
               </div>
-              <p className="font-body text-[24px] leading-[28px]">
+              <p className="font-body text-[18px] leading-[24px] lg:text-[24px] lg:leading-[28px]">
                 {t.quote.map((q, i) => (
                   <span key={i} className={q.highlight ? "text-tala-0" : "text-tala-30"}>{q.text}</span>
                 ))}
               </p>
             </div>
           </div>
-          <button onClick={() => go(1)} className="hidden md:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+          {/* Desktop arrow right */}
+          <button onClick={() => go(1)} className="hidden lg:flex shrink-0 w-[50px] h-[50px] rounded-pill border border-tala-90 items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
             <ChevronRight size={24} />
+          </button>
+        </div>
+        {/* Mobile navigation: arrows + dots */}
+        <div className="flex lg:hidden items-center justify-center gap-4 pb-4">
+          <button onClick={() => go(-1)} className="shrink-0 w-[42px] h-[42px] rounded-pill border border-tala-90 flex items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+            <ChevronLeft size={20} />
+          </button>
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <div key={i} className={`w-2 h-2 rounded-full transition-colors ${i === idx ? "bg-tala-100" : "bg-tala-30"}`} />
+            ))}
+          </div>
+          <button onClick={() => go(1)} className="shrink-0 w-[42px] h-[42px] rounded-pill border border-tala-90 flex items-center justify-center hover:bg-tala-100 hover:text-tala-0 transition-colors cursor-pointer">
+            <ChevronRight size={20} />
           </button>
         </div>
       </div>
@@ -284,15 +300,15 @@ export default function Index() {
       </section>
 
       {/* ═══ 2. LLM-AGNOSTIC — Centered text + floating icons ═══ */}
-      <section className="bg-tala-0">
+      <section className="bg-tala-0 overflow-hidden relative">
         <div className="max-w-[1440px] mx-auto relative py-16 md:py-24 lg:py-32">
-          <div className="relative min-h-[350px] md:min-h-[500px] lg:min-h-[640px] flex items-center justify-center">
-            {/* Floating platform icons — desktop */}
-            <div className="hidden lg:block">
+          <div className="relative min-h-[520px] md:min-h-[500px] lg:min-h-[640px] flex items-center justify-center">
+            {/* Floating platform icons — all screens */}
+            <div className="block">
               {platformIcons.map((icon) => (
                 <div
                   key={icon.name}
-                  className={`platform-icon absolute ${icon.pos} ${icon.bg} rounded-[20px] w-16 h-16 flex items-center justify-center overflow-hidden`}
+                  className={`platform-icon absolute ${icon.pos} ${icon.bg} rounded-[12px] md:rounded-[16px] lg:rounded-[20px] w-10 h-10 md:w-12 md:h-12 lg:w-16 lg:h-16 flex items-center justify-center overflow-hidden`}
                   style={{
                     "--appear-delay": `${icon.delay}s`,
                     "--bob-duration": `${icon.bob}s`,
@@ -303,7 +319,7 @@ export default function Index() {
                   <img
                     src={icon.icon}
                     alt={icon.name}
-                    className={icon.iconClass || "w-full h-full"}
+                    className={icon.iconSize}
                   />
                 </div>
               ))}
@@ -329,15 +345,6 @@ export default function Index() {
                 ))}
               </div>
             </div>
-
-            {/* Mobile platform icons */}
-            <div className="lg:hidden absolute bottom-2 left-0 right-0 flex justify-center gap-2 px-4 flex-wrap">
-              {platformIcons.slice(0, 8).map((icon) => (
-                <div key={icon.name} className={`${icon.bg} rounded-[20px] w-10 h-10 flex items-center justify-center overflow-hidden`}>
-                  <img src={icon.icon} alt={icon.name} className="w-full h-full" />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -348,8 +355,8 @@ export default function Index() {
           <div className="flex flex-col gap-20">
           {engines.map((engine) => (
             <div key={engine.title}>
-              <div className={`${engine.dark ? "bg-tala-100" : "bg-tala-0"} rounded-4xl overflow-hidden flex flex-col ${engine.reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch`}>
-                <div className={`flex-1 min-h-[260px] lg:min-h-[596px] ${engine.dark ? "rounded-none" : "rounded-3xl bg-tala-10"} flex items-center justify-center`}>
+              <div className={`${engine.dark ? "bg-[#1F2028]" : "bg-tala-0"} rounded-4xl overflow-hidden flex flex-col ${engine.reversed ? "lg:flex-row-reverse" : "lg:flex-row"} items-stretch`}>
+                <div className={`flex-1 min-h-[260px] lg:min-h-[596px] flex items-center justify-center overflow-hidden ${engine.dark ? "" : "bg-tala-10 rounded-4xl"}`}>
                   {engine.media.type === "lottie" && (
                     <LottieBlock src={engine.media.src} />
                   )}
@@ -364,12 +371,12 @@ export default function Index() {
                     />
                   )}
                 </div>
-                <div className="w-full lg:w-[440px] shrink-0 p-8 md:p-10 lg:p-[60px] flex flex-col justify-between min-h-[360px] lg:h-[596px]">
-                  <div className="flex flex-col gap-6 lg:gap-10">
+                <div className="w-full lg:w-[440px] shrink-0 p-6 md:p-10 lg:p-[60px] flex flex-col justify-between min-h-[240px] lg:h-[596px]">
+                  <div className="flex flex-col gap-4 lg:gap-10">
                     <h2 className={`font-headline font-bold text-[28px] leading-[28px] md:text-[40px] md:leading-[38px] lg:text-[60px] lg:leading-[54px] ${engine.dark ? "text-tala-0" : "text-tala-100"}`}>{engine.title}</h2>
                     <p className={`font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] ${engine.dark ? "text-tala-30" : "text-tala-70"}`}>{engine.description}</p>
                   </div>
-                  <Link to={engine.href} className="mt-8 lg:mt-0">
+                  <Link to={engine.href} className="mt-4 lg:mt-0">
                     <TalaButton color={engine.dark ? "white" : "black"} size="L">Explore</TalaButton>
                   </Link>
                 </div>
@@ -386,23 +393,24 @@ export default function Index() {
       {/* ═══ 5. STATS — "See how others are growing with us" on bg-tala-10 ═══ */}
       <section className="bg-tala-10 py-10 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 lg:mb-10">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-8 lg:mb-10">
             <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[40px] md:leading-[38px] lg:text-[60px] lg:leading-[58px] text-tala-100 max-w-[700px]">See how others are growing with us</h2>
-            <Link to="/case-studies" className="shrink-0"><TalaButton color="black" size="L">Success stories</TalaButton></Link>
+            <Link to="/case-studies" className="hidden md:block shrink-0"><TalaButton color="black" size="L">Success stories</TalaButton></Link>
           </div>
           <div className="flex flex-col gap-1">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">{statsRow1.map((s) => <AnimatedStat key={s.stat} {...s} />)}</div>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-1">{statsRow2.map((s) => <AnimatedStat key={s.stat} {...s} />)}</div>
           </div>
+          <Link to="/case-studies" className="md:hidden mt-6 block"><TalaButton color="black" size="L" className="w-full">Success stories</TalaButton></Link>
         </div>
       </section>
 
       {/* ═══ 6. BLOG — "Browse our blog" ═══ */}
       <section className="bg-tala-0 py-12 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 lg:mb-10">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 lg:mb-10">
             <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[40px] md:leading-[38px] lg:text-[60px] lg:leading-[58px] text-tala-100">Browse our blog</h2>
-            <TalaButton color="black" size="L">Read articles</TalaButton>
+            <div className="hidden md:block"><TalaButton color="black" size="L">Read articles</TalaButton></div>
           </div>
           <div className="flex flex-col lg:flex-row lg:items-stretch lg:pr-px">
             {/* Small card */}
@@ -437,6 +445,7 @@ export default function Index() {
               </div>
             </article>
           </div>
+          <div className="md:hidden mt-6"><TalaButton color="black" size="L" className="w-full">Read articles</TalaButton></div>
         </div>
       </section>
     </TalaPageLayout>

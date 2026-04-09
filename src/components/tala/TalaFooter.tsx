@@ -65,7 +65,7 @@ function TalaFooter({
   return (
     <footer
       className={cn(
-        "bg-tala-100 flex flex-col lg:flex-row gap-10 lg:gap-20 items-start p-6 md:p-8 lg:p-10 rounded-4xl w-full max-w-[1360px] mx-auto",
+        "bg-tala-100 flex flex-col lg:flex-row gap-10 lg:gap-20 items-start p-8 md:p-8 lg:p-10 rounded-[40px] lg:rounded-4xl w-full max-w-[1360px] mx-auto",
         className
       )}
     >
