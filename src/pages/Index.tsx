@@ -252,23 +252,30 @@ export default function Index() {
       {/* ═══ 1. HERO — Navbar INSIDE dark container ═══ */}
       <section ref={heroRef} className="bg-tala-0 p-5 lg:p-10">
         <div className="max-w-[1360px] mx-auto">
-          <div className="bg-tala-100 rounded-4xl pt-5 px-5 overflow-hidden flex flex-col gap-5 items-center">
-            <div className="w-full flex justify-center">{navbarEl}</div>
-            <div className="w-full p-2.5 lg:p-5">
-              <div className="flex flex-col lg:flex-row gap-2.5 items-start">
-                <div className="w-full lg:w-[681px] shrink-0 p-6 md:p-8 lg:p-10 flex flex-col gap-10">
+          <div className="bg-tala-100 rounded-4xl overflow-hidden flex flex-col items-center relative">
+            {/* Video background */}
+            <video
+              src="/images/hero.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover z-0"
+            />
+            {/* Content on top */}
+            <div className="relative z-10 w-full flex flex-col items-center pt-5 px-5">
+              <div className="w-full flex justify-center">{navbarEl}</div>
+              <div className="w-full p-5 lg:p-10 py-16 lg:py-24">
+                <div className="w-full lg:w-[668px] flex flex-col gap-10">
                   <div className="flex flex-col gap-4">
                     <h1 className="font-headline font-bold text-[36px] leading-[36px] md:text-[56px] md:leading-[54px] lg:text-[80px] lg:leading-[76px] text-tala-0">
                       Do twice the marketing with the same team
                     </h1>
-                    <p className="font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] text-tala-20">
+                    <p className="font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] text-tala-20 max-w-[587px]">
                       Get more campaigns live, launch faster, and free your team from manual work with AI agents that handle execution while your experts focus on strategy.
                     </p>
                   </div>
                   <div><TalaButton color="white" size="L" onClick={() => navigate("/get-started")}>Get started</TalaButton></div>
-                </div>
-                <div className="flex-1 relative min-h-[280px] md:min-h-[400px] lg:min-h-[500px] overflow-hidden rounded-2xl self-stretch">
-                  <img src="/images/hero-image.png" alt="Tala AI" className="absolute inset-0 w-full h-full object-cover object-center" />
                 </div>
               </div>
             </div>

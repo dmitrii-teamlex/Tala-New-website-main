@@ -1,11 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
   TalaPageLayout,
   TalaButton,
   TalaTag,
   TalaFaqGroup,
   TalaBrandline,
+  TalaCaseTestimonial,
+  TalaNavbar,
+  TalaLogo,
+  navItems,
 } from "@/components/tala";
+
+const Lottie = lazy(() => import("lottie-react"));
+
+function LottieHero({ src }: { src: string }) {
+  const [data, setData] = useState<unknown>(null);
+  useEffect(() => { fetch(src).then(r => r.json()).then(setData); }, [src]);
+  if (!data) return null;
+  return <Suspense fallback={null}><Lottie animationData={data} loop autoplay className="w-full h-full" /></Suspense>;
+}
 
 /* ── Steps data ── */
 const steps = [
@@ -49,20 +63,31 @@ export default function PaidGrowthEngine() {
   const navigate = useNavigate();
 
   return (
-    <TalaPageLayout>
-      {/* ═══ 1. HERO — Dark, centered ═══ */}
-      <section className="bg-tala-0 p-5 lg:p-10 pt-0 lg:pt-0">
+    <TalaPageLayout className="bg-tala-0" hideNavbar>
+      {/* ═══ 1. HERO — Dark with navbar inside ═══ */}
+      <section className="bg-tala-0 p-5 lg:p-10">
         <div className="max-w-[1360px] mx-auto">
-          <div className="bg-tala-100 rounded-4xl py-16 md:py-20 lg:py-28 px-5 lg:px-10 flex flex-col items-center text-center gap-5 md:gap-6">
-            <h1 className="font-headline font-bold text-[32px] leading-[32px] md:text-[48px] md:leading-[46px] lg:text-[72px] lg:leading-[68px] text-tala-0 max-w-[900px]">
-              Turn winning ads into scalable performance
-            </h1>
-            <p className="font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] text-tala-40 max-w-[600px]">
-              Analyze, create, and scale ads based on what's already working.
-            </p>
-            <TalaButton color="white" size="L" onClick={() => navigate("/get-started")}>
-              Let's talk
-            </TalaButton>
+          <div className="bg-tala-10 rounded-4xl overflow-hidden flex flex-col items-center text-center relative min-h-[400px] md:min-h-[520px] lg:min-h-[640px]">
+            {/* Navbar inside hero */}
+            <div className="relative z-20 w-full flex justify-center pt-5 px-5">
+              <TalaNavbar logo={<Link to="/"><TalaLogo /></Link>} items={navItems} ctaLabel="Get started" onCtaClick={() => navigate("/get-started")} />
+            </div>
+            {/* Lottie full block */}
+            <div className="absolute inset-0 z-0">
+              <LottieHero src="/images/paid.json" />
+            </div>
+            {/* Content on top */}
+            <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-5 lg:px-10 py-16 md:py-20 lg:py-28 gap-5 md:gap-6">
+              <h1 className="font-headline font-bold text-[32px] leading-[32px] md:text-[48px] md:leading-[46px] lg:text-[72px] lg:leading-[68px] text-tala-100 max-w-[900px]">
+                Turn winning ads into scalable performance
+              </h1>
+              <p className="font-body text-[16px] leading-[20px] md:text-[18px] md:leading-[22px] lg:text-[20px] lg:leading-[24px] text-tala-70 max-w-[700px]">
+                Predict which ads will convert, create faster, and launch campaigns backed by real competitor data — not guesswork.
+              </p>
+              <TalaButton color="black" size="L" onClick={() => navigate("/get-started")}>
+                Get started
+              </TalaButton>
+            </div>
           </div>
         </div>
       </section>
@@ -70,15 +95,43 @@ export default function PaidGrowthEngine() {
       {/* ═══ 2. TRUST LOGOS — marquee brandline ═══ */}
       <TalaBrandline />
 
-      {/* ═══ 3. INTRO LINE — Dark card with text + small image ═══ */}
+      {/* ═══ 2.5. TESTIMONIAL — Lada Klishchenko / Respontika ═══ */}
+      <TalaCaseTestimonial
+        name="Lada Klishchenko"
+        role="CEO / Respontika"
+        image="/images/case-lada.jpg"
+        logo="/images/logo-respontika.svg"
+        caseHref="/case-studies"
+        quote={[
+          { text: '"With Tala, we went from 3 days per creative batch to 50+ variants in a single morning. Competitor analysis is built in, hypothesis testing is automatic — our team didn\'t grow, but output did."' },
+        ]}
+        stats={[
+          { value: "3X", label: "increase in creative output" },
+          { value: "+25%", label: "improvement in CTR" },
+        ]}
+      />
+
+      {/* ═══ 3. INTRO LINE — Dark card with text + ad cards video ═══ */}
       <section className="bg-tala-0 py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="bg-tala-100 rounded-3xl lg:rounded-4xl p-8 md:p-10 lg:p-16 flex flex-col lg:flex-row items-start lg:items-end gap-8 lg:gap-16">
-            <p className="font-headline font-bold text-[24px] leading-[26px] md:text-[32px] md:leading-[32px] lg:text-[42px] lg:leading-[40px] text-tala-0 max-w-[800px] flex-1">
-              An AI system that doesn't just watch ads, it turns them into scalable campaigns.
-            </p>
-            <div className="w-[120px] h-[120px] lg:w-[160px] lg:h-[160px] rounded-2xl bg-tala-90 shrink-0 overflow-hidden">
-              <div className="w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(104,81,255,0.15),transparent_60%)]" />
+          <div className="bg-[#22242D] rounded-4xl overflow-hidden flex flex-col lg:flex-row items-center">
+            <div className="flex-1 p-8 md:p-10 lg:p-10 flex flex-col justify-between min-h-[240px] lg:h-[318px]">
+              <p className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-50">
+                Intro line
+              </p>
+              <p className="font-body text-[20px] leading-[26px] md:text-[28px] md:leading-[30px] lg:text-[32px] lg:leading-[34px] tracking-[-0.32px] text-tala-10 mt-6 lg:mt-0">
+                An AI system that doesn't just watch ads, it turns them into profitable campaigns.
+              </p>
+            </div>
+            <div className="w-full lg:flex-1 shrink-0 flex items-center justify-center lg:h-[318px]">
+              <video
+                src="/images/ad-cards.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-full w-auto object-contain"
+              />
             </div>
           </div>
         </div>

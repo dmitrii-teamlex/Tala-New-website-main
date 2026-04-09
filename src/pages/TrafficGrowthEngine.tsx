@@ -154,7 +154,7 @@ export default function TrafficGrowthEngine() {
       {/* ═══ 4. THE CHALLENGE — Dark card with video ═══ */}
       <section className="py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="bg-tala-100 rounded-4xl overflow-hidden flex flex-col lg:flex-row items-center">
+          <div className="bg-[#22242D] rounded-4xl overflow-hidden flex flex-col lg:flex-row items-center">
             <div className="flex-1 p-8 md:p-10 lg:p-10 flex flex-col justify-between min-h-[260px] lg:h-[318px]">
               <p className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-50">
                 The challenge
@@ -185,9 +185,9 @@ export default function TrafficGrowthEngine() {
             We drive visibility across all search layers
           </h2>
 
-          <div className="flex flex-col gap-5 lg:gap-10">
+          <div className="flex flex-col gap-10">
             {steps.map((step) => (
-              <div key={step.step} className="flex flex-col md:flex-row gap-1 items-stretch">
+              <div key={step.step} className="flex flex-col md:flex-row gap-0 items-stretch">
                 {/* Text panel */}
                 <div className="bg-tala-10 rounded-3xl md:rounded-4xl p-6 md:p-8 lg:p-10 flex flex-col justify-between w-full md:w-[320px] lg:w-[440px] shrink-0 min-h-[280px] md:min-h-[320px] lg:h-[440px]">
                   <div className="flex items-start justify-between">
