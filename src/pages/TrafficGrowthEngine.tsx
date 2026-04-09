@@ -1,79 +1,85 @@
 import { useNavigate, Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import {
   TalaPageLayout,
   TalaButton,
   TalaTag,
   TalaFaqGroup,
-  TalaStatCard,
   TalaNavbar,
   TalaLogo,
   TalaBrandline,
+  TalaCaseTestimonial,
   navItems,
 } from "@/components/tala";
 
 /* ── Brand logos ── */
 
-/* ── Steps data (matching Figma) ── */
+/* ── Steps data (matching Figma 45:4036) ── */
 const steps = [
   {
     step: 1,
     title: "Audit and strategize",
     description:
-      "Tala audits your current SEO footprint, analyzes competitors, and builds a prioritized roadmap based on quick wins and long-term growth opportunities.",
+      "We analyze your site, content, and search demand to uncover growth gaps and create a clear, data-driven roadmap.",
+    image: "/images/step1_traffic.png",
   },
   {
     step: 2,
     title: "Turn data into direction",
     description:
-      "AI surfaces keyword gaps, content opportunities, and technical issues — then translates them into a clear execution plan your team can act on.",
+      "Our AI identifies untapped search demand, clustering high-intent topics and keywords that match your ideal customers' needs, across Google and AI search.",
+    image: "/images/step2_traffic.png",
   },
   {
     step: 3,
     title: "Create and optimize at scale",
     description:
-      "Tala generates SEO-optimized content at volume — blog posts, landing pages, and pillar articles — all aligned to your brand voice and search intent.",
+      "We launch programmatic SEO systems that generate thousands of optimized pages — built around real user intent and structured for ranking.",
+    image: "/images/step3_traffic.png",
   },
   {
     step: 4,
     title: "Expand reach across every channel",
     description:
-      "Content is repurposed and distributed across search, social, and AI-powered answer engines to maximize visibility everywhere your audience looks.",
+      "We monitor trends and rankings, adapting content for Google and AI search systems like Gemini, Perplexity, and ChatGPT.",
+    image: "/images/step4_traffic.png",
   },
 ];
 
-/* ── FAQ items ── */
+/* ── FAQ items (Figma 34:11102) ── */
 const faqItems = [
-  { question: "How does Tala identify keyword opportunities?", answer: "Tala uses advanced AI models to analyze search volume, competition, intent signals, and your existing domain authority to surface keyword opportunities where you can realistically rank. It prioritizes keywords with strong commercial intent and traffic potential relative to difficulty." },
-  { question: "What types of content does Tala create for SEO?", answer: "Tala produces long-form blog posts, pillar pages, supporting cluster articles, landing pages, FAQ sections, and meta descriptions. Each piece is structured for search engines with proper heading hierarchy, internal links, and schema markup recommendations." },
-  { question: "How does Tala ensure content quality?", answer: "Every piece of content goes through multiple AI quality checks including readability scoring, factual consistency verification, brand voice alignment, and SEO optimization scoring. Content is benchmarked against top-ranking pages for your target keywords to ensure competitive quality." },
-  { question: "Can Tala work with my existing content strategy?", answer: "Yes. During onboarding, Tala audits your existing content library to identify gaps, refresh opportunities, and cannibalization issues. It then builds a strategy that complements what you already have, filling gaps and strengthening existing topic clusters." },
-  { question: "How long until I see results?", answer: "Most customers see measurable ranking improvements within 6-8 weeks as new content gets indexed and begins accumulating authority. Significant traffic growth typically materializes within 3-4 months. Tala accelerates results by targeting quick-win keywords alongside longer-term opportunities." },
-  { question: "Does Tala handle technical SEO?", answer: "Tala focuses on content-driven SEO but provides technical SEO recommendations including site structure improvements, internal linking strategies, page speed insights, and crawlability suggestions. For deep technical audits, it integrates with tools like Semrush and Ahrefs." },
-  { question: "What languages does Tala support?", answer: "Tala currently supports content creation in English, Spanish, French, German, Portuguese, Italian, Dutch, and Japanese. Each language model is trained on native-quality content to ensure natural fluency, not just translation. Additional languages are added regularly." },
-  { question: "How does Tala handle content clusters?", answer: "Tala automatically maps keyword groups into hub-and-spoke content clusters. It creates pillar pages for broad topics and supporting articles for specific subtopics, then generates an internal linking architecture that signals topical authority to search engines." },
-  { question: "Can I edit the content Tala creates?", answer: "Absolutely. All content is fully editable before and after publishing. Tala provides a built-in editor with real-time SEO scoring so you can refine content while maintaining optimization. You can also set approval workflows to review all content before it goes live." },
-  { question: "What makes Tala different from other SEO tools?", answer: "Unlike traditional SEO tools that only analyze and recommend, Tala executes end-to-end — from keyword research through content creation and performance tracking. It combines the analytical depth of tools like Ahrefs with AI content creation, eliminating the gap between strategy and execution." },
+  { question: "Do we need existing SEO traffic to start?", answer: "No. The system can build organic visibility from zero or scale existing performance." },
+  { question: "How automated is the process?", answer: "Most research, content generation, and publishing are automated. Your team stays focused on strategy." },
+  { question: "We already work with an SEO agency. Can this still help?", answer: "Yes. The system complements agency work by automating execution and scaling faster." },
+  { question: "How fast can we expect results?", answer: "Most clients see measurable growth in 3–6 months as automated pages start ranking." },
 ];
 
-/* ── Stat cards for "Companies that scaled SEO into growth" ── */
-const statCards = [
+/* ── Case cards for "Companies that scaled SEO into growth" ── */
+const caseCards = [
   {
     stat: "+245%",
-    label: "organic traffic growth",
-    description: "AI-powered content clusters drove sustained organic growth over 6 months, tripling qualified traffic from search.",
-    logo: <img src="/images/logos/nbiz.svg" alt="NBIZ" className="h-6" />,
+    label: "lead conversion rate",
+    description: "AI-generated, localized page templates boosted relevance and intent, raising conversions by 245% and cutting acquisition costs by 40%.",
+    logo: "/images/brand-alps.svg",
+    logoName: "Alps2Alps",
+    href: "/case-studies",
   },
   {
     stat: "+170%",
-    label: "search visibility increase",
-    description: "Technical SEO improvements combined with optimized content boosted domain authority and keyword rankings across all target terms.",
-    logo: <img src="/images/logos/rylana.svg" alt="Rylana" className="h-6" />,
+    label: "organic-driven revenue",
+    description: "Programmatic SEO turned static blog content into a scalable acquisition channel, growing organic revenue by 170% in five months.",
+    logo: "/images/brand-flylane.svg",
+    logoName: "Flylane",
+    href: "/case-studies",
   },
   {
     stat: "+30K",
-    label: "monthly organic visitors",
-    description: "From near-zero organic presence to 30,000+ monthly visitors through a systematic content and link-building strategy.",
-    logo: <img src="/images/logos/maestro.svg" alt="Maestro" className="h-6" />,
+    label: "organic visits",
+    description: "Generated 30,000 organic visits in just four months by launching AI-driven content clusters focused on high-intent wellness topics.",
+    logo: "/images/brand-ayurveda.svg",
+    logoName: "Ask Ayurveda",
+    logoFlip: true,
+    href: "/case-studies",
   },
 ];
 
@@ -128,54 +134,46 @@ export default function TrafficGrowthEngine() {
       <TalaBrandline />
 
       {/* ═══ 3. TESTIMONIAL — Person photo + quote left, stat cards right ═══ */}
-      <section className="py-12 md:py-16 lg:py-20">
-        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="flex flex-col lg:flex-row gap-2">
-            {/* Left: testimonial with person photo */}
-            <div className="flex-1 bg-tala-0 border border-tala-20 rounded-3xl lg:rounded-4xl p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[360px]">
-              <div className="flex items-start justify-between mb-6">
-                <Link to="/case-studies" className="font-body text-body-xs text-tala-50 hover:text-tala-100 transition-colors">
-                  Read case &rarr;
-                </Link>
-              </div>
-              <div className="flex flex-col gap-6 lg:gap-10">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-tala-10 overflow-hidden shrink-0">
-                    <img src="/images/emilie-rutter.png" alt="Emilie Rutter" className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <p className="font-headline font-medium text-[16px] lg:text-[18px] text-tala-100">Emilie Rutter</p>
-                    <p className="font-body text-body-xs text-tala-50">VP of Marketing / GrowthCo</p>
-                  </div>
-                </div>
-                <p className="font-body text-[16px] leading-[22px] md:text-[20px] md:leading-[26px] lg:text-body-xl text-tala-80">
-                  "Tala transformed our organic strategy. We went from scattered content efforts to a structured growth engine that delivers compounding results every month."
-                </p>
-              </div>
-            </div>
-            {/* Right: stat cards stacked */}
-            <div className="flex flex-row lg:flex-col gap-2 w-full lg:w-[340px] shrink-0">
-              <div className="flex-1 lg:flex-none bg-tala-0 border border-tala-20 rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[160px] lg:min-h-[200px]">
-                <p className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[34px] lg:text-h4 text-tala-100">+45%</p>
-                <p className="font-body text-body-s text-tala-50 mt-2">organic traffic growth</p>
-              </div>
-              <div className="flex-1 lg:flex-none bg-tala-0 border border-tala-20 rounded-3xl p-6 md:p-8 lg:p-10 flex flex-col justify-between min-h-[160px] lg:min-h-[200px]">
-                <p className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[34px] lg:text-h4 text-tala-100">2X</p>
-                <p className="font-body text-body-s text-tala-50 mt-2">search visibility</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <TalaCaseTestimonial
+        name="Raitis Bullits"
+        role="Co-founder and CEO / Alps2Alps"
+        image="/images/case-raitis.jpg"
+        logo="/images/case-logo-alps.svg"
+        caseHref="/case-studies"
+        quote={[
+          { text: '"Tala completely transformed how we think about SEO. Instead of writing endless content, ' },
+          { text: "we now have a self-scaling system that attracts customers 24/7", highlight: true },
+          { text: '. Within a few months, we started seeing results we couldn\'t achieve with any agency."' },
+        ]}
+        stats={[
+          { value: "+45%", label: "organic traffic growth" },
+          { value: "2X", label: "revenue growth" },
+        ]}
+      />
 
-      {/* ═══ 4. THE CHALLENGE — Dark card ═══ */}
+      {/* ═══ 4. THE CHALLENGE — Dark card with video ═══ */}
       <section className="py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="bg-tala-100 rounded-3xl lg:rounded-4xl p-8 md:p-10 lg:p-16">
-            <p className="font-body text-body-s text-tala-40 mb-4 lg:mb-6">The challenge</p>
-            <p className="font-headline font-bold text-[24px] leading-[26px] md:text-[32px] md:leading-[32px] lg:text-h4 text-tala-0 max-w-[800px]">
-              Most teams struggle to build sustainable organic traffic. SEO requires consistent effort across content, technical optimization, and distribution — but resources are limited and results take time to materialize.
-            </p>
+          <div className="bg-tala-100 rounded-4xl overflow-hidden flex flex-col lg:flex-row items-center">
+            <div className="flex-1 p-8 md:p-10 lg:p-10 flex flex-col justify-between min-h-[260px] lg:h-[318px]">
+              <p className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-50">
+                The challenge
+              </p>
+              <p className="font-body text-[20px] leading-[26px] md:text-[28px] md:leading-[30px] lg:text-[32px] lg:leading-[34px] tracking-[-0.32px] text-tala-10 mt-6 lg:mt-0">
+                Paid campaigns vanish when budgets end. Visibility shouldn't. We build AI-driven growth systems that keep attracting customers long after the ads stop.
+              </p>
+            </div>
+            {/* Right: formula video */}
+            <div className="w-full lg:w-[318px] h-[200px] lg:h-[318px] shrink-0 overflow-hidden">
+              <video
+                src="/images/formula.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -183,8 +181,8 @@ export default function TrafficGrowthEngine() {
       {/* ═══ 5. PROCESS STEPS — Subheading + 4 step cards ═══ */}
       <section className="py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <h2 className="font-headline font-bold text-h4 text-tala-60 text-center mb-8 lg:mb-16 max-w-[700px] mx-auto">
-            We fix visibility across all search layers
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-60 text-center mb-8 lg:mb-16 max-w-[700px] mx-auto">
+            We drive visibility across all search layers
           </h2>
 
           <div className="flex flex-col gap-5 lg:gap-10">
@@ -205,11 +203,8 @@ export default function TrafficGrowthEngine() {
                   </div>
                 </div>
                 {/* Visual panel */}
-                <div className="bg-tala-10 rounded-3xl md:rounded-4xl flex-1 min-h-[200px] md:min-h-[280px] lg:h-[440px] overflow-hidden relative">
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(104,81,255,0.06),transparent_60%)]" />
-                  <span className="absolute bottom-4 right-8 font-headline font-bold text-[120px] lg:text-[200px] leading-none text-tala-100/[0.04] select-none pointer-events-none">
-                    {String(step.step).padStart(2, "0")}
-                  </span>
+                <div className="bg-tala-10 rounded-3xl md:rounded-4xl flex-1 min-h-[200px] md:min-h-[280px] lg:h-[440px] overflow-hidden flex items-center justify-center p-6 lg:p-10">
+                  <img src={step.image} alt={step.title} className="w-full h-auto object-contain" />
                 </div>
               </div>
             ))}
@@ -217,35 +212,64 @@ export default function TrafficGrowthEngine() {
         </div>
       </section>
 
-      {/* ═══ 6. FULL-WIDTH DARK BANNER — "Designed for modern search" ═══ */}
-      <section className="py-12 md:py-16 lg:py-20">
+      {/* ═══ 6. DESIGNED FOR MODERN SEARCH — Two dark cards on tala-10 bg ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-16">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <div className="bg-tala-100 rounded-3xl lg:rounded-4xl p-8 md:p-10 lg:p-16 flex flex-col gap-4 lg:gap-6">
-            <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[34px] lg:text-h3 text-tala-0 max-w-[700px]">
-              Designed for modern search
-            </h2>
-            <p className="font-body text-body-l text-tala-40 max-w-[640px]">
-              Traditional SEO only covers Google. Tala optimizes for AI-first search engines like ChatGPT, Perplexity, and Google AI Overviews — so your brand shows up wherever people are looking for answers.
-            </p>
+          <div className="flex flex-col lg:flex-row gap-0 items-stretch">
+            {/* Left: image card */}
+            <div className="flex-1 bg-tala-100 rounded-4xl overflow-hidden flex flex-col items-center justify-center p-10 gap-8">
+              <p className="font-headline font-medium text-[28px] leading-[26px] text-tala-50 text-center">AI recommendation map</p>
+              <img src="/images/modern-search.png" alt="AI recommendation map" className="w-full h-auto object-contain" />
+            </div>
+            {/* Right: text card */}
+            <div className="flex-1 bg-tala-100 rounded-4xl p-10 flex flex-col justify-between min-h-[300px] lg:min-h-[400px]">
+              <h2 className="font-headline font-bold text-[32px] leading-[32px] md:text-[42px] md:leading-[40px] lg:text-[56px] lg:leading-[54px] text-tala-0">
+                Designed for modern search
+              </h2>
+              <p className="font-body text-[20px] leading-[24px] lg:text-[24px] lg:leading-[28px] mt-8 lg:mt-0">
+                <span className="text-tala-10">Organic search today — it's about being recommended by AI systems. </span>
+                <span className="text-tala-50">Our structured data ensure your brand shows up not only in traditional search results but also in </span>
+                <span className="text-tala-10">AI overviews</span>
+                <span className="text-tala-50">, </span>
+                <span className="text-tala-10">chatbots</span>
+                <span className="text-tala-50">, and </span>
+                <span className="text-tala-10">knowledge panels</span>
+                <span className="text-tala-50">.</span>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ═══ 7. COMPANIES THAT SCALED — 3 stat cards ═══ */}
-      <section className="py-12 md:py-16 lg:py-20">
+      {/* ═══ 7. COMPANIES THAT SCALED — 3 case cards with hover ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
-          <h2 className="font-headline font-bold text-h4 text-tala-60 mb-8 lg:mb-10">
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">
             Companies that scaled SEO into growth
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
-            {statCards.map((card) => (
-              <TalaStatCard
-                key={card.stat}
-                stat={card.stat}
-                label={card.label}
-                description={card.description}
-                logo={card.logo}
-              />
+            {caseCards.map((card) => (
+              <Link key={card.stat} to={card.href} className="group bg-tala-0 border border-tala-10 rounded-[40px] p-10 flex flex-col justify-between min-h-[300px] lg:h-[360px] mr-[-0.5px] mb-[-0.5px] cursor-pointer">
+                <div className="flex items-start justify-between">
+                  <div className="h-8 flex items-center">
+                    <img src={card.logo} alt={card.logoName} className={`h-8 ${card.logoFlip ? "-scale-y-100" : ""}`} />
+                  </div>
+                  <div className="w-[42px] h-[42px] rounded-pill border border-tala-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <ChevronRight size={20} />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-1">
+                    <p className="font-headline font-bold text-[36px] leading-[36px] lg:text-[56px] lg:leading-[54px] text-tala-100">{card.stat}</p>
+                    <p className="font-body text-[20px] leading-[24px] lg:text-[24px] lg:leading-[28px] text-tala-70">{card.label}</p>
+                  </div>
+                  <div className="max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-300">
+                    <div className="border-t border-tala-20 mt-4 pt-4">
+                      <p className="font-body text-[16px] leading-[18px] text-tala-70">{card.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -257,7 +281,7 @@ export default function TrafficGrowthEngine() {
           <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[34px] lg:text-h3 text-tala-100 mb-8 lg:mb-10">
             FAQs
           </h2>
-          <TalaFaqGroup items={faqItems} />
+          <TalaFaqGroup items={faqItems} defaultOpen />
         </div>
       </section>
     </TalaPageLayout>

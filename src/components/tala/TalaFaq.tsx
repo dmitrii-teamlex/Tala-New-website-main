@@ -1,22 +1,20 @@
 import { cn } from "@/lib/utils";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 
 /**
- * TalaFaq
+ * TalaFaq — Figma 42:3931
  *
- * Accordion-style FAQ item. Large pill-shaped container with question text
- * and a round toggle button. Expands to show answer text.
+ * Closed: bg-white, border tala-20, rounded-[40px], pl-40 pr-20 py-20
+ *   Question: Nohemi Medium 24px, tala-80
+ *   Button: 42px pill, border tala-90, chevron down
  *
- * Anatomy:
- * - White bg, border tala-20, rounded-3xl (40px)
- * - Question in Nohemi Medium h6 (24px)
- * - Answer in Helvetica body-m (18px)
- * - Toggle button: 42px circle with border and chevron
+ * Open: same container, column layout
+ *   Question: Nohemi Medium 24px, tala-100
+ *   Answer: Body M 18px, tala-80, tracking -0.18, pr-192
+ *   Button: chevron up
  *
- * Usage:
- *   <TalaFaq question="How does it work?" answer="We use AI..." />
- *   <TalaFaqGroup items={[{ question: "...", answer: "..." }]} />
+ * Group: -1px margin overlap between items
  */
 
 interface TalaFaqProps {
@@ -33,49 +31,50 @@ function TalaFaq({ question, answer, defaultOpen = false, className }: TalaFaqPr
     <button
       onClick={() => setOpen(!open)}
       className={cn(
-        "bg-tala-0 border border-tala-20 rounded-3xl w-full text-left transition-all",
-        open ? "flex flex-col gap-0 pl-10 pr-5 py-5" : "flex items-center gap-10 pl-10 pr-5 py-5",
+        "bg-tala-0 border border-tala-20 rounded-[40px] w-full text-left pl-10 pr-5 py-5 cursor-pointer flex flex-col",
         className
       )}
     >
-      <div className="flex items-center gap-10 w-full">
+      <div className="flex items-center w-full">
         <p
           className={cn(
-            "flex-1 font-headline font-medium text-h6",
+            "flex-1 font-headline font-medium text-[24px] leading-[26px] transition-colors duration-300",
             open ? "text-tala-100" : "text-tala-80"
           )}
         >
           {question}
         </p>
-        <div className="border border-tala-90 rounded-pill size-[42px] flex items-center justify-center shrink-0">
-          {open ? (
-            <ChevronUp size={20} className="text-tala-90" />
-          ) : (
-            <ChevronDown size={20} className="text-tala-90" />
-          )}
+        <div className="border border-tala-90 rounded-pill size-[42px] flex items-center justify-center shrink-0 transition-transform duration-300"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
+        >
+          <ChevronDown size={20} className="text-tala-90" />
         </div>
       </div>
-      {open && (
-        <div className="pr-4 md:pr-48 pt-2">
-          <p className="text-body-m tracking-[-0.18px] text-tala-80 font-body">
+      <div
+        className="overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{ maxHeight: open ? "300px" : "0px", opacity: open ? 1 : 0 }}
+      >
+        <div className="pr-5 lg:pr-[192px] pt-3 pb-1">
+          <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-80">
             {answer}
           </p>
         </div>
-      )}
+      </div>
     </button>
   );
 }
 
 interface TalaFaqGroupProps {
   items: { question: string; answer: string }[];
+  defaultOpen?: boolean;
   className?: string;
 }
 
-function TalaFaqGroup({ items, className }: TalaFaqGroupProps) {
+function TalaFaqGroup({ items, defaultOpen = false, className }: TalaFaqGroupProps) {
   return (
-    <div className={cn("flex flex-col gap-2 w-full", className)}>
+    <div className={cn("flex flex-col w-full", className)}>
       {items.map((item, i) => (
-        <TalaFaq key={i} question={item.question} answer={item.answer} />
+        <TalaFaq key={i} question={item.question} answer={item.answer} defaultOpen={defaultOpen} className="mb-[-1px]" />
       ))}
     </div>
   );

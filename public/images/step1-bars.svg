@@ -1,0 +1,26 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 168 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Keyword ranking bars">
+<path id="Bar" d="M0 72C0 69.7909 1.79086 68 4 68H26C28.2091 68 30 69.7909 30 72V130C30 132.209 28.2091 134 26 134H4C1.79086 134 0 132.209 0 130V72Z" fill="url(#paint0_linear_0_60)"/>
+<path id="Rectangle 346600580" d="M46 56C46 53.7909 47.7909 52 50 52H72C74.2091 52 76 53.7909 76 56V130C76 132.209 74.2091 134 72 134H50C47.7909 134 46 132.209 46 130V56Z" fill="url(#paint1_linear_0_60)"/>
+<path id="Bar_2" d="M92 4C92 1.79086 93.7909 0 96 0H118C120.209 0 122 1.79086 122 4V130C122 132.209 120.209 134 118 134H96C93.7909 134 92 132.209 92 130V4Z" fill="url(#paint2_linear_0_60)"/>
+<path id="Bar_3" d="M138 86C138 83.7909 139.791 82 142 82H164C166.209 82 168 83.7909 168 86V130C168 132.209 166.209 134 164 134H142C139.791 134 138 132.209 138 130V86Z" fill="url(#paint3_linear_0_60)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_60" x1="15" y1="134" x2="15" y2="-32" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#6133EC"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_60" x1="61" y1="134" x2="61" y2="-65" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#6133EC"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_60" x1="108.5" y1="134" x2="111.37" y2="-55.7538" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="#6133EC"/>
+</linearGradient>
+<linearGradient id="paint3_linear_0_60" x1="156" y1="34" x2="155" y2="134" gradientUnits="userSpaceOnUse">
+<stop stop-color="#6133EC"/>
+<stop offset="1" stop-color="white"/>
+</linearGradient>
+</defs>
+</svg>
