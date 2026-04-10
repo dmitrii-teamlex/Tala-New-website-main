@@ -53,13 +53,13 @@ function TalaCaseSidebar({
   return (
     <div
       className={cn(
-        "bg-tala-0 flex flex-col gap-10 items-start p-10 rounded-3xl w-[430px] shrink-0",
+        "bg-tala-0 flex flex-col gap-6 md:gap-8 lg:gap-10 items-start p-6 md:p-8 lg:p-10 rounded-[32px] md:rounded-3xl w-full lg:w-[430px] lg:shrink-0",
         className
       )}
     >
       {/* Content section */}
-      <div className="flex flex-col gap-10 w-full">
-        <h3 className="font-headline font-medium text-h6 text-tala-80">
+      <div className="flex flex-col gap-6 md:gap-8 lg:gap-10 w-full">
+        <h3 className="font-headline font-medium text-[20px] leading-[22px] md:text-h6 text-tala-80">
           {title}
         </h3>
         <p className="text-body-s text-tala-80 font-body">{description}</p>

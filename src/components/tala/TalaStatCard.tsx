@@ -59,9 +59,11 @@ function TalaStatCard({
       {logo && (
         <div className="flex items-start justify-between w-full">
           <div className="h-8 flex items-center">{logo}</div>
-          <div className="border border-tala-100 rounded-pill size-[42px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <ArrowRight size={20} />
-          </div>
+          {href && (
+            <div className="border border-tala-100 rounded-pill size-[42px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <ArrowRight size={20} />
+            </div>
+          )}
         </div>
       )}
 
@@ -70,9 +72,11 @@ function TalaStatCard({
           <p className="font-headline font-bold text-h4 text-tala-100">
             {stat}
           </p>
-          <div className="border border-tala-100 rounded-pill size-[42px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
-            <ArrowRight size={20} />
-          </div>
+          {href && (
+            <div className="border border-tala-100 rounded-pill size-[42px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
+              <ArrowRight size={20} />
+            </div>
+          )}
         </div>
       )}
 

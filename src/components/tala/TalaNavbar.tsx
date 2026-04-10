@@ -37,6 +37,7 @@ const productsMenu = [
 function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, className }: TalaNavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
@@ -62,9 +63,20 @@ function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, classNa
   };
 
   const handleMobileNav = (item: NavItem) => {
+    if (item.hasDropdown) {
+      setMobileExpanded(mobileExpanded === item.label ? null : item.label);
+      return;
+    }
     if (item.onClick) item.onClick();
     else if (item.href) navigate(item.href);
     setIsMenuOpen(false);
+    setMobileExpanded(null);
+  };
+
+  const handleMobileSubNav = (href: string) => {
+    navigate(href);
+    setIsMenuOpen(false);
+    setMobileExpanded(null);
   };
 
   const handleCta = () => {
@@ -165,32 +177,60 @@ function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, classNa
 
       {/* Mobile overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-tala-0 z-[60] flex flex-col p-6 lg:hidden">
-          <div className="flex items-center justify-between mb-8">
+        <div className="fixed inset-0 bg-tala-0 z-[60] flex flex-col p-5 lg:hidden overflow-y-auto">
+          <div className="flex items-center justify-between mb-6 shrink-0">
             <div className="shrink-0 h-8">{logo}</div>
             <button
-              className="flex items-center justify-center w-10 h-10 rounded-full text-tala-90"
-              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center justify-center w-11 h-11 rounded-full border border-tala-20 text-tala-90"
+              onClick={() => { setIsMenuOpen(false); setMobileExpanded(null); }}
               aria-label="Close menu"
             >
-              <X size={24} />
+              <X size={22} />
             </button>
           </div>
           <div className="flex flex-col flex-1">
-            {items.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleMobileNav(item)}
-                className="flex items-center justify-between py-5 font-headline font-medium text-[28px] leading-[26px] text-tala-90 border-b border-tala-20"
-              >
-                <span>{item.label}</span>
-                {item.hasDropdown && <ChevronDown size={20} className="text-tala-50" />}
-              </button>
-            ))}
+            {items.map((item) => {
+              const isExpanded = mobileExpanded === item.label;
+              const subItems = item.label === "Connect" ? connectMenu : item.label === "Products" ? productsMenu : null;
+              return (
+                <div key={item.label} className="border-b border-tala-20">
+                  <button
+                    onClick={() => handleMobileNav(item)}
+                    className="w-full flex items-center justify-between py-5 font-headline font-medium text-[26px] leading-[26px] text-tala-90"
+                  >
+                    <span>{item.label}</span>
+                    {item.hasDropdown && (
+                      <ChevronDown
+                        size={22}
+                        className={cn("text-tala-50 transition-transform duration-200", isExpanded ? "rotate-180" : "")}
+                      />
+                    )}
+                  </button>
+                  {isExpanded && subItems && (
+                    <div className="flex flex-col gap-2 pb-5">
+                      {subItems.map((sub) => (
+                        <button
+                          key={sub.label}
+                          onClick={() => handleMobileSubNav(sub.href)}
+                          className="flex items-center gap-4 px-4 py-3 rounded-2xl bg-tala-10"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-tala-80 flex items-center justify-center shrink-0">
+                            <img src={sub.icon} alt="" className="w-4 h-4" />
+                          </div>
+                          <span className="font-body text-[18px] leading-[20px] text-tala-80">
+                            {sub.label}
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
           <button
             onClick={handleCta}
-            className="w-full h-[56px] rounded-pill bg-tala-100 font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-0 mt-6"
+            className="w-full h-[56px] rounded-pill bg-tala-100 font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-0 mt-6 shrink-0"
           >
             {ctaLabel}
           </button>

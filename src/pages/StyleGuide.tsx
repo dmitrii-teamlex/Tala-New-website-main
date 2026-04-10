@@ -6,6 +6,7 @@ import {
   TalaFaq,
   TalaStatCard,
   TalaCaseCard,
+  TalaCaseStudyCard,
   TalaTestimonialCard,
   TalaStepCard,
   TalaSelectionCard,
@@ -276,6 +277,42 @@ export default function StyleGuide() {
               <TalaStatCard stat="~75%" label="Viral video rate" className="w-[337px] h-[337px]" />
               <TalaStatCard stat="+245%" label="Lead conversion rate" description="AI-generated, localized page templates boosted relevance and intent, raising conversions by 245%." className="w-[448px]" />
               <TalaStatCard stat="10,000+" label="Landing pages generated" description="Thousands of SEO-optimized pages created automatically." className="w-[337px]" />
+            </div>
+          </SubSection>
+
+          <SubSection title="Case Card (legacy)">
+            <div className="flex flex-wrap gap-4">
+              <TalaCaseCard
+                logo={<span className="font-headline font-bold text-[22px] text-tala-90">Alps2Alps</span>}
+                tags={["SEO", "E-commerce", "AI"]}
+                statLabel="reached"
+                statValue="500K–2.5M"
+                statUnit="people organically"
+                description="Discover how Teamlex built two fully automated content ecosystems for Social Discovery Group."
+              />
+            </div>
+          </SubSection>
+
+          <SubSection title="Case Study Card (catalog)">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-1 max-w-[1120px]">
+              <TalaCaseStudyCard
+                logo="/images/brand-alps.svg"
+                logoAlt="Alps2Alps"
+                tags={["Ai", "E-commerce", "ROI", "Saas", "FinTech", "SEO", "Telecom", "Apps"]}
+                statLabel="reached"
+                statValue="500K–2.5M"
+                statSuffix="people organically"
+                description="Discover how Teamlex built two fully automated content ecosystems for Social Discovery Group, reaching 2.5M+ viewers with zero manual effort."
+              />
+              <TalaCaseStudyCard
+                logo="/images/brand-flylane.svg"
+                logoAlt="Flylane"
+                tags={["Ai", "Travel", "Performance", "ROI"]}
+                statLabel="grew"
+                statValue="+170%"
+                statSuffix="organic revenue"
+                description="Programmatic SEO turned static blog content into a scalable acquisition channel, growing organic revenue by 170% in five months."
+              />
             </div>
           </SubSection>
 

@@ -134,19 +134,19 @@ function TalaTestimonialCard({
   return (
     <div
       className={cn(
-        "bg-tala-0 flex flex-col gap-[60px] items-start p-10 rounded-3xl",
+        "bg-tala-0 flex flex-col gap-10 md:gap-[60px] items-start p-6 md:p-8 lg:p-10 rounded-[32px] md:rounded-3xl",
         className
       )}
     >
       {/* Quote icon */}
-      <div className="flex flex-col gap-10">
-        <svg width="28" height="24" viewBox="0 0 28 24" fill="none" className="text-tala-80">
+      <div className="flex flex-col gap-6 md:gap-8 lg:gap-10">
+        <svg width="24" height="20" viewBox="0 0 28 24" fill="none" className="text-tala-80 md:w-7 md:h-6">
           <path
             d="M0 24V14.4C0 11.7333 0.466667 9.33333 1.4 7.2C2.33333 5.06667 3.66667 3.26667 5.4 1.8C7.13333 0.333333 9.13333 -0.533333 11.4 -0.8L12 1.2C10.2667 1.73333 8.8 2.66667 7.6 4C6.4 5.33333 5.73333 6.93333 5.6 8.8H12V24H0ZM16 24V14.4C16 11.7333 16.4667 9.33333 17.4 7.2C18.3333 5.06667 19.6667 3.26667 21.4 1.8C23.1333 0.333333 25.1333 -0.533333 27.4 -0.8L28 1.2C26.2667 1.73333 24.8 2.66667 23.6 4C22.4 5.33333 21.7333 6.93333 21.6 8.8H28V24H16Z"
             fill="currentColor"
           />
         </svg>
-        <p className="text-body-xl text-tala-80 font-body">{quote}</p>
+        <p className="text-[18px] leading-[22px] md:text-body-xl text-tala-80 font-body">{quote}</p>
       </div>
 
       {/* Author */}
@@ -155,14 +155,14 @@ function TalaTestimonialCard({
           <img
             src={authorImage}
             alt={authorName}
-            className="size-16 rounded-full object-cover"
+            className="size-12 md:size-16 rounded-full object-cover"
           />
         )}
         <div className="flex flex-col gap-1">
-          <p className="font-headline font-medium text-h5 text-tala-90">
+          <p className="font-headline font-medium text-[20px] leading-[22px] md:text-h5 text-tala-90">
             {authorName}
           </p>
-          <p className="text-body-m tracking-[-0.18px] text-tala-60 font-body">
+          <p className="text-body-s md:text-body-m tracking-[-0.18px] text-tala-60 font-body">
             {authorRole}
           </p>
         </div>

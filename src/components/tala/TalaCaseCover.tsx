@@ -30,12 +30,12 @@ function TalaCaseCover({ logo, tags, title, className }: TalaCaseCoverProps) {
   return (
     <div
       className={cn(
-        "bg-tala-0 flex flex-col gap-16 items-start p-10 rounded-3xl w-full",
+        "bg-tala-0 flex flex-col gap-10 md:gap-12 lg:gap-16 items-start p-6 md:p-8 lg:p-10 rounded-[32px] md:rounded-3xl w-full",
         className
       )}
     >
       {/* Top row */}
-      <div className="flex items-start justify-between w-full">
+      <div className="flex flex-col md:flex-row items-start md:justify-between gap-4 md:gap-6 w-full">
         <div className="h-8 flex items-center">{logo}</div>
         <div className="flex flex-wrap gap-0.5">
           {tags.map((tag) => (
@@ -45,7 +45,7 @@ function TalaCaseCover({ logo, tags, title, className }: TalaCaseCoverProps) {
       </div>
 
       {/* Title */}
-      <h1 className="font-headline font-bold text-h3 text-tala-100">
+      <h1 className="font-headline font-bold text-[28px] leading-[30px] md:text-[40px] md:leading-[40px] lg:text-h3 text-tala-100">
         {title}
       </h1>
     </div>

@@ -23,3 +23,4 @@ export { TalaPageLayout, TalaLogo, TalaLogoWhite, navItems } from "./TalaPageLay
 export { TalaBrandline } from "./TalaBrandline";
 export { TalaTabs } from "./TalaTabs";
 export { TalaCaseTestimonial } from "./TalaCaseTestimonial";
+export { TalaCaseStudyCard } from "./TalaCaseStudyCard";

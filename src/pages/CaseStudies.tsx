@@ -1,87 +1,174 @@
-import { Link } from "react-router-dom";
-import { TalaPageLayout, TalaButton, TalaCaseCard } from "@/components/tala";
+import { TalaPageLayout, TalaCaseStudyCard } from "@/components/tala";
 
 /* ── Case study data ── */
-const caseStudies = [
+interface CaseStudyItem {
+  name: string;
+  slug: string;
+  logo: string;
+  logoFlip?: boolean;
+  logoHeight?: number;
+  logoMono?: boolean;
+  tags: string[];
+  statLabel: string;
+  statValue: string;
+  statSuffix: string;
+  description: string;
+}
+
+const caseStudies: CaseStudyItem[] = [
   {
     name: "Alps2Alps",
     slug: "alps2alps",
-    tags: ["SEO", "E-commerce", "AI"],
-    statLabel: "reached",
-    statValue: "500K\u20132.5M",
-    statUnit: "people organically",
-    description:
-      "Discover how Teamlex built two fully automated content ecosystems for Social Discovery Group, reaching 2.5M+ viewers with zero manual effort.",
+    logo: "/images/brand-alps.svg",
+    tags: ["AI", "Transportation", "Programmatic SEO"],
+    statLabel: "grew by",
+    statValue: "2x",
+    statSuffix: "organic traffic",
+    description: "Teamlex built a programmatic SEO engine that turned route demand into a scalable acquisition channel for an alpine transfer service.",
   },
   {
-    name: "Maestra",
-    slug: "maestra",
-    tags: ["SaaS", "AI", "Automation"],
-    statLabel: "cut",
-    statValue: "30%",
-    statUnit: "of routine tasks",
-    description:
-      "How Maestra set up automated workflows that made their marketing and sales team work several times faster \u2014 without hiring.",
-  },
-  {
-    name: "Qase",
-    slug: "qase",
-    tags: ["SaaS", "SEO", "Content"],
-    statLabel: "grew",
-    statValue: "85K+",
-    statUnit: "monthly organic visitors",
-    description:
-      "How Qase achieved 85K+ monthly organic visitors by deploying an AI-powered content strategy across their blog and resource hub.",
-  },
-  {
-    name: "Lev Haolam",
+    name: "Lev HaOlam",
     slug: "lev-haolam",
-    tags: ["E-commerce", "ROI", "Paid"],
-    statLabel: "generated",
-    statValue: "$220K+",
-    statUnit: "additional revenue",
-    description:
-      "How Lev Haolam generated $220K+ in additional revenue through AI-driven ad creatives and audience targeting.",
+    logo: "/images/brand-levhaolam.svg",
+    tags: ["SEO", "E-commerce", "Content"],
+    statLabel: "grew by",
+    statValue: "+85%",
+    statSuffix: "organic clicks",
+    description: "Recipe-led content and programmatic product pages rebuilt Lev HaOlam's organic channel from the ground up.",
   },
   {
-    name: "DEIZ",
-    slug: "deiz",
-    tags: ["FinTech", "SEO", "AI"],
-    statLabel: "achieved",
-    statValue: "+312%",
-    statUnit: "organic traffic growth",
-    description:
-      "How DEIZ achieved 312% organic traffic growth in 6 months by combining AI content agents with programmatic SEO.",
+    name: "Respontika",
+    slug: "respontika",
+    logo: "/images/logo-respontika.svg",
+    tags: ["AI", "Digital Products", "Creative"],
+    statLabel: "scaled by",
+    statValue: "3×",
+    statSuffix: "creative output",
+    description: "Data-driven competitor analysis and batch creative generation tripled Respontika's ad output while improving CTR and CPA.",
   },
   {
-    name: "flylane",
+    name: "Ask Ayurveda",
+    slug: "ask-ayurveda",
+    logo: "/images/brand-ayurveda.svg",
+    logoFlip: true,
+    tags: ["SEO", "Wellness", "Programmatic SEO"],
+    statLabel: "reached",
+    statValue: "20K+",
+    statSuffix: "monthly organic visits",
+    description: "A medical-safe SEO AI agent built Ask Ayurveda's organic traffic from zero to 20K+ monthly visits in the first few months.",
+  },
+  {
+    name: "Flylane",
     slug: "flylane",
-    tags: ["Apps", "Content", "AI"],
+    logo: "/images/brand-flylane.svg",
+    tags: ["SEO", "Education", "AI"],
+    statLabel: "scaled to",
+    statValue: "408K+",
+    statSuffix: "monthly organic visitors",
+    description: "AI-powered programmatic SEO turned Flylane's global education platform into a 400K+ monthly organic traffic machine.",
+  },
+  {
+    name: "Elirox",
+    slug: "elirox",
+    logo: "/images/brand-elirox.svg",
+    tags: ["AI", "Fintech", "Programmatic SEO"],
+    statLabel: "launched",
+    statValue: "300+",
+    statSuffix: "SEO pages from scratch",
+    description: "A programmatic SEO agent launched 300+ pages across Elirox's algorithmic trading ecosystem — from zero to consistent organic leads.",
+  },
+  {
+    name: "Semrush",
+    slug: "semrush",
+    logo: "/images/brand-semrush.svg",
+    tags: ["AI", "SaaS", "Video Content"],
     statLabel: "reached",
     statValue: "~75%",
-    statUnit: "viral video rate",
-    description:
-      "How flylane's AI-generated content consistently hits viral status across TikTok and Instagram Reels.",
+    statSuffix: "viral video rate",
+    description: "A self-optimizing AI agent replaced Semrush's fragmented video workflow with a single continuous loop — most videos now go viral.",
   },
   {
-    name: "Axevil",
-    slug: "axevil",
-    tags: ["Telecom", "Paid", "ROI"],
-    statLabel: "improved",
-    statValue: "+180%",
-    statUnit: "engagement growth",
-    description:
-      "How Axevil Capital tripled engagement across paid channels using AI-optimized creatives and smart A/B testing.",
+    name: "Bina School",
+    slug: "bina-school",
+    logo: "/images/brand-bina.svg",
+    logoHeight: 32,
+    tags: ["AI", "Education", "Content"],
+    statLabel: "improved by",
+    statValue: "+30%",
+    statSuffix: "content win rate",
+    description: "Data-driven idea selection and competitor analysis helped Bina School turn short-form content from guessing into a predictable system.",
   },
   {
-    name: "nmbr",
-    slug: "nmbr",
-    tags: ["SaaS", "SEO", "Analytics"],
-    statLabel: "ranked",
-    statValue: "30K+",
-    statUnit: "keywords achieved",
-    description:
-      "How nmbr scaled from 200 to 30K+ keyword rankings using Tala's traffic growth engine and automated content workflows.",
+    name: "Axevil Capital",
+    slug: "axevil-capital",
+    logo: "/images/brand-axevil.svg",
+    logoHeight: 24,
+    tags: ["SEO", "Fintech", "Programmatic SEO"],
+    statLabel: "grew by",
+    statValue: "+320%",
+    statSuffix: "organic traffic",
+    description: "Programmatic SEO built for Axevil Capital's private market investment platform — 400+ pages, top-10 rankings, +320% organic traffic.",
+  },
+  {
+    name: "GaiaNet AI",
+    slug: "gaianet-ai",
+    logo: "/images/brand-gaianet.svg",
+    tags: ["AI", "Crypto", "Social Content"],
+    statLabel: "grew by",
+    statValue: "+350%",
+    statSuffix: "community growth",
+    description: "A self-scaling social content engine drove GaiaNet AI's community growth by 350% across X, Discord, Telegram, and LinkedIn.",
+  },
+  {
+    name: "Engagelabs",
+    slug: "engagelabs",
+    logo: "/images/brand-engagelabs.png",
+    logoMono: true,
+    tags: ["AI", "SaaS", "Content"],
+    statLabel: "improved by",
+    statValue: "+35%",
+    statSuffix: "content win rate",
+    description: "A faster, script-driven content pipeline boosted Engagelabs' short-form video performance while cutting production time by 60%.",
+  },
+  {
+    name: "Inxy",
+    slug: "inxy",
+    logo: "/images/brand-inxy.svg",
+    tags: ["SEO", "SaaS", "Automation"],
+    statLabel: "grew by",
+    statValue: "+60%",
+    statSuffix: "organic clicks",
+    description: "A fully automated SEO AI agent handled internal linking, content updates, and page creation — cutting manual SEO work by 80%.",
+  },
+  {
+    name: "Wow How Studio",
+    slug: "wow-how-studio",
+    logo: "/images/brand-wowwoh.svg",
+    tags: ["AI", "Video Production", "Content"],
+    statLabel: "grew by",
+    statValue: "+220%",
+    statSuffix: "organic reach",
+    description: "A self-improving content engine turned Wow How Studio's organic reach from inconsistent to predictable across every platform.",
+  },
+  {
+    name: "nmbr.homes",
+    slug: "nmbr-homes",
+    logo: "/images/brand-nmbr.svg",
+    tags: ["SEO", "PropTech", "Programmatic SEO"],
+    statLabel: "grew by",
+    statValue: "+210%",
+    statSuffix: "organic traffic",
+    description: "A programmatic SEO engine built for multi-market real estate — 500+ pages launched across 12 new markets, +210% organic traffic.",
+  },
+  {
+    name: "Harey Zahav",
+    slug: "harey-zahav",
+    logo: "/images/brand-hareyzahav.svg",
+    tags: ["SEO", "Real Estate", "Programmatic SEO"],
+    statLabel: "grew by",
+    statValue: "+145%",
+    statSuffix: "organic traffic",
+    description: "~150 SEO-optimized pages and semantic clustering built Harey Zahav's organic channel in one of Israel's most competitive markets.",
   },
 ];
 
@@ -89,9 +176,9 @@ export default function CaseStudies() {
   return (
     <TalaPageLayout className="!bg-tala-10">
       {/* ═══ HERO ═══ */}
-      <section className="py-20">
-        <div className="max-w-[1360px] mx-auto px-10 text-center">
-          <h1 className="font-headline font-bold text-h3 text-tala-100">
+      <section className="py-12 md:py-16 lg:py-20">
+        <div className="max-w-[1360px] mx-auto px-5 md:px-10 text-center">
+          <h1 className="font-headline font-bold text-[32px] leading-[32px] md:text-[48px] md:leading-[46px] lg:text-h3 text-tala-100">
             Trusted by founders
             <br />
             from fast growing startups
@@ -100,43 +187,25 @@ export default function CaseStudies() {
       </section>
 
       {/* ═══ CARDS GRID — 2-col, gap-1 (4px) ═══ */}
-      <section className="pb-20">
-        <div className="max-w-[1360px] mx-auto px-10">
-          <div className="flex flex-col gap-10">
-            {/* Grid rows */}
-            <div className="flex flex-col gap-1">
-              {[0, 2, 4, 6].map((startIdx) => (
-                <div key={startIdx} className="flex gap-1">
-                  {caseStudies.slice(startIdx, startIdx + 2).map((cs) => (
-                    <Link
-                      key={cs.slug}
-                      to={`/case-studies/${cs.slug}`}
-                      className="flex-1 min-w-0"
-                    >
-                      <TalaCaseCard
-                        logo={
-                          <span className="font-headline font-bold text-[22px] text-tala-90">
-                            {cs.name}
-                          </span>
-                        }
-                        tags={cs.tags}
-                        statLabel={cs.statLabel}
-                        statValue={cs.statValue}
-                        statUnit={cs.statUnit}
-                        description={cs.description}
-                      />
-                    </Link>
-                  ))}
-                </div>
-              ))}
-            </div>
-
-            {/* Load more button */}
-            <div className="flex justify-center">
-              <TalaButton color="stroke-black" size="L">
-                Load more
-              </TalaButton>
-            </div>
+      <section className="pb-12 md:pb-16 lg:pb-20">
+        <div className="max-w-[1360px] mx-auto px-5 md:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+            {caseStudies.map((cs) => (
+              <TalaCaseStudyCard
+                key={cs.slug}
+                logo={cs.logo}
+                logoAlt={cs.name}
+                logoFlip={cs.logoFlip}
+                logoHeight={cs.logoHeight}
+                logoMono={cs.logoMono}
+                tags={cs.tags}
+                statLabel={cs.statLabel}
+                statValue={cs.statValue}
+                statSuffix={cs.statSuffix}
+                description={cs.description}
+                href={`/case-studies/${cs.slug}`}
+              />
+            ))}
           </div>
         </div>
       </section>
