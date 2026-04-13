@@ -154,7 +154,7 @@ function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, classNa
             className="hidden lg:block absolute top-[88px] z-50 animate-[text-fly-up_0.25s_cubic-bezier(0.22,1,0.36,1)]"
             style={{ left: openDropdown === "Connect" ? "33%" : "42%" }}
           >
-            <div className="bg-tala-0 rounded-3xl p-5 flex flex-col gap-5">
+            <div className="bg-tala-0 rounded-3xl p-5 flex flex-col gap-5 text-left">
               {dropdownItems.map((item) => (
                 <Link
                   key={item.label}
@@ -165,7 +165,7 @@ function TalaNavbar({ logo, items, ctaLabel = "Get started", onCtaClick, classNa
                   <div className="w-8 h-8 rounded-[60px] bg-tala-80 flex items-center justify-center shrink-0">
                     <img src={item.icon} alt="" className="w-4 h-4" />
                   </div>
-                  <span className="font-headline font-medium text-[24px] leading-[26px] text-tala-80 w-[170px]">
+                  <span className="font-headline font-medium text-[24px] leading-[26px] text-tala-80 w-[170px] text-left">
                     {item.label}
                   </span>
                 </Link>

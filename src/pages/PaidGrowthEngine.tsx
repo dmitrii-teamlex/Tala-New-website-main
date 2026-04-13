@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
+import { ChevronRight } from "lucide-react";
 import {
   TalaPageLayout,
   TalaButton,
@@ -11,6 +12,35 @@ import {
   TalaLogo,
   navItems,
 } from "@/components/tala";
+
+/* ── Case cards for "Brands winning paid growth with Tala" ── */
+const paidCaseCards = [
+  {
+    stat: "3×",
+    label: "creative output",
+    description: "Data-driven competitor analysis and batch creative generation tripled Respontika's ad output while improving CTR and CPA.",
+    logo: "/images/logo-respontika.svg",
+    logoName: "Respontika",
+    href: "/case-studies/respontika",
+  },
+  {
+    stat: "+35%",
+    label: "content win rate",
+    description: "A faster, script-driven content pipeline boosted Engagelabs' short-form video performance while cutting production time by 60%.",
+    logo: "/images/brand-engagelabs.png",
+    logoName: "Engagelabs",
+    logoMono: true,
+    href: "/case-studies/engagelabs",
+  },
+  {
+    stat: "+350%",
+    label: "community growth",
+    description: "A self-scaling social content engine drove GaiaNet AI's community growth by 350% across X, Discord, Telegram, and LinkedIn.",
+    logo: "/images/brand-gaianet.svg",
+    logoName: "GaiaNet AI",
+    href: "/case-studies/gaianet-ai",
+  },
+];
 
 const Lottie = lazy(() => import("lottie-react"));
 
@@ -179,7 +209,131 @@ export default function PaidGrowthEngine() {
         </div>
       </section>
 
-      {/* ═══ 6. FAQ ═══ */}
+      {/* ═══ 6. PRICING — Two plans side by side ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
+        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">
+            Pricing
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Self Service */}
+            <div className="bg-tala-0 border border-tala-20 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-100">Self service</p>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50 min-h-[40px]">
+                    You use Tala to research competitors and generate ad creatives yourself.
+                  </p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-100">$250</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-50 pb-1">/month</p>
+                </div>
+              </div>
+              <div className="flex-1 border-t border-tala-20 pt-6 flex flex-col gap-4">
+                <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-80">What's included</p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    "Unlimited access for the whole team",
+                    "Unlimited competitor monitoring",
+                    "Unlimited ad library searches",
+                    "AI analysis — up to 10 reports per month",
+                    "From $10 per generated creative",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-tala-100 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
+                      <p className="font-body text-[16px] leading-[18px] text-tala-70">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <TalaButton color="black" size="L" onClick={() => navigate("/get-started")} className="w-full">
+                Get started
+              </TalaButton>
+            </div>
+
+            {/* Creatives Done For You */}
+            <div className="bg-tala-100 border border-tala-100 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-0">Done for you</p>
+                    <span className="bg-tala-brand text-tala-0 font-body text-[14px] leading-[16px] tracking-[-0.5px] px-3 py-2 rounded-pill whitespace-nowrap">
+                      Recommended
+                    </span>
+                  </div>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40 min-h-[40px]">
+                    We take on the creative side end-to-end: research, ideation, and ad production.
+                  </p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-0">$1,000</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-40 pb-1">/month</p>
+                </div>
+              </div>
+              <div className="flex-1 border-t border-tala-80 pt-6 flex flex-col gap-4">
+                <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-20">What's included</p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    "Full cycle: competitor research → analysis → creative production",
+                    "Dedicated creative team",
+                    "Performance guarantee",
+                    "Everything in Self service + hands-on team work",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-tala-0 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#1F2026" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
+                      <p className="font-body text-[16px] leading-[18px] text-tala-30">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <TalaButton color="white" size="L" onClick={() => navigate("/get-started")} className="w-full">
+                Talk to us
+              </TalaButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 7. COMPANIES — 3 case cards with hover ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
+        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">
+            Brands winning paid growth with Tala
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+            {paidCaseCards.map((card) => (
+              <Link key={card.stat} to={card.href} className="group bg-tala-0 border border-tala-10 rounded-[40px] p-10 flex flex-col justify-between min-h-[300px] lg:h-[360px] mr-[-0.5px] mb-[-0.5px] cursor-pointer">
+                <div className="flex items-start justify-between">
+                  <div className="h-8 flex items-center">
+                    <img src={card.logo} alt={card.logoName} className={`h-8 ${card.logoMono ? "brightness-0 opacity-80" : ""}`} />
+                  </div>
+                  <div className="w-[42px] h-[42px] rounded-pill border border-tala-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <ChevronRight size={20} />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-1">
+                    <p className="font-headline font-bold text-[36px] leading-[36px] lg:text-[56px] lg:leading-[54px] text-tala-100">{card.stat}</p>
+                    <p className="font-body text-[20px] leading-[24px] lg:text-[24px] lg:leading-[28px] text-tala-70">{card.label}</p>
+                  </div>
+                  <div className="max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-300">
+                    <div className="border-t border-tala-20 mt-4 pt-4">
+                      <p className="font-body text-[16px] leading-[18px] text-tala-70">{card.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 8. FAQ ═══ */}
       <section className="bg-tala-0 py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
           <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[34px] lg:text-[56px] lg:leading-[54px] text-tala-100 mb-8 lg:mb-10">

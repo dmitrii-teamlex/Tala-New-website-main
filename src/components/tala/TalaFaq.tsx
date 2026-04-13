@@ -31,31 +31,32 @@ function TalaFaq({ question, answer, defaultOpen = false, className }: TalaFaqPr
     <button
       onClick={() => setOpen(!open)}
       className={cn(
-        "bg-tala-0 border border-tala-20 rounded-[40px] w-full text-left pl-10 pr-5 py-5 cursor-pointer flex flex-col",
+        "bg-tala-0 border border-tala-20 rounded-[28px] md:rounded-[40px] w-full text-left p-5 md:pl-10 md:pr-5 md:py-5 cursor-pointer flex flex-col",
         className
       )}
     >
-      <div className="flex items-center w-full">
+      <div className="flex items-start gap-3 md:items-center w-full">
         <p
           className={cn(
-            "flex-1 font-headline font-medium text-[24px] leading-[26px] transition-colors duration-300",
+            "flex-1 font-headline font-medium text-[16px] leading-[20px] md:text-[20px] md:leading-[24px] lg:text-[24px] lg:leading-[26px] transition-colors duration-300",
             open ? "text-tala-100" : "text-tala-80"
           )}
         >
           {question}
         </p>
-        <div className="border border-tala-90 rounded-pill size-[42px] flex items-center justify-center shrink-0 transition-transform duration-300"
+        <div
+          className="border border-tala-90 rounded-pill size-[36px] md:size-[42px] flex items-center justify-center shrink-0 transition-transform duration-300"
           style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)" }}
         >
-          <ChevronDown size={20} className="text-tala-90" />
+          <ChevronDown size={18} className="text-tala-90" />
         </div>
       </div>
       <div
         className="overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ maxHeight: open ? "300px" : "0px", opacity: open ? 1 : 0 }}
+        style={{ maxHeight: open ? "400px" : "0px", opacity: open ? 1 : 0 }}
       >
-        <div className="pr-5 lg:pr-[192px] pt-3 pb-1">
-          <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-80">
+        <div className="pt-3 pb-1 pr-0 md:pr-10 lg:pr-[192px]">
+          <p className="font-body text-[14px] leading-[18px] md:text-[16px] md:leading-[20px] lg:text-[18px] lg:leading-[22px] tracking-[-0.18px] text-tala-70">
             {answer}
           </p>
         </div>

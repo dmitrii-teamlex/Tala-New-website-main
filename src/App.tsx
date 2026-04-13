@@ -13,6 +13,7 @@ import CaseStudies from "./pages/CaseStudies.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import Webinars from "./pages/Webinars.tsx";
+import Pricing from "./pages/Pricing.tsx";
 import GetStarted from "./pages/GetStarted.tsx";
 import CaseStudyDetail from "./pages/CaseStudyDetail.tsx";
 import WebinarLanding from "./pages/WebinarLanding.tsx";
@@ -38,6 +39,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/webinars" element={<Webinars />} />
+          <Route path="/pricing" element={<Pricing />} />
           <Route path="/webinar/:slug" element={<WebinarLanding />} />
           <Route path="/webinars/:slug" element={<WebinarRecap />} />
           <Route path="/get-started" element={<GetStarted />} />

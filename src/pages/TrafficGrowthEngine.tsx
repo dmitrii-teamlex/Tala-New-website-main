@@ -57,29 +57,29 @@ const faqItems = [
 /* ── Case cards for "Companies that scaled SEO into growth" ── */
 const caseCards = [
   {
-    stat: "+245%",
-    label: "lead conversion rate",
-    description: "AI-generated, localized page templates boosted relevance and intent, raising conversions by 245% and cutting acquisition costs by 40%.",
+    stat: "2x",
+    label: "organic traffic",
+    description: "Programmatic SEO turned route demand into a scalable acquisition channel for an alpine transfer service — 10K+ pages, doubled organic.",
     logo: "/images/brand-alps.svg",
     logoName: "Alps2Alps",
-    href: "/case-studies",
+    href: "/case-studies/alps2alps",
   },
   {
-    stat: "+170%",
-    label: "organic-driven revenue",
-    description: "Programmatic SEO turned static blog content into a scalable acquisition channel, growing organic revenue by 170% in five months.",
+    stat: "408K+",
+    label: "monthly organic visitors",
+    description: "AI-powered programmatic SEO turned Flylane's global education platform into a 400K+ monthly organic traffic machine.",
     logo: "/images/brand-flylane.svg",
     logoName: "Flylane",
-    href: "/case-studies",
+    href: "/case-studies/flylane",
   },
   {
-    stat: "+30K",
-    label: "organic visits",
-    description: "Generated 30,000 organic visits in just four months by launching AI-driven content clusters focused on high-intent wellness topics.",
+    stat: "20K+",
+    label: "monthly organic visits",
+    description: "A medical-safe SEO AI agent built Ask Ayurveda's organic traffic from zero to 20K+ monthly visits in the first few months.",
     logo: "/images/brand-ayurveda.svg",
     logoName: "Ask Ayurveda",
     logoFlip: true,
-    href: "/case-studies",
+    href: "/case-studies/ask-ayurveda",
   },
 ];
 
@@ -241,7 +241,98 @@ export default function TrafficGrowthEngine() {
         </div>
       </section>
 
-      {/* ═══ 7. COMPANIES THAT SCALED — 3 case cards with hover ═══ */}
+      {/* ═══ 7. PRICING — Two plans side by side ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
+        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">
+            Pricing
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Self Service */}
+            <div className="bg-tala-0 border border-tala-20 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-100">Self service</p>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50 min-h-[40px]">
+                    You use Tala to run SEO tools and generate content yourself.
+                  </p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-100">$250</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-50 pb-1">/month</p>
+                </div>
+              </div>
+              <div className="flex-1 border-t border-tala-20 pt-6 flex flex-col gap-4">
+                <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-80">What's included</p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    "Unlimited access for the whole team",
+                    "SEO audit and strategy",
+                    "AI keyword and competitor analysis",
+                    "SEO-optimized content generation",
+                    "Rankings and traffic monitoring",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-tala-100 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
+                      <p className="font-body text-[16px] leading-[18px] text-tala-70">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <TalaButton color="black" size="L" onClick={() => navigate("/get-started")} className="w-full">
+                Get started
+              </TalaButton>
+            </div>
+
+            {/* SEO & Content Done For You */}
+            <div className="bg-tala-100 border border-tala-100 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-0">Done for you</p>
+                    <span className="bg-tala-brand text-tala-0 font-body text-[14px] leading-[16px] tracking-[-0.5px] px-3 py-2 rounded-pill whitespace-nowrap">
+                      Recommended
+                    </span>
+                  </div>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40 min-h-[40px]">
+                    We run SEO and content marketing end-to-end so you grow predictable organic traffic.
+                  </p>
+                </div>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-0">$1,000</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-40 pb-1">/month</p>
+                </div>
+              </div>
+              <div className="flex-1 border-t border-tala-80 pt-6 flex flex-col gap-4">
+                <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-20">What's included</p>
+                <div className="flex flex-col gap-3">
+                  {[
+                    "Full cycle: audit → strategy → content → optimization → monitoring",
+                    "Dedicated SEO & content team",
+                    "Programmatic SEO at scale",
+                    "Performance guarantee",
+                    "Everything in Self service + hands-on team work",
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-tala-0 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="#1F2026" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                      </div>
+                      <p className="font-body text-[16px] leading-[18px] text-tala-30">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <TalaButton color="white" size="L" onClick={() => navigate("/get-started")} className="w-full">
+                Talk to us
+              </TalaButton>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 8. COMPANIES THAT SCALED — 3 case cards with hover ═══ */}
       <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
           <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">

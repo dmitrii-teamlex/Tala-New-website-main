@@ -29,7 +29,7 @@ const footerColumns = [
     title: "Interaction",
     links: [
       { label: "Webinars", href: "/webinars" },
-      { label: "Resources", href: "#" },
+      { label: "Pricing", href: "/pricing" },
       { label: "Blog", href: "#" },
     ],
   },

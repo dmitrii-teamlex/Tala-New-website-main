@@ -1,5 +1,6 @@
 import { useNavigate, Link } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
+import { ChevronRight } from "lucide-react";
 import {
   TalaPageLayout,
   TalaButton,
@@ -11,6 +12,35 @@ import {
   TalaCaseTestimonial,
   navItems,
 } from "@/components/tala";
+
+/* ── Case cards for "Brands creating viral content with Tala" ── */
+const viralCaseCards = [
+  {
+    stat: "~75%",
+    label: "viral video rate",
+    description: "A self-optimizing AI agent replaced Semrush's fragmented video workflow with a single continuous loop — most videos now go viral.",
+    logo: "/images/brand-semrush.svg",
+    logoName: "Semrush",
+    logoMono: true,
+    href: "/case-studies/semrush",
+  },
+  {
+    stat: "+220%",
+    label: "organic reach",
+    description: "A self-improving content engine turned Wow How Studio's organic reach from inconsistent to predictable across every platform.",
+    logo: "/images/brand-wowwoh.svg",
+    logoName: "Wow How Studio",
+    href: "/case-studies/wow-how-studio",
+  },
+  {
+    stat: "+30%",
+    label: "content win rate",
+    description: "Data-driven idea selection and competitor analysis helped Bina School turn short-form content from guessing into a predictable system.",
+    logo: "/images/brand-bina.svg",
+    logoName: "Bina School",
+    href: "/case-studies/bina-school",
+  },
+];
 
 const Lottie = lazy(() => import("lottie-react"));
 
@@ -171,8 +201,8 @@ export default function ViralContentEngine() {
               {/* Top: header + price */}
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
-                  <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-100">Self Service</p>
-                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50">
+                  <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-100">Self service</p>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50 min-h-[40px]">
                     You use Tala to analyze trends and generate viral content yourself.
                   </p>
                 </div>
@@ -211,13 +241,13 @@ export default function ViralContentEngine() {
               {/* Top: header + price */}
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-0">Done For You</p>
+                  <div className="flex items-start justify-between gap-4">
+                    <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-0">Done for you</p>
                     <span className="bg-tala-brand text-tala-0 font-body text-[14px] leading-[16px] tracking-[-0.5px] px-3 py-2 rounded-pill whitespace-nowrap">
                       Recommended
                     </span>
                   </div>
-                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40">
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40 min-h-[40px]">
                     We run your social media end-to-end: from trend analysis to publishing.
                   </p>
                 </div>
@@ -235,7 +265,7 @@ export default function ViralContentEngine() {
                     "Dedicated content team",
                     "Viral growth strategy",
                     "Performance guarantee",
-                    "Everything in Self Service + hands-on team work",
+                    "Everything in Self service + hands-on team work",
                   ].map((item) => (
                     <div key={item} className="flex items-start gap-3">
                       <div className="w-5 h-5 rounded-full bg-tala-0 flex items-center justify-center shrink-0 mt-0.5">
@@ -254,7 +284,41 @@ export default function ViralContentEngine() {
         </div>
       </section>
 
-      {/* ═══ 7. FAQ — Figma: H2 (60px) title, py-80 ═══ */}
+      {/* ═══ 7. COMPANIES — 3 case cards with hover ═══ */}
+      <section className="bg-tala-10 py-12 md:py-16 lg:py-20">
+        <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
+          <h2 className="font-headline font-bold text-[28px] leading-[28px] md:text-[36px] md:leading-[36px] lg:text-[42px] lg:leading-[40px] text-tala-100 mb-8 lg:mb-10">
+            Brands creating viral content with Tala
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1">
+            {viralCaseCards.map((card) => (
+              <Link key={card.stat} to={card.href} className="group bg-tala-0 border border-tala-10 rounded-[40px] p-10 flex flex-col justify-between min-h-[300px] lg:h-[360px] mr-[-0.5px] mb-[-0.5px] cursor-pointer">
+                <div className="flex items-start justify-between">
+                  <div className="h-8 flex items-center">
+                    <img src={card.logo} alt={card.logoName} className={`h-8 ${card.logoMono ? "brightness-0 opacity-80" : ""}`} />
+                  </div>
+                  <div className="w-[42px] h-[42px] rounded-pill border border-tala-100 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                    <ChevronRight size={20} />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex flex-col gap-1">
+                    <p className="font-headline font-bold text-[36px] leading-[36px] lg:text-[56px] lg:leading-[54px] text-tala-100">{card.stat}</p>
+                    <p className="font-body text-[20px] leading-[24px] lg:text-[24px] lg:leading-[28px] text-tala-70">{card.label}</p>
+                  </div>
+                  <div className="max-h-0 group-hover:max-h-[120px] overflow-hidden transition-all duration-300">
+                    <div className="border-t border-tala-20 mt-4 pt-4">
+                      <p className="font-body text-[16px] leading-[18px] text-tala-70">{card.description}</p>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 8. FAQ — Figma: H2 (60px) title, py-80 ═══ */}
       <section className="bg-tala-0 py-12 md:py-16 lg:py-20">
         <div className="max-w-[1360px] mx-auto px-5 lg:px-10">
           <h2 className="font-headline font-bold text-[32px] leading-[32px] md:text-[42px] md:leading-[40px] lg:text-[60px] lg:leading-[54px] text-tala-100 mb-8 lg:mb-10">
