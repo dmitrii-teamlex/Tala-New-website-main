@@ -171,7 +171,7 @@ export default function TrafficGrowthEngine() {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-[1.05]"
               />
             </div>
           </div>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 252" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <clipPath id="clip1"><rect width="202" height="252" rx="20"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip1)">
+    <!-- background grey -->
+    <rect width="202" height="252" fill="#C3C4CE"/>
+    <!-- orange rounded rect with white triangle (play) -->
+    <g transform="translate(78,0)">
+      <rect x="0" y="-15" width="160" height="160" rx="32" fill="#FFBA52"/>
+      <polygon points="60,30 60,108 122,69" fill="#FFFFFF"/>
+    </g>
+    <!-- dark circle with white star -->
+    <g transform="translate(40,140)">
+      <circle cx="0" cy="0" r="50" fill="#1F2026"/>
+      <path d="M0,-32 L9.4,-9.9 L33,-7.8 L15,8.4 L20.4,31.5 L0,18.5 L-20.4,31.5 L-15,8.4 L-33,-7.8 L-9.4,-9.9 Z" fill="#FFFFFF"/>
+    </g>
+    <!-- spiky purple star burst (right side) -->
+    <g transform="translate(150,170) rotate(15)">
+      <path d="M0,-66 L11,-30 L46,-46 L26,-12 L66,0 L26,12 L46,46 L11,30 L0,66 L-11,30 L-46,46 L-26,12 L-66,0 L-26,-12 L-46,-46 L-11,-30 Z" fill="#6851FF"/>
+    </g>
+  </g>
+</svg>

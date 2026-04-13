@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 252" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <clipPath id="clip2"><rect width="202" height="252" rx="20"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip2)">
+    <!-- background grey -->
+    <rect width="202" height="252" fill="#91929F"/>
+    <!-- white burst behind purple square -->
+    <g transform="translate(110,140) rotate(28)">
+      <path d="M0,-130 L18,-60 L88,-92 L46,-24 L130,0 L46,24 L88,92 L18,60 L0,130 L-18,60 L-88,92 L-46,24 L-130,0 L-46,-24 L-88,-92 L-18,-60 Z" fill="#FFFFFF"/>
+    </g>
+    <!-- purple rounded square with orange play -->
+    <g transform="translate(95,90)">
+      <rect x="0" y="0" width="115" height="100" rx="16" fill="#6851FF"/>
+      <polygon points="42,28 42,76 90,52" fill="#FFBA52"/>
+    </g>
+    <!-- top SEMRUSH tag -->
+    <g transform="translate(10,30) rotate(-12)">
+      <rect x="0" y="0" width="160" height="28" rx="4" fill="#2F3037"/>
+      <text x="80" y="20" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.5">⊙ SEMRUSH</text>
+    </g>
+    <!-- bottom Teamlex tag -->
+    <g transform="translate(0,200) rotate(11)">
+      <rect x="0" y="0" width="170" height="28" rx="4" fill="#C3C4CE"/>
+      <text x="14" y="20" font-family="Helvetica, Arial, sans-serif" font-size="13" font-weight="700" fill="#1F2026">✦ TeamlexAi</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 252" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <clipPath id="clip3"><rect width="202" height="252" rx="20"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip3)">
+    <!-- background grey -->
+    <rect width="202" height="252" fill="#ECEBF1"/>
+    <!-- big grey burst -->
+    <g transform="translate(101,126) rotate(28)">
+      <path d="M0,-160 L22,-72 L106,-110 L56,-28 L160,0 L56,28 L106,110 L22,72 L0,160 L-22,72 L-106,110 L-56,28 L-160,0 L-56,-28 L-106,-110 L-22,-72 Z" fill="#91929F"/>
+    </g>
+    <!-- purple circles -->
+    <circle cx="105" cy="48" r="22" fill="#6851FF"/>
+    <circle cx="38" cy="118" r="14" fill="#6851FF"/>
+    <circle cx="138" cy="200" r="12" fill="#6851FF"/>
+    <!-- Teamlex tag (top) -->
+    <g transform="translate(8,52) rotate(-13)">
+      <rect x="0" y="0" width="170" height="30" rx="4" fill="#2F3037"/>
+      <text x="14" y="20" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#FFFFFF">✦ TeamlexAi</text>
+    </g>
+    <!-- uForce tag (bottom) -->
+    <g transform="translate(28,158) rotate(-13)">
+      <rect x="0" y="0" width="135" height="34" rx="17" fill="#FFFFFF" stroke="#91929F"/>
+      <circle cx="22" cy="17" r="9" fill="#91929F"/>
+      <text x="40" y="22" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F2026">uForce</text>
+    </g>
+  </g>
+</svg>

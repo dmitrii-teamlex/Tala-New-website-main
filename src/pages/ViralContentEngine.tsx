@@ -120,7 +120,7 @@ export default function ViralContentEngine() {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-[1.05]"
               />
             </div>
           </div>
@@ -168,20 +168,21 @@ export default function ViralContentEngine() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             {/* Self Service */}
             <div className="bg-tala-0 border border-tala-20 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                  <p className="font-headline font-bold text-[28px] leading-[26px] lg:text-[42px] lg:leading-[40px] text-tala-100">Self Service</p>
-                  <TalaTag color="light-grey" size="S">Popular</TalaTag>
+              {/* Top: header + price */}
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-100">Self Service</p>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50">
+                    You use Tala to analyze trends and generate viral content yourself.
+                  </p>
                 </div>
-                <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-50">
-                  You use Tala to analyze trends and generate viral content yourself.
-                </p>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-100">$250</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-50 pb-1">/month</p>
+                </div>
               </div>
-              <div className="flex items-end gap-1">
-                <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-100">$250</p>
-                <p className="font-body text-[20px] leading-[24px] text-tala-50 pb-1">/mo</p>
-              </div>
-              <div className="border-t border-tala-20 pt-6 flex flex-col gap-4">
+              {/* Middle: What's included — flex-1 to align dividers across both cards */}
+              <div className="flex-1 border-t border-tala-20 pt-6 flex flex-col gap-4">
                 <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-80">What's included</p>
                 <div className="flex flex-col gap-3">
                   {[
@@ -207,24 +208,30 @@ export default function ViralContentEngine() {
 
             {/* Done For You */}
             <div className="bg-tala-100 border border-tala-100 rounded-[40px] p-8 lg:p-10 flex flex-col gap-8 mr-[-0.5px] mb-[-0.5px]">
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                  <p className="font-headline font-bold text-[28px] leading-[26px] lg:text-[42px] lg:leading-[40px] text-tala-0">Done For You</p>
-                  <TalaTag color="black" size="S">Recommended</TalaTag>
+              {/* Top: header + price */}
+              <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="font-headline font-bold text-[32px] leading-[32px] md:text-h4 text-tala-0">Done For You</p>
+                    <span className="bg-tala-brand text-tala-0 font-body text-[14px] leading-[16px] tracking-[-0.5px] px-3 py-2 rounded-pill whitespace-nowrap">
+                      Recommended
+                    </span>
+                  </div>
+                  <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40">
+                    We run your social media end-to-end: from trend analysis to publishing.
+                  </p>
                 </div>
-                <p className="font-body text-[18px] leading-[20px] tracking-[-0.18px] text-tala-40">
-                  We run your social media end-to-end: from trend analysis to publishing.
-                </p>
+                <div className="flex items-end gap-1">
+                  <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-0">$1,000</p>
+                  <p className="font-body text-[20px] leading-[24px] text-tala-40 pb-1">/month</p>
+                </div>
               </div>
-              <div className="flex items-end gap-1">
-                <p className="font-headline font-bold text-[48px] leading-[48px] lg:text-[56px] lg:leading-[54px] text-tala-0">$1,000</p>
-                <p className="font-body text-[20px] leading-[24px] text-tala-40 pb-1">/mo</p>
-              </div>
-              <div className="border-t border-tala-80 pt-6 flex flex-col gap-4">
+              {/* Middle: What's included — flex-1 to align dividers across both cards */}
+              <div className="flex-1 border-t border-tala-80 pt-6 flex flex-col gap-4">
                 <p className="font-headline font-medium text-[18px] leading-[20px] text-tala-20">What's included</p>
                 <div className="flex flex-col gap-3">
                   {[
-                    "Full cycle: trend monitoring → content creation → scheduling → publishing",
+                    "Full cycle: monitoring → creation → scheduling → publishing",
                     "Dedicated content team",
                     "Viral growth strategy",
                     "Performance guarantee",

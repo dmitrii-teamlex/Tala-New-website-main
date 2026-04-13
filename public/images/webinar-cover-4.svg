@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 202 252" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <clipPath id="clip4"><rect width="202" height="252" rx="20"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip4)">
+    <!-- background grey -->
+    <rect width="202" height="252" fill="#91929F"/>
+    <!-- giant dark burst -->
+    <g transform="translate(101,126) rotate(28)">
+      <path d="M0,-180 L24,-80 L116,-122 L62,-30 L180,0 L62,30 L116,122 L24,80 L0,180 L-24,80 L-116,122 L-62,30 L-180,0 L-62,-30 L-116,-122 L-24,-80 Z" fill="#2F3037"/>
+    </g>
+    <!-- purple circle with white star -->
+    <g transform="translate(135,68)">
+      <circle cx="0" cy="0" r="32" fill="#6851FF"/>
+      <path d="M0,-20 L5.9,-6.2 L20.6,-4.9 L9.4,5.3 L12.7,19.7 L0,11.6 L-12.7,19.7 L-9.4,5.3 L-20.6,-4.9 L-5.9,-6.2 Z" fill="#FFFFFF"/>
+    </g>
+    <!-- pink concentric rings -->
+    <g transform="translate(45,170)">
+      <circle cx="0" cy="0" r="32" fill="none" stroke="#D727C6" stroke-width="2"/>
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#D727C6" stroke-width="2"/>
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#D727C6" stroke-width="2"/>
+      <circle cx="0" cy="0" r="14" fill="#D727C6"/>
+      <circle cx="0" cy="0" r="10" fill="#FFFFFF"/>
+      <circle cx="0" cy="0" r="6" fill="#D727C6"/>
+    </g>
+    <!-- Teamlex tag -->
+    <g transform="translate(20,140) rotate(-12)">
+      <rect x="0" y="0" width="170" height="30" rx="4" fill="#FFFFFF"/>
+      <text x="14" y="20" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#1F2026">✦ TeamlexAi</text>
+    </g>
+  </g>
+</svg>

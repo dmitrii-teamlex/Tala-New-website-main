@@ -24,3 +24,4 @@ export { TalaBrandline } from "./TalaBrandline";
 export { TalaTabs } from "./TalaTabs";
 export { TalaCaseTestimonial } from "./TalaCaseTestimonial";
 export { TalaCaseStudyCard } from "./TalaCaseStudyCard";
+export { TalaWebinarCard, type WebinarSpeaker } from "./TalaWebinarCard";
